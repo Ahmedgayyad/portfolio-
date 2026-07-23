@@ -350,6 +350,7 @@ body {
 
 .project-card:hover {
   transform: translateY(-4px);
+  cursor: none;
 }
 
 .project-image-wrapper {
@@ -382,6 +383,39 @@ body {
   color: var(--text-secondary);
   line-height: 1.7;
   max-width: 846px;
+}
+
+/* Explore Cursor */
+.explore-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 14px 24px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: var(--font-family);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
+  border: 1px solid #333;
+}
+
+.explore-cursor.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.explore-cursor svg {
+  flex-shrink: 0;
 }
 
 /* ============================

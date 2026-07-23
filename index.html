@@ -62,6 +62,25 @@
       </div>
     </section>
 
+    <!-- ======= PROJECTS SECTION ======= -->
+    <section class="projects" id="projects">
+      <div class="container">
+        <h2 class="section-label">PROJECTS</h2>
+        <p class="section-subtitle projects-subtitle">A glimpse into projects where I transformed ideas into intuitive digital experiences.</p>
+
+        <div class="projects-list">
+          <!-- Project 1 — IRYSS CRM -->
+          <a href="#" class="project-card" id="project-iryss">
+            <div class="project-image-wrapper">
+              <img src="assets/iryss-mockup.jpg" alt="IRYSS CRM Dashboard" class="project-image">
+            </div>
+            <h3 class="project-title">IRYSS CRM — Enterprise CRM Dashboard</h3>
+            <p class="project-desc">Designed a complete CRM experience for managing leads, contacts, companies, tasks, and analytics. The focus was on creating a simple, scalable interface that helps teams work more efficiently and make faster decisions.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- ======= EXPERIENCE SECTION ======= -->
     <section class="experience" id="experience">
       <div class="container">
@@ -131,25 +150,6 @@
               <p class="exp-desc">First job Designed custom ERP platform, improving business workflows through scalable, user-centered interfaces.</p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= PROJECTS SECTION ======= -->
-    <section class="projects" id="projects">
-      <div class="container">
-        <h2 class="section-label">PROJECTS</h2>
-        <p class="section-subtitle projects-subtitle">A glimpse into projects where I transformed ideas into intuitive digital experiences.</p>
-
-        <div class="projects-list">
-          <!-- Project 1 — IRYSS CRM -->
-          <a href="#" class="project-card" id="project-iryss">
-            <div class="project-image-wrapper">
-              <img src="assets/iryss-mockup.jpg" alt="IRYSS CRM Dashboard" class="project-image">
-            </div>
-            <h3 class="project-title">IRYSS CRM — Enterprise CRM Dashboard</h3>
-            <p class="project-desc">Designed a complete CRM experience for managing leads, contacts, companies, tasks, and analytics. The focus was on creating a simple, scalable interface that helps teams work more efficiently and make faster decisions.</p>
-          </a>
         </div>
       </div>
     </section>
@@ -272,5 +272,33 @@
       </div>
     </section>
   </main>
+  <!-- Custom Explore Cursor -->
+  <div class="explore-cursor" id="explore-cursor">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M7 17L17 7"/>
+      <path d="M7 7h10v10"/>
+    </svg>
+    <span>Explore</span>
+  </div>
+
+  <script>
+    // Custom Explore cursor for project cards
+    const cursor = document.getElementById('explore-cursor');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    projectCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        cursor.classList.add('visible');
+      });
+      card.addEventListener('mouseleave', () => {
+        cursor.classList.remove('visible');
+      });
+    });
+  </script>
 </body>
 </html>
