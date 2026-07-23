@@ -322,6 +322,69 @@ body {
 }
 
 /* ============================
+   PROJECTS SECTION
+   ============================ */
+.projects {
+  padding: 40px 0 80px;
+}
+
+.projects-subtitle {
+  max-width: 400px;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.project-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  padding: 20px;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+.project-image-wrapper {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+}
+
+.project-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.project-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.project-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 846px;
+}
+
+/* ============================
    TESTIMONIALS SECTION
    ============================ */
 .testimonials {
