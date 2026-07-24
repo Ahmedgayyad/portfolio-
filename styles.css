@@ -530,6 +530,148 @@ body {
 }
 
 /* ============================
+   CONTACT / FOOTER SECTION
+   ============================ */
+.contact {
+  padding: 60px 0 80px;
+}
+
+.contact .container {
+  text-align: center;
+}
+
+.contact-cta {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 0 auto 32px;
+}
+
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.btn-contact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 48px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: var(--font-family);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  min-width: 228px;
+}
+
+.btn-dark {
+  background-color: #222;
+  color: var(--text-primary);
+  border: 1px solid #333;
+}
+
+.btn-dark:hover {
+  background-color: #2a2a2a;
+  border-color: #444;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid #444;
+}
+
+.btn-outline:hover {
+  background-color: var(--btn-hover);
+  border-color: #555;
+}
+
+/* Footer Info */
+.footer-info {
+  border-top: 1px solid var(--divider);
+  padding-top: 32px;
+  text-align: left;
+  max-width: 496px;
+  margin: 0 auto;
+  padding-left: 16px;
+}
+
+.footer-updated {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.footer-location {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 15px;
+  color: var(--text-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--text-secondary);
+}
+
+.footer-dot {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin: 0 6px;
+}
+
+.footer-email-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-email-btn {
+  font-size: 15px;
+  font-family: var(--font-family);
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.footer-email-btn:hover {
+  color: var(--text-secondary);
+}
+
+.copy-icon {
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.copy-icon:hover {
+  color: var(--text-secondary);
+}
+
+/* ============================
    RESPONSIVE
    ============================ */
 @media (max-width: 768px) {
@@ -579,5 +721,15 @@ body {
 
   .testimonial-card {
     padding: 24px;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-contact {
+    width: 100%;
+    min-width: auto;
   }
 }

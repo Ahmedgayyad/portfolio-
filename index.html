@@ -249,6 +249,40 @@
         </div>
       </div>
     </section>
+
+    <!-- ======= CONTACT / FOOTER SECTION ======= -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <p class="contact-cta">Got an idea, project, or just want to connect? Send me an email or book a quick call. I'd love to hear from you</p>
+
+        <div class="contact-buttons">
+          <a href="#" class="btn-contact btn-dark" id="btn-book-call">Book a call</a>
+          <a href="mailto:contact@ahmedgiad.com" class="btn-contact btn-outline" id="btn-send-email">Send email</a>
+        </div>
+
+        <footer class="footer-info">
+          <p class="footer-updated">Updated Jul 16, 2026</p>
+          <p class="footer-location">Cairo, Egypt · GMT/UTC+2</p>
+          <div class="footer-links">
+            <a href="https://twitter.com" target="_blank">X</a>
+            <span class="footer-dot">·</span>
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            <span class="footer-dot">·</span>
+            <a href="https://telegram.org" target="_blank">Telegram</a>
+            <span class="footer-dot">·</span>
+            <a href="#" target="_blank">Resume</a>
+            <span class="footer-dot">·</span>
+            <span class="footer-email-wrapper">
+              <button class="footer-email-btn" id="copy-email" onclick="copyEmail()">contact@ahmedgiad.com</button>
+              <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </span>
+          </div>
+        </footer>
+      </div>
+    </section>
   </main>
   <!-- Custom Explore Cursor -->
   <div class="explore-cursor" id="explore-cursor">
@@ -277,6 +311,18 @@
         cursor.classList.remove('visible');
       });
     });
+
+    // Copy email to clipboard
+    function copyEmail() {
+      navigator.clipboard.writeText('contact@ahmedgiad.com').then(() => {
+        const btn = document.getElementById('copy-email');
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 2000);
+      });
+    }
+    // Make copyEmail globally accessible
+    window.copyEmail = copyEmail;
   </script>
 </body>
 </html>
