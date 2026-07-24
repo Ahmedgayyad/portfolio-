@@ -112,6 +112,7 @@ body {
 
 .verified-badge {
   flex-shrink: 0;
+  overflow: visible;
 }
 
 .title {
@@ -510,6 +511,7 @@ body {
 
 .verified-small {
   flex-shrink: 0;
+  overflow: visible;
 }
 
 .author-role {
