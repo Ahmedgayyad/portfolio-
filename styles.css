@@ -434,7 +434,11 @@ body {
 .testimonials-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 24px;
+}
+
+.testimonial-full {
+  grid-column: 1 / -1;
 }
 
 .testimonial-card {
