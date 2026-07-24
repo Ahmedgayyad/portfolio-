@@ -299,6 +299,14 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.exp-company:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
 }
 
 .company-logo {
@@ -312,6 +320,12 @@ body {
   font-size: 15px;
   font-weight: 500;
   color: var(--text-primary);
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.exp-company:hover .company-name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .exp-desc {
