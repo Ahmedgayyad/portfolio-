@@ -11,22 +11,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Scroll Progress Indicator -->
-  <div class="scroll-progress" id="scroll-progress"></div>
-
-  <!-- Floating Glass Navbar -->
-  <header class="floating-nav" id="floating-nav">
-    <nav class="nav-content">
-      <a href="#hero" class="nav-logo">AG</a>
-      <div class="nav-links">
-        <a href="#projects" class="nav-item">Projects</a>
-        <a href="#experience" class="nav-item">Experience</a>
-        <a href="#testimonials" class="nav-item">Testimonials</a>
-        <a href="#contact" class="nav-item">Contact</a>
-      </div>
-    </nav>
-  </header>
-
   <main class="portfolio">
     <!-- ======= HERO SECTION ======= -->
     <section class="hero reveal" id="hero">
@@ -347,41 +331,7 @@
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // Scroll Progress Bar & Floating Nav State
-    const progressBar = document.getElementById('scroll-progress');
-    const floatingNav = document.getElementById('floating-nav');
-    const sections = document.querySelectorAll('section[id]');
-    const navItems = document.querySelectorAll('.nav-item');
 
-    window.addEventListener('scroll', () => {
-      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (window.scrollY / windowHeight) * 100;
-      if (progressBar) progressBar.style.width = scrolled + '%';
-
-      // Floating nav visibility toggle on scroll down
-      if (window.scrollY > 250) {
-        floatingNav.classList.add('visible');
-      } else {
-        floatingNav.classList.remove('visible');
-      }
-
-      // Active nav item highlighting
-      let currentSection = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.offsetHeight;
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          currentSection = section.getAttribute('id');
-        }
-      });
-
-      navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href') === '#' + currentSection) {
-          item.classList.add('active');
-        }
-      });
-    });
 
     // Copy email to clipboard with visual feedback
     let copyTimeout;
