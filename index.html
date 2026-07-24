@@ -11,9 +11,25 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Floating Glass Navbar -->
+  <header class="floating-nav" id="floating-nav">
+    <nav class="nav-content">
+      <a href="#hero" class="nav-logo">AG</a>
+      <div class="nav-links">
+        <a href="#projects" class="nav-item">Projects</a>
+        <a href="#experience" class="nav-item">Experience</a>
+        <a href="#testimonials" class="nav-item">Testimonials</a>
+        <a href="#contact" class="nav-item">Contact</a>
+      </div>
+    </nav>
+  </header>
+
   <main class="portfolio">
     <!-- ======= HERO SECTION ======= -->
-    <section class="hero" id="hero">
+    <section class="hero reveal" id="hero">
       <div class="container">
         <!-- Avatar -->
         <div class="avatar-wrapper">
@@ -63,14 +79,14 @@
     </section>
 
     <!-- ======= PROJECTS SECTION ======= -->
-    <section class="projects" id="projects">
+    <section class="projects reveal" id="projects">
       <div class="container">
         <h2 class="section-label">PROJECTS</h2>
         <p class="section-subtitle projects-subtitle">A glimpse into projects where I transformed ideas into intuitive digital experiences.</p>
 
         <div class="projects-list">
           <!-- Project 1 — IRYSS CRM -->
-          <a href="#" class="project-card" id="project-iryss">
+          <a href="#" class="project-card reveal reveal-delay-1" id="project-iryss">
             <div class="project-image-wrapper">
               <img src="assets/iryss-mockup.jpg" alt="IRYSS CRM Dashboard" class="project-image">
             </div>
@@ -79,7 +95,7 @@
           </a>
 
           <!-- Project 2 — EquiCare -->
-          <a href="#" class="project-card" id="project-equicare">
+          <a href="#" class="project-card reveal reveal-delay-2" id="project-equicare">
             <div class="project-image-wrapper">
               <img src="assets/equicare-mockup.jpg" alt="EquiCare Horse Services App" class="project-image">
             </div>
@@ -91,7 +107,7 @@
     </section>
 
     <!-- ======= EXPERIENCE SECTION ======= -->
-    <section class="experience" id="experience">
+    <section class="experience reveal" id="experience">
       <div class="container">
         <h2 class="section-label">EXPERIENCE</h2>
         <p class="section-description">Throughout my career, I've worked on various projects, from building scalable systems to designing user-friendly interfaces. Here's a brief overview.</p>
@@ -105,7 +121,7 @@
           <div class="divider"></div>
 
           <!-- Experience 1 -->
-          <div class="experience-row" id="exp-iryss">
+          <div class="experience-row reveal reveal-delay-1" id="exp-iryss">
             <div class="exp-period">
               <span>Sep 2025 - Aug 2026</span>
             </div>
@@ -124,7 +140,7 @@
           <div class="divider"></div>
 
           <!-- Experience 2 -->
-          <div class="experience-row" id="exp-phix">
+          <div class="experience-row reveal reveal-delay-2" id="exp-phix">
             <div class="exp-period">
               <span>May 2025 - Sep 2025</span>
             </div>
@@ -143,7 +159,7 @@
           <div class="divider"></div>
 
           <!-- Experience 3 -->
-          <div class="experience-row" id="exp-digitalh">
+          <div class="experience-row reveal reveal-delay-3" id="exp-digitalh">
             <div class="exp-period">
               <span>Jan 2025 - Apr 2025</span>
             </div>
@@ -164,7 +180,7 @@
     </section>
 
     <!-- ======= TESTIMONIALS SECTION ======= -->
-    <section class="testimonials" id="testimonials">
+    <section class="testimonials reveal" id="testimonials">
       <div class="container">
         <h2 class="section-label">TESTIMONIALS</h2>
         <p class="section-subtitle">A few words from people I've worked with.</p>
@@ -172,7 +188,7 @@
         <div class="testimonials-grid">
           <!-- Row 1: Two cards side by side -->
           <!-- Testimonial 1 — M Hafiz -->
-          <div class="testimonial-card" id="testimonial-1">
+          <div class="testimonial-card reveal reveal-delay-1" id="testimonial-1">
             <div class="testimonial-header">
               <div class="testimonial-author">
                 <img src="assets/hafiz.jpg" alt="M Hafiz" class="author-avatar">
@@ -197,7 +213,7 @@
           </div>
 
           <!-- Testimonial 2 — Elsayed Alorabi -->
-          <div class="testimonial-card" id="testimonial-2">
+          <div class="testimonial-card reveal reveal-delay-2" id="testimonial-2">
             <div class="testimonial-header">
               <div class="testimonial-author">
                 <img src="assets/elsayed.jpg" alt="Elsayed Alorabi" class="author-avatar">
@@ -223,7 +239,7 @@
 
           <!-- Row 2: Full-width card -->
           <!-- Testimonial 3 — Ronan McKenna -->
-          <div class="testimonial-card testimonial-full" id="testimonial-3">
+          <div class="testimonial-card testimonial-full reveal reveal-delay-3" id="testimonial-3">
             <div class="testimonial-header">
               <div class="testimonial-author">
                 <img src="assets/ronan.jpg" alt="Ronan McKenna" class="author-avatar">
@@ -251,7 +267,7 @@
     </section>
 
     <!-- ======= CONTACT / FOOTER SECTION ======= -->
-    <section class="contact" id="contact">
+    <section class="contact reveal" id="contact">
       <div class="container">
         <p class="contact-cta">Got an idea, project, or just want to connect? Send me an email or book a quick call. I'd love to hear from you</p>
 
@@ -313,6 +329,57 @@
       });
       card.addEventListener('mouseleave', () => {
         cursor.classList.remove('visible');
+      });
+    });
+
+    // Scroll Reveal Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Scroll Progress Bar & Floating Nav State
+    const progressBar = document.getElementById('scroll-progress');
+    const floatingNav = document.getElementById('floating-nav');
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    window.addEventListener('scroll', () => {
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (window.scrollY / windowHeight) * 100;
+      if (progressBar) progressBar.style.width = scrolled + '%';
+
+      // Floating nav visibility toggle on scroll down
+      if (window.scrollY > 250) {
+        floatingNav.classList.add('visible');
+      } else {
+        floatingNav.classList.remove('visible');
+      }
+
+      // Active nav item highlighting
+      let currentSection = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.offsetHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + currentSection) {
+          item.classList.add('active');
+        }
       });
     });
 
