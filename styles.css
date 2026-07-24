@@ -695,8 +695,9 @@ body {
   display: inline-block;
 }
 
-.footer-email-wrapper.copied .footer-email-btn {
-  color: #22c55e;
+.footer-email-wrapper.copied .footer-email-btn,
+.footer-email-wrapper.copied .copy-icon-success {
+  color: var(--text-primary);
 }
 
 /* Tooltip Badge */
