@@ -68,21 +68,21 @@ body {
 /* Avatar Photo Stack (tanvir.io hover fanned photo deck effect) */
 .avatar-stack-container {
   position: relative;
-  width: 56px;
-  height: 56px;
+  width: 72px;
+  height: 72px;
   margin-bottom: 28px;
   cursor: pointer;
 }
 
 .avatar-card {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
+  top: 4px;
+  left: 4px;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
   object-fit: cover;
-  border: 2.5px solid rgba(255,255,255,0.08);
+  border: 2px solid rgba(255,255,255,0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.5);
   opacity: 0;
   transform: scale(0.3) rotate(0deg);
@@ -94,72 +94,74 @@ body {
 
 .avatar-main-card {
   position: relative;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
   z-index: 10;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
 }
 
 .avatar-img {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  width: 72px;
+  height: 72px;
+  /* Squircle shape — matches Figma: not a full circle */
+  border-radius: 22px;
   object-fit: cover;
   display: block;
-  border: 2px solid rgba(255, 255, 255, 0.12);
+  border: none;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
 }
 
 .avatar-status {
   position: absolute;
-  bottom: 1px;
-  right: 1px;
-  width: 13px;
-  height: 13px;
+  bottom: -2px;
+  right: -2px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background-color: #22c55e;
-  border: 2px solid var(--bg-primary);
+  border: 2.5px solid var(--bg-primary);
   z-index: 11;
 }
 
 /* Hover Fanned Deck State — matches tanvir.io 5-card spread */
 .avatar-stack-container:hover .avatar-main-card {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 /* card-1: far left, tilted back */
 .avatar-stack-container:hover .card-1 {
   opacity: 1;
-  transform: translate(-82px, 8px) rotate(-28deg) scale(0.85);
+  transform: translate(-92px, 12px) rotate(-28deg) scale(0.9);
   transition-delay: 0.00s;
 }
 
 /* card-2: mid left */
 .avatar-stack-container:hover .card-2 {
   opacity: 1;
-  transform: translate(-44px, -14px) rotate(-14deg) scale(0.92);
+  transform: translate(-50px, -18px) rotate(-14deg) scale(0.95);
   transition-delay: 0.04s;
 }
 
 /* card-3: top center */
 .avatar-stack-container:hover .card-3 {
   opacity: 1;
-  transform: translate(0px, -26px) rotate(0deg) scale(0.96);
+  transform: translate(0px, -32px) rotate(0deg) scale(0.98);
   transition-delay: 0.08s;
 }
 
 /* card-4: mid right */
 .avatar-stack-container:hover .card-4 {
   opacity: 1;
-  transform: translate(44px, -14px) rotate(14deg) scale(0.92);
+  transform: translate(50px, -18px) rotate(14deg) scale(0.95);
   transition-delay: 0.12s;
 }
 
 /* card-5: far right, tilted back */
 .avatar-stack-container:hover .card-5 {
   opacity: 1;
-  transform: translate(82px, 8px) rotate(28deg) scale(0.85);
+  transform: translate(92px, 12px) rotate(28deg) scale(0.9);
   transition-delay: 0.16s;
 }
 
