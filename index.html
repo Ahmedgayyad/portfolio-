@@ -70,7 +70,7 @@
 
         <div class="projects-list">
           <!-- Project 1 — IRYSS CRM -->
-          <a href="#" class="project-card reveal reveal-delay-1" id="project-iryss">
+          <a href="#" class="project-card" id="project-iryss">
             <div class="project-image-wrapper">
               <img src="assets/iryss-mockup.jpg" alt="IRYSS CRM Dashboard" class="project-image">
             </div>
@@ -79,7 +79,7 @@
           </a>
 
           <!-- Project 2 — EquiCare -->
-          <a href="#" class="project-card reveal reveal-delay-2" id="project-equicare">
+          <a href="#" class="project-card" id="project-equicare">
             <div class="project-image-wrapper">
               <img src="assets/equicare-mockup.jpg" alt="EquiCare Horse Services App" class="project-image">
             </div>
@@ -333,27 +333,46 @@
 
     // Framer Scroll-Driven Scale Animation for Projects Section
     const projectCardsList = document.querySelectorAll('.project-card');
-    function animateProjectsOnScroll() {
+    let ticking = false;
+
+    function updateProjectScroll() {
       const windowHeight = window.innerHeight;
+
       projectCardsList.forEach(card => {
         const rect = card.getBoundingClientRect();
-        if (rect.top < windowHeight * 0.9 && rect.bottom > 0) {
-          card.classList.add('in-view');
-          const progress = Math.min(Math.max((windowHeight - rect.top) / (windowHeight * 0.65), 0), 1);
-          const scale = 0.93 + progress * 0.07;
-          const opacity = 0.65 + progress * 0.35;
-          const imgWrapper = card.querySelector('.project-image-wrapper');
-          if (imgWrapper) {
-            imgWrapper.style.transform = `scale(${Math.min(scale, 1)})`;
-            imgWrapper.style.opacity = `${Math.min(opacity, 1)}`;
-          }
+        const imgWrapper = card.querySelector('.project-image-wrapper');
+        
+        if (imgWrapper && rect.top < windowHeight && rect.bottom > 0) {
+          // Progress from 0 (entering viewport) to 1 (mid viewport)
+          const distanceFromBottom = windowHeight - rect.top;
+          const progress = Math.min(Math.max(distanceFromBottom / (windowHeight * 0.7), 0), 1);
+          
+          // Easing curve
+          const easeProgress = 1 - Math.pow(1 - progress, 2.5);
+          
+          const scale = 0.88 + (easeProgress * 0.12); // 0.88 -> 1.0
+          const opacity = 0.4 + (easeProgress * 0.6); // 0.4 -> 1.0
+          const translateY = (1 - easeProgress) * 35; // 35px -> 0px
+
+          imgWrapper.style.transform = `scale(${scale.toFixed(4)}) translateY(${translateY.toFixed(1)}px)`;
+          imgWrapper.style.opacity = opacity.toFixed(3);
         }
       });
+
+      ticking = false;
     }
 
-    window.addEventListener('scroll', animateProjectsOnScroll, { passive: true });
-    window.addEventListener('resize', animateProjectsOnScroll, { passive: true });
-    animateProjectsOnScroll();
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(updateProjectScroll);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    document.addEventListener('DOMContentLoaded', updateProjectScroll);
+    updateProjectScroll();
 
 
 
