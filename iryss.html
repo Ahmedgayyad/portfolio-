@@ -9,7 +9,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* =========================================================
@@ -22,6 +22,7 @@
       --text-dim: rgba(255, 255, 255, 0.38);
       --border-color: rgba(255, 255, 255, 0.08);
       --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Geist Mono', monospace;
     }
 
     * {
@@ -72,6 +73,7 @@
       gap: 8px;
       font-size: 13px;
       font-weight: 500;
+      font-family: var(--font-mono);
       color: var(--text-dim);
       text-decoration: none;
       transition: color 0.2s ease;
@@ -92,6 +94,7 @@
 
     .article-aside nav ul li a {
       font-size: 13px;
+      font-family: var(--font-mono);
       color: var(--text-dim);
       text-decoration: none;
       transition: color 0.2s ease;
@@ -147,6 +150,7 @@
     .article-header h1 {
       font-size: 18px;
       font-weight: 600;
+      font-family: var(--font-mono);
       letter-spacing: -0.01em;
       margin: 0;
       color: var(--text-main);
@@ -162,6 +166,7 @@
 
     .article-meta dt {
       color: var(--text-dim);
+      font-family: var(--font-mono);
       font-weight: 400;
     }
 
@@ -196,6 +201,7 @@
     .article-section h2 {
       font-size: 14px;
       font-weight: 600;
+      font-family: var(--font-mono);
       letter-spacing: -0.01em;
       color: var(--text-main);
       margin: 0 0 4px 0;
