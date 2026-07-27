@@ -4,431 +4,526 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IRYSS CRM — Ahmed Giad</title>
-  <meta name="description" content="IRYSS CRM Case Study — Enterprise B2B SaaS CRM Platform designed by Ahmed Giad.">
+  <meta name="description" content="IRYSS CRM Case Study by Ahmed Giad — Enterprise B2B SaaS CRM Platform.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
   <style>
-    /* Case Study Layout Styles - Matched to Figma Node 159-190 */
-    body {
-      background-color: #0d0d0d;
-      color: #e5e5e5;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* =========================================================
+       HAMZAALABOU.COM / ODIN EXACT CASE STUDY LAYOUT & STYLES
+       ========================================================= */
+    :root {
+      --bg-color: #0e0e0e;
+      --text-main: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.62);
+      --text-dim: rgba(255, 255, 255, 0.38);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
       margin: 0;
       padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-family);
       -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
     }
 
-    .case-study-container {
-      max-width: 1200px;
+    /* Page Shell Container */
+    .page-shell {
+      max-width: 1040px;
       margin: 0 auto;
-      padding: 60px 24px 140px;
+      padding: 80px 24px 140px;
     }
 
-    .cs-grid {
+    /* Article Layout (Sidebar + Main Column) */
+    .article-layout {
       display: grid;
-      grid-template-columns: 200px 1fr;
+      grid-template-columns: 160px 1fr;
       gap: 72px;
       position: relative;
     }
 
-    /* Sticky Sidebar Navigation */
-    .cs-sidebar {
+    /* Aside Sticky Navigation */
+    .article-aside {
       position: sticky;
-      top: 60px;
+      top: 80px;
       height: fit-content;
       display: flex;
       flex-direction: column;
-      gap: 36px;
+      gap: 32px;
     }
 
-    .cs-back-link {
+    .aside-home {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
-      color: #888888;
+      color: var(--text-dim);
       text-decoration: none;
-      transition: color 0.2s ease, transform 0.2s ease;
+      transition: color 0.2s ease;
     }
 
-    .cs-back-link:hover {
-      color: #ffffff;
-      transform: translateX(-4px);
+    .aside-home:hover {
+      color: var(--text-main);
     }
 
-    .cs-nav-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    .article-aside nav ul {
       list-style: none;
       padding: 0;
       margin: 0;
-      border-left: 1px solid rgba(255, 255, 255, 0.08);
-      padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .cs-nav-item a {
-      font-size: 14px;
-      color: #666666;
+    .article-aside nav ul li a {
+      font-size: 13px;
+      color: var(--text-dim);
       text-decoration: none;
       transition: color 0.2s ease;
       display: block;
       font-weight: 400;
     }
 
-    .cs-nav-item a:hover,
-    .cs-nav-item.active a {
-      color: #ffffff;
+    .article-aside nav ul li a:hover,
+    .article-aside nav ul li a[data-active="true"] {
+      color: var(--text-main);
       font-weight: 500;
     }
 
-    .cs-nav-item.active {
-      position: relative;
-    }
-
-    .cs-nav-item.active::before {
-      content: '';
-      position: absolute;
-      left: -17px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 2px;
-      height: 16px;
-      background-color: #ffffff;
-      border-radius: 2px;
-    }
-
-    /* Article Content Area */
-    .cs-article {
-      max-width: 720px;
+    /* Main Article Container */
+    .article-main {
+      max-width: 680px;
       display: flex;
       flex-direction: column;
-      gap: 64px;
+      gap: 48px;
     }
 
     /* Header & Meta Definitions */
-    .cs-header {
+    .article-header {
       display: flex;
       flex-direction: column;
-      gap: 28px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 36px;
+      gap: 20px;
+      margin-bottom: 8px;
     }
 
-    .cs-title {
-      font-size: 40px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin: 0;
-      color: #ffffff;
-    }
-
-    .cs-dl {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      row-gap: 16px;
-      margin: 0;
-      font-size: 14px;
-    }
-
-    .cs-dt {
-      color: #888888;
-      font-weight: 400;
-    }
-
-    .cs-dd {
-      color: #e5e5e5;
-      font-weight: 500;
-      margin: 0;
-    }
-
-    /* Case Study Sections */
-    .cs-section {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      scroll-margin-top: 60px;
-    }
-
-    .cs-section-title {
+    .article-header h1 {
       font-size: 18px;
       font-weight: 600;
       letter-spacing: -0.01em;
-      color: #ffffff;
-      margin: 0 0 6px 0;
+      margin: 0;
+      color: var(--text-main);
     }
 
-    .cs-section-subtitle {
-      font-size: 15px;
-      font-weight: 600;
-      color: #ffffff;
-      margin: 16px 0 4px 0;
+    .article-meta {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      row-gap: 10px;
+      margin: 0;
+      font-size: 13px;
     }
 
-    .cs-paragraph {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #999999;
+    .article-meta dt {
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    .article-meta dd {
+      color: var(--text-main);
+      font-weight: 400;
       margin: 0;
     }
 
-    .cs-paragraph strong {
-      color: #ffffff;
-      font-weight: 500;
+    .chip-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-main);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s ease;
     }
 
-    .cs-list {
-      list-style: none;
-      padding: 0;
-      margin: 6px 0 0 0;
+    .chip-link:hover {
+      opacity: 0.8;
+    }
+
+    /* Article Sections */
+    .article-section {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 14px;
+      scroll-margin-top: 80px;
     }
 
-    .cs-list li {
+    .article-section h2 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+      margin: 0 0 4px 0;
+    }
+
+    .article-section p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .article-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .article-section ul li {
       position: relative;
-      padding-left: 18px;
-      font-size: 15px;
+      padding-left: 16px;
+      font-size: 14px;
       line-height: 1.65;
-      color: #999999;
+      color: var(--text-muted);
     }
 
-    .cs-list li::before {
+    .article-section ul li::before {
       content: '·';
       position: absolute;
       left: 2px;
-      top: 0;
+      top: -1px;
       font-weight: bold;
-      color: #888888;
-      font-size: 18px;
+      color: var(--text-dim);
+      font-size: 16px;
     }
 
-    /* Figures / Showcase Images */
-    .cs-figure {
-      margin: 20px 0 0 0;
-      border-radius: 16px;
+    .article-subsection {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .article-subsection h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    /* Image Figures */
+    .article-figure {
+      margin: 16px 0 0 0;
+      border-radius: 12px;
       overflow: hidden;
-      background-color: #141414;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--border-color);
+      background-color: #121212;
     }
 
-    .cs-image {
+    .article-figure img {
       width: 100%;
       height: auto;
       display: block;
       object-fit: cover;
     }
 
-    /* Responsive Design */
-    @media (max-width: 900px) {
-      .cs-grid {
+    /* Filmstrip Carousel (Hamza Alabou Style) */
+    .odin-filmstrip-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 16px 0 0 0;
+    }
+
+    .odin-filmstrip {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 4px;
+      scrollbar-width: none; /* Hide default scrollbar */
+      -ms-overflow-style: none;
+    }
+
+    .odin-filmstrip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .odin-filmstrip-slide {
+      flex: 0 0 92%;
+      scroll-snap-align: start;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: #121212;
+    }
+
+    .odin-filmstrip-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Scrollbar Indicator Line */
+    .filmstrip-scrollbar {
+      height: 2px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 1px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .filmstrip-scrollbar-bar {
+      height: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 1px;
+      width: 30%;
+      position: absolute;
+      left: 0;
+      transition: left 0.15s ease-out;
+    }
+
+    /* Smooth Scroll-Triggered Fade Reveal Animation */
+    .fade-up-section {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(4px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
+    }
+
+    .fade-up-section.in-view {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* Responsive Breakdown */
+    @media (max-width: 820px) {
+      .article-layout {
         grid-template-columns: 1fr;
         gap: 40px;
       }
-      .cs-sidebar {
+
+      .article-aside {
         position: relative;
         top: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        padding-bottom: 24px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 20px;
       }
-      .cs-nav-list {
+
+      .article-aside nav ul {
         flex-direction: row;
         flex-wrap: wrap;
-        border-left: none;
-        padding-left: 0;
         gap: 12px 20px;
       }
-      .cs-nav-item.active::before {
-        display: none;
+
+      .odin-filmstrip-slide {
+        flex: 0 0 100%;
       }
     }
   </style>
 </head>
 <body>
-  <div class="case-study-container">
-    <div class="cs-grid">
+  <div class="page-shell">
+    <div class="article-layout">
 
-      <!-- Sticky Sidebar Navigation -->
-      <aside class="cs-sidebar">
-        <a href="index.html#projects" class="cs-back-link">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
+      <!-- Left Sidebar (Hamza Alabou style) -->
+      <aside class="article-aside">
+        <a href="index.html#projects" class="aside-home">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M5.5 4L1.5 8M1.5 8L5.5 12M1.5 8H10C11.3807 8 12.5 6.88071 12.5 5.5V5.5C12.5 4.11929 11.3807 3 10 3H8.5" stroke="currentColor"></path>
           </svg>
-          Index
+          <span>Index</span>
         </a>
 
         <nav>
-          <ul class="cs-nav-list" id="cs-nav">
-            <li class="cs-nav-item active"><a href="#about">About</a></li>
-            <li class="cs-nav-item"><a href="#outcome">Outcome</a></li>
-            <li class="cs-nav-item"><a href="#problem">Problem</a></li>
-            <li class="cs-nav-item"><a href="#research">Research</a></li>
-            <li class="cs-nav-item"><a href="#product-system">Product System</a></li>
-            <li class="cs-nav-item"><a href="#role">Role</a></li>
-            <li class="cs-nav-item"><a href="#learnings">Learnings</a></li>
+          <ul>
+            <li><a href="#about" data-active="true">About</a></li>
+            <li><a href="#outcome" data-active="false">Outcome</a></li>
+            <li><a href="#problem" data-active="false">Problem</a></li>
+            <li><a href="#research" data-active="false">Research</a></li>
+            <li><a href="#product-system" data-active="false">Product System</a></li>
+            <li><a href="#role" data-active="false">Role</a></li>
+            <li><a href="#learnings" data-active="false">Learnings</a></li>
           </ul>
         </nav>
       </aside>
 
-      <!-- Main Article Content (Exact Word-for-Word from Figma Node 159-190) -->
-      <main class="cs-article">
+      <!-- Main Article Column -->
+      <main class="article-main">
 
-        <!-- Header -->
-        <header class="cs-header">
-          <h1 class="cs-title">IRYSS</h1>
-          <dl class="cs-dl">
-            <dt class="cs-dt">Period</dt>
-            <dd class="cs-dd">Nov 2025 – Jan 2026</dd>
+        <!-- Header Meta -->
+        <header class="article-header fade-up-section in-view">
+          <h1>IRYSS</h1>
+          <dl class="article-meta">
+            <dt>Period</dt>
+            <dd>Nov 2025 – Jan 2026</dd>
 
-            <dt class="cs-dt">Type</dt>
-            <dd class="cs-dd">B2B SaaS CRM Platform</dd>
+            <dt>Type</dt>
+            <dd>B2B SaaS CRM Platform</dd>
 
-            <dt class="cs-dt">Services</dt>
-            <dd class="cs-dd">Platform Brand, Development</dd>
+            <dt>Services</dt>
+            <dd>Platform Brand, Development</dd>
           </dl>
         </header>
 
         <!-- 1. About -->
-        <section class="cs-section" id="about">
-          <h2 class="cs-section-title">About</h2>
-          <p class="cs-paragraph">
+        <section class="article-section fade-up-section in-view" id="about">
+          <h2>About</h2>
+          <p>
             IRYSS CRM was designed for enterprise sales teams that manage large volumes of leads, companies, and customer interactions every day.
           </p>
         </section>
 
         <!-- 2. Outcome -->
-        <section class="cs-section" id="outcome">
-          <h2 class="cs-section-title">Outcome</h2>
-          <p class="cs-paragraph">
+        <section class="article-section fade-up-section" id="outcome">
+          <h2>Outcome</h2>
+          <p>
             The final product delivers a complete enterprise CRM experience: from a single overview table sales reps focus on managing customer relationships and internal collaborations.
           </p>
-          <p class="cs-paragraph">
+          <p>
             The interface prioritizes high-density data with clear visual hierarchy, making complex information easy to read without overwhelming users.
           </p>
-          <p class="cs-paragraph">
+          <p>
             By using reusable components, consistent interaction patterns, and scalable layout specifications, the system is ready for real-world use and fast front-end implementation.
           </p>
 
-          <figure class="cs-figure">
-            <img src="assets/iryss-outcome-main.jpg" alt="IRYSS CRM Authentication and Login Interface" class="cs-image">
-          </figure>
+          <!-- Filmstrip Gallery Carousel -->
+          <div class="odin-filmstrip-container">
+            <div class="odin-filmstrip" id="filmstrip">
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-outcome-main.jpg" alt="IRYSS CRM login screen mockup" draggable="false">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-mockup.jpg" alt="IRYSS CRM overview table" draggable="false">
+              </div>
+            </div>
+            <div class="filmstrip-scrollbar">
+              <div class="filmstrip-scrollbar-bar" id="filmstrip-bar"></div>
+            </div>
+          </div>
         </section>
 
         <!-- 3. Problem -->
-        <section class="cs-section" id="problem">
-          <h2 class="cs-section-title">Problem</h2>
-          <p class="cs-paragraph">
+        <section class="article-section fade-up-section" id="problem">
+          <h2>Problem</h2>
+          <p>
             Sales teams deal with hundreds of customer records every day, but most of their time is spent navigating between pages instead of taking action.
           </p>
-          <p class="cs-paragraph">
+          <p>
             Updating a lead, scheduling a meeting, or adding a note requires opening a record, updating customer history, often requiring opening multiple screens and repeating the same steps.
           </p>
-          <p class="cs-paragraph">
+          <p>
             As the volume of data grows, CRM interface becomes hard to read, making important information hard to see.
           </p>
-          <p class="cs-paragraph">
+          <p>
             The challenge was designing a CRM that keeps large amounts of data organized while allowing users to complete common tasks with as little friction as possible.
           </p>
 
-          <figure class="cs-figure">
-            <img src="assets/iryss-problem.jpg" alt="Fragmented sales tools workflow diagram" class="cs-image">
+          <figure class="article-figure">
+            <img src="assets/iryss-problem.jpg" alt="Fragmented sales tracking across tools" draggable="false">
           </figure>
         </section>
 
         <!-- 4. Research -->
-        <section class="cs-section" id="research">
-          <h2 class="cs-section-title">Research</h2>
-          <p class="cs-paragraph">
+        <section class="article-section fade-up-section" id="research">
+          <h2>Research</h2>
+          <p>
             Before designing the interface, I mapped the daily workflow of sales representatives and managers to understand how information moves across the product.
           </p>
-          <p class="cs-paragraph">
+          <p>
             Sales representatives move from a main Lead Table into individual Leads/Profiles where actions are needed, such as updates to customer information, activity history, messages, notes, files, and scheduled tasks.
           </p>
-          <p class="cs-paragraph">
+          <p>
             Several patterns became clear during the research:
           </p>
 
-          <ul class="cs-list">
+          <ul>
             <li>Every rep spend most of their time inside data tables.</li>
             <li>Searching and filtering happen more frequently than creating new records.</li>
             <li>Customer information changes constantly, so editing should never interrupt the workflow.</li>
             <li>Reps want similarity across multiple screens without learning new interface complexity.</li>
           </ul>
 
-          <p class="cs-paragraph">
+          <p>
             These findings influenced almost every design decision, from navigation and filtering to table editing and reusable layouts.
           </p>
 
-          <figure class="cs-figure">
-            <img src="assets/iryss-research.jpg" alt="Odin early access list user research data table" class="cs-image">
+          <figure class="article-figure">
+            <img src="assets/iryss-research.jpg" alt="Odin early access list user research data table" draggable="false">
           </figure>
         </section>
 
         <!-- 5. Product System -->
-        <section class="cs-section" id="product-system">
-          <h2 class="cs-section-title">Product System</h2>
-          <p class="cs-paragraph">
+        <section class="article-section fade-up-section" id="product-system">
+          <h2>Product System</h2>
+          <p>
             As the product expanded, I kept noticing the same challenge consistently.
           </p>
-          <p class="cs-paragraph">
+          <p>
             IRYSS CRM isn't just a single dashboard, it's a connected system of lead management, companies, deal pipelines, tasks, meeting workflows, and administrative tools. Every module has a different purpose, but all of them should feel like a coherent product.
           </p>
-          <p class="cs-paragraph">
+          <p>
             That consistency became the foundation of the experience.
           </p>
-          <p class="cs-paragraph">
+          <p>
             Sales representatives shouldn't have to learn new interface logic every time they move from the Lead Table to a customer profile, or from Tasks to Calendar. Once they understand one section, the overall product becomes familiar.
           </p>
-          <p class="cs-paragraph">
+          <p>
             I built the system around the same design principles: shared layouts, reusable components, and scalable patterns allowed every screen to work together as a system instead of separate pages.
           </p>
-          <p class="cs-paragraph">
+          <p>
             This approach influenced every design decision:
           </p>
-          <p class="cs-paragraph">
+          <p>
             Instead of introducing new patterns for each feature, I focused on standardizing:
           </p>
 
-          <ul class="cs-list">
+          <ul>
             <li>reusable tables across every management page</li>
             <li>consistent filters and saved views</li>
             <li>shared forms and inline editing patterns</li>
             <li>unified navigation and action menus</li>
           </ul>
 
-          <p class="cs-paragraph">
+          <p>
             As new features were added, the system could grow without losing consistency. Every new feature reused familiar patterns, reducing the learning curve for both users and developers.
           </p>
-          <p class="cs-paragraph">
+          <p>
             I didn't design each screen as an isolated interface. I designed a system that keeps complex workflows structured, predictable, and easy to navigate every day.
           </p>
 
-          <figure class="cs-figure">
-            <img src="assets/iryss-product-system.jpg" alt="Product system interactive board" class="cs-image">
+          <figure class="article-figure">
+            <img src="assets/iryss-product-system.jpg" alt="Product system interactive board" draggable="false">
           </figure>
         </section>
 
         <!-- 6. Role -->
-        <section class="cs-section" id="role">
-          <h2 class="cs-section-title">Role</h2>
-          <p class="cs-paragraph">
+        <section class="article-section fade-up-section" id="role">
+          <h2>Role</h2>
+          <p>
             I was responsible for designing the product from the ground up, turning complex business workflows into a scalable CRM experience.
           </p>
-          <p class="cs-paragraph">
+          <p>
             Throughout the project, I worked across every stage of the design process:
           </p>
 
-          <ul class="cs-list">
+          <ul>
             <li>UX research</li>
             <li>User flows</li>
             <li>UI design</li>
@@ -437,58 +532,56 @@
             <li>Developer handoff</li>
           </ul>
 
-          <p class="cs-paragraph">
+          <p>
             This project marked my first time building and shipping a SaaS product on a enterprise platform with production-ready reusable components and workflows that could support different teams and roles across the organization.
           </p>
         </section>
 
         <!-- 7. Learnings -->
-        <section class="cs-section" id="learnings">
-          <h2 class="cs-section-title">Learnings</h2>
+        <section class="article-section fade-up-section" id="learnings">
+          <h2>Learnings</h2>
 
-          <div style="display: flex; flex-direction: column; gap: 24px;">
-            <div>
-              <h3 class="cs-section-subtitle">1. Designing a CRM is about workflows, not screens.</h3>
-              <p class="cs-paragraph">
-                Early in the project, I realized that users don't experience a product page by page. They move between tasks, lists, metrics, and details.
-              </p>
-              <p class="cs-paragraph">
-                That shifted my focus from designing isolated UI screens to streamlining smooth end-to-end workflows.
-              </p>
-            </div>
+          <div class="article-subsection">
+            <h3>1. Designing a CRM is about workflows, not screens.</h3>
+            <p>
+              Early in the project, I realized that users don't experience a product page by page. They move between tasks, lists, metrics, and details.
+            </p>
+            <p>
+              That shifted my focus from designing isolated UI screens to streamlining smooth end-to-end workflows.
+            </p>
+          </div>
 
-            <div>
-              <h3 class="cs-section-subtitle">2. Consistency reduces complexity.</h3>
-              <p class="cs-paragraph">
-                Instead of introducing new layouts and interaction patterns for every feature, I relied on a consistent system of navigation, tables, forms, filters, and actions that users could recognize throughout the product.
-              </p>
-              <p class="cs-paragraph">
-                This consistency made the CRM easier to learn and easier to scale.
-              </p>
-            </div>
+          <div class="article-subsection">
+            <h3>2. Consistency reduces complexity.</h3>
+            <p>
+              Instead of introducing new layouts and interaction patterns for every feature, I relied on a consistent system of navigation, tables, forms, filters, and actions that users could recognize throughout the product.
+            </p>
+            <p>
+              This consistency made the CRM easier to learn and easier to scale.
+            </p>
+          </div>
 
-            <div>
-              <h3 class="cs-section-subtitle">3. Small interactions have a big impact.</h3>
-              <p class="cs-paragraph">
-                Many daily actions happen dozens of times.
-              </p>
-              <p class="cs-paragraph">
-                Fast feedback for quick edits, quick actions, custom filters, and reusable modals prevented unnecessary steps and helped users complete tasks without leaving their main workflow.
-              </p>
-              <p class="cs-paragraph">
-                Those small improvements had a much bigger impact than adding more features.
-              </p>
-            </div>
+          <div class="article-subsection">
+            <h3>3. Small interactions have a big impact.</h3>
+            <p>
+              Many daily actions happen dozens of times.
+            </p>
+            <p>
+              Fast feedback for quick edits, quick actions, custom filters, and reusable modals prevented unnecessary steps and helped users complete tasks without leaving their main workflow.
+            </p>
+            <p>
+              Those small improvements had a much bigger impact than adding more features.
+            </p>
+          </div>
 
-            <div>
-              <h3 class="cs-section-subtitle">4. A design system is a product investment.</h3>
-              <p class="cs-paragraph">
-                A modular design system was the foundation of every screen.
-              </p>
-              <p class="cs-paragraph">
-                Reusable components, shared interaction patterns, and standardized layout tokens reduced design inconsistency, simplified developer handoff, and made future expansion much faster.
-              </p>
-            </div>
+          <div class="article-subsection">
+            <h3>4. A design system is a product investment.</h3>
+            <p>
+              A modular design system was the foundation of every screen.
+            </p>
+            <p>
+              Reusable components, shared interaction patterns, and standardized layout tokens reduced design inconsistency, simplified developer handoff, and made future expansion much faster.
+            </p>
           </div>
         </section>
 
@@ -496,51 +589,67 @@
     </div>
   </div>
 
-  <!-- Custom Explore Cursor -->
-  <div class="explore-cursor" id="explore-cursor">
-    <span>Explore</span>
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="7" y1="17" x2="17" y2="7"></line>
-      <polyline points="7 7 17 7 17 17"></polyline>
-    </svg>
-  </div>
-
   <script>
-    // IntersectionObserver for Sidebar Active Section Highlighting
-    const sections = document.querySelectorAll('.cs-section');
-    const navItems = document.querySelectorAll('.cs-nav-item');
+    // 1. Filmstrip Horizontal Scroll Indicator Sync
+    const filmstrip = document.getElementById('filmstrip');
+    const filmstripBar = document.getElementById('filmstrip-bar');
+
+    if (filmstrip && filmstripBar) {
+      filmstrip.addEventListener('scroll', () => {
+        const scrollLeft = filmstrip.scrollLeft;
+        const scrollWidth = filmstrip.scrollWidth - filmstrip.clientWidth;
+        const progress = scrollWidth > 0 ? scrollLeft / scrollWidth : 0;
+        const barWidth = 35; // %
+        const maxLeft = 100 - barWidth;
+        filmstripBar.style.width = `${barWidth}%`;
+        filmstripBar.style.left = `${progress * maxLeft}%`;
+      });
+    }
+
+    // 2. IntersectionObserver for Active Section Highlighting in Sidebar
+    const sections = document.querySelectorAll('.article-section');
+    const navLinks = document.querySelectorAll('.article-aside nav ul li a');
 
     const observerOptions = {
       root: null,
-      rootMargin: '-20% 0px -60% 0px',
+      rootMargin: '-20% 0px -55% 0px',
       threshold: 0
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute('id');
-          navItems.forEach(item => {
-            const link = item.querySelector('a');
+          navLinks.forEach(link => {
             if (link.getAttribute('href') === `#${id}`) {
-              item.classList.add('active');
+              link.setAttribute('data-active', 'true');
             } else {
-              item.classList.remove('active');
+              link.setAttribute('data-active', 'false');
             }
           });
         }
       });
     }, observerOptions);
 
-    sections.forEach(section => observer.observe(section));
+    sections.forEach(section => sectionObserver.observe(section));
 
-    // Custom Cursor
-    const cursor = document.getElementById('explore-cursor');
-    if (cursor) {
-      document.addEventListener('mousemove', (e) => {
-        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+    // 3. Scroll Reveal Animation for Sections
+    const fadeSections = document.querySelectorAll('.fade-up-section');
+    const revealObserverOptions = {
+      root: null,
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.05
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
       });
-    }
+    }, revealObserverOptions);
+
+    fadeSections.forEach(sec => revealObserver.observe(sec));
   </script>
 </body>
 </html>
