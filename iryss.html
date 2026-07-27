@@ -40,27 +40,30 @@
 
     /* Page Shell Container */
     .page-shell {
-      max-width: 1040px;
+      width: 100%;
+      max-width: 100%;
       margin: 0 auto;
-      padding: 80px 24px 140px;
+      padding: 80px 48px 140px;
+      position: relative;
     }
 
     /* Article Layout (Sidebar + Main Column) */
     .article-layout {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 72px;
+      width: 100%;
       position: relative;
     }
 
-    /* Aside Sticky Navigation */
+    /* Aside Fixed Navigation — Pinned on far left edge matching hamzaalabou.com/odin */
     .article-aside {
-      position: sticky;
+      position: fixed;
+      left: 48px;
       top: 80px;
+      width: 140px;
       height: fit-content;
       display: flex;
       flex-direction: column;
       gap: 32px;
+      z-index: 100;
     }
 
     .aside-home {
@@ -102,12 +105,35 @@
       font-weight: 500;
     }
 
-    /* Main Article Container */
+    /* Main Article Container — Centered in window with spacious margins */
     .article-main {
-      max-width: 680px;
+      max-width: 650px;
+      margin: 0 auto;
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 48px;
+    }
+
+    /* Top Right Theme Toggle Icon */
+    .theme-toggle-btn {
+      position: fixed;
+      top: 28px;
+      right: 48px;
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      z-index: 100;
+      padding: 8px;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle-btn:hover {
+      color: var(--text-main);
     }
 
     /* Header & Meta Definitions */
@@ -313,15 +339,25 @@
     }
 
     /* Responsive Breakdown */
-    @media (max-width: 820px) {
-      .article-layout {
-        grid-template-columns: 1fr;
-        gap: 40px;
+    @media (max-width: 1180px) {
+      .article-aside {
+        left: 24px;
       }
+      .page-shell {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .theme-toggle-btn {
+        right: 24px;
+      }
+    }
 
+    @media (max-width: 960px) {
       .article-aside {
         position: relative;
+        left: 0;
         top: 0;
+        width: 100%;
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 20px;
       }
@@ -332,6 +368,10 @@
         gap: 12px 20px;
       }
 
+      .article-main {
+        margin: 0;
+      }
+
       .odin-filmstrip-slide {
         flex: 0 0 100%;
       }
@@ -339,6 +379,13 @@
   </style>
 </head>
 <body>
+  <!-- Top Right Theme Toggle Button -->
+  <button class="theme-toggle-btn" aria-label="Switch theme">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 000 11 5.5 5.5 0 007-4z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </button>
+
   <div class="page-shell">
     <div class="article-layout">
 
