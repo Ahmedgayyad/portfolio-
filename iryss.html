@@ -659,20 +659,23 @@
       });
     }
 
-    // 2. Active Section Highlighting in Sidebar (Instant & Early Trigger)
+    // 2. Active Section Highlighting in Sidebar (Instant & Starts at About)
     const sections = document.querySelectorAll('.article-section');
     const navLinks = document.querySelectorAll('.article-aside nav ul li a');
 
     function updateActiveNavLink() {
-      // Trigger offset at 38% of screen height for early, natural activation
-      const triggerLine = window.scrollY + (window.innerHeight * 0.38);
-      const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 60);
+      const scrollY = window.scrollY;
+      const isAtTop = scrollY < 180;
+      const isAtBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 60);
 
-      let currentId = sections[0] ? sections[0].getAttribute('id') : 'about';
+      let currentId = 'about';
 
-      if (isAtBottom && sections.length > 0) {
+      if (isAtTop) {
+        currentId = 'about';
+      } else if (isAtBottom && sections.length > 0) {
         currentId = sections[sections.length - 1].getAttribute('id');
       } else {
+        const triggerLine = scrollY + (window.innerHeight * 0.35);
         sections.forEach(section => {
           const top = section.offsetTop;
           if (triggerLine >= top) {
