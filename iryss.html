@@ -659,32 +659,35 @@
       });
     }
 
-    // 2. IntersectionObserver for Active Section Highlighting in Sidebar
+    // 2. Active Section Highlighting in Sidebar based on scroll position
     const sections = document.querySelectorAll('.article-section');
     const navLinks = document.querySelectorAll('.article-aside nav ul li a');
 
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -55% 0px',
-      threshold: 0
-    };
+    function updateActiveNavLink() {
+      const scrollPos = window.scrollY + 160; // Offset line from top of window
+      let currentId = 'about';
 
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(link => {
-            if (link.getAttribute('href') === `#${id}`) {
-              link.setAttribute('data-active', 'true');
-            } else {
-              link.setAttribute('data-active', 'false');
-            }
-          });
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPos >= top) {
+          currentId = section.getAttribute('id');
         }
       });
-    }, observerOptions);
 
-    sections.forEach(section => sectionObserver.observe(section));
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === `#${currentId}`) {
+          link.setAttribute('data-active', 'true');
+        } else {
+          link.setAttribute('data-active', 'false');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+    window.addEventListener('resize', updateActiveNavLink, { passive: true });
+    document.addEventListener('DOMContentLoaded', updateActiveNavLink);
+    updateActiveNavLink();
 
     // 3. Scroll Reveal Animation for Sections
     const fadeSections = document.querySelectorAll('.fade-up-section');
