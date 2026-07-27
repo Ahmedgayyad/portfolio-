@@ -659,21 +659,27 @@
       });
     }
 
-    // 2. Active Section Highlighting in Sidebar based on scroll position
+    // 2. Active Section Highlighting in Sidebar (Instant & Early Trigger)
     const sections = document.querySelectorAll('.article-section');
     const navLinks = document.querySelectorAll('.article-aside nav ul li a');
 
     function updateActiveNavLink() {
-      const scrollPos = window.scrollY + 160; // Offset line from top of window
-      let currentId = 'about';
+      // Trigger offset at 38% of screen height for early, natural activation
+      const triggerLine = window.scrollY + (window.innerHeight * 0.38);
+      const isAtBottom = (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 60);
 
-      sections.forEach(section => {
-        const top = section.offsetTop;
-        const height = section.offsetHeight;
-        if (scrollPos >= top) {
-          currentId = section.getAttribute('id');
-        }
-      });
+      let currentId = sections[0] ? sections[0].getAttribute('id') : 'about';
+
+      if (isAtBottom && sections.length > 0) {
+        currentId = sections[sections.length - 1].getAttribute('id');
+      } else {
+        sections.forEach(section => {
+          const top = section.offsetTop;
+          if (triggerLine >= top) {
+            currentId = section.getAttribute('id');
+          }
+        });
+      }
 
       navLinks.forEach(link => {
         if (link.getAttribute('href') === `#${currentId}`) {
@@ -684,7 +690,17 @@
       });
     }
 
-    window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+    let isNavTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!isNavTicking) {
+        requestAnimationFrame(() => {
+          updateActiveNavLink();
+          isNavTicking = false;
+        });
+        isNavTicking = true;
+      }
+    }, { passive: true });
+
     window.addEventListener('resize', updateActiveNavLink, { passive: true });
     document.addEventListener('DOMContentLoaded', updateActiveNavLink);
     updateActiveNavLink();
