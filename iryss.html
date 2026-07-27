@@ -887,8 +887,8 @@
 
     fadeSections.forEach(sec => revealObserver.observe(sec));
 
-    // 4. Lightbox Modal Gallery Handler (Hamza Alabou / Odin Style)
-    const galleryImages = Array.from(document.querySelectorAll('.odin-filmstrip-slide img, .article-figure img'));
+    // 4. Lightbox Modal Gallery Handler (Section Scoped)
+    const allSectionImages = Array.from(document.querySelectorAll('.odin-filmstrip-slide img, .article-figure img'));
     const lightboxOverlay = document.getElementById('lightbox-overlay');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxClose = document.getElementById('lightbox-close');
@@ -896,35 +896,69 @@
     const lightboxNext = document.getElementById('lightbox-next');
     const lightboxDotsContainer = document.getElementById('lightbox-dots');
 
+    let currentSectionImages = [];
     let currentIndex = 0;
 
-    // Initialize gallery images & pagination dots
-    galleryImages.forEach((img, idx) => {
+    allSectionImages.forEach((img) => {
       img.style.cursor = 'pointer';
       img.setAttribute('role', 'button');
       img.setAttribute('tabindex', '0');
       img.setAttribute('aria-label', `View ${img.alt || 'image'} fullscreen`);
 
-      img.addEventListener('click', () => openLightbox(idx));
+      img.addEventListener('click', () => openSectionLightbox(img));
       img.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          openLightbox(idx);
+          openSectionLightbox(img);
         }
       });
-
-      const dot = document.createElement('div');
-      dot.className = `lightbox-dot ${idx === 0 ? 'active' : ''}`;
-      dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
-      dot.addEventListener('click', () => showImage(idx));
-      lightboxDotsContainer.appendChild(dot);
     });
 
-    function openLightbox(index) {
-      currentIndex = index;
+    function openSectionLightbox(clickedImg) {
+      // Find parent section or container of clicked image
+      const parentContainer = clickedImg.closest('.odin-filmstrip, .article-figure, .article-section') || document.body;
+      currentSectionImages = Array.from(parentContainer.querySelectorAll('img'));
+
+      // If container has only 1 image, check if parent section has more
+      if (currentSectionImages.length <= 1) {
+        const parentSec = clickedImg.closest('.article-section');
+        if (parentSec) {
+          const secImgs = Array.from(parentSec.querySelectorAll('img'));
+          if (secImgs.length > 1) {
+            currentSectionImages = secImgs;
+          }
+        }
+      }
+
+      currentIndex = currentSectionImages.indexOf(clickedImg);
+      if (currentIndex === -1) currentIndex = 0;
+
+      buildDots();
       updateLightboxContent();
       lightboxOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
+    }
+
+    function buildDots() {
+      lightboxDotsContainer.innerHTML = '';
+      if (currentSectionImages.length <= 1) {
+        lightboxPrev.style.display = 'none';
+        lightboxNext.style.display = 'none';
+        lightboxDotsContainer.style.display = 'none';
+        return;
+      }
+
+      lightboxPrev.style.display = 'flex';
+      lightboxNext.style.display = 'flex';
+      lightboxDotsContainer.style.display = 'flex';
+
+      currentSectionImages.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.className = `lightbox-dot ${idx === currentIndex ? 'active' : ''}`;
+        dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+        dot.addEventListener('click', () => showImage(idx));
+        lightboxDotsContainer.appendChild(dot);
+      });
     }
 
     function closeLightbox() {
@@ -933,14 +967,15 @@
     }
 
     function showImage(index) {
-      if (index < 0) index = galleryImages.length - 1;
-      if (index >= galleryImages.length) index = 0;
+      if (currentSectionImages.length === 0) return;
+      if (index < 0) index = currentSectionImages.length - 1;
+      if (index >= currentSectionImages.length) index = 0;
       currentIndex = index;
       updateLightboxContent();
     }
 
     function updateLightboxContent() {
-      const targetImg = galleryImages[currentIndex];
+      const targetImg = currentSectionImages[currentIndex];
       if (targetImg) {
         lightboxImg.src = targetImg.src;
         lightboxImg.alt = targetImg.alt || 'Fullscreen Image Preview';
