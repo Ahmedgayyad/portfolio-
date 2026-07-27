@@ -344,6 +344,135 @@
       filter: blur(0);
     }
 
+    /* Fullscreen Lightbox Modal (Hamza Alabou / Odin Style) */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lightbox-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-card {
+      background: #ffffff;
+      padding: 36px;
+      border-radius: 24px;
+      max-width: 88vw;
+      max-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.9);
+      transform: scale(0.94);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+
+    .lightbox-overlay.active .lightbox-card {
+      transform: scale(1);
+    }
+
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 72vh;
+      object-fit: contain;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* Lightbox Controls */
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.8);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      z-index: 1010;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    .lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.8);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      z-index: 1010;
+    }
+
+    .lightbox-arrow:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .lightbox-prev {
+      left: 32px;
+    }
+
+    .lightbox-next {
+      right: 32px;
+    }
+
+    /* Lightbox Dots */
+    .lightbox-dots {
+      position: absolute;
+      bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1010;
+    }
+
+    .lightbox-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .lightbox-dot.active {
+      background: #ffffff;
+      transform: scale(1.4);
+    }
+
     /* Responsive Breakdown */
     @media (max-width: 1180px) {
       .article-aside {
@@ -642,6 +771,38 @@
     </div>
   </div>
 
+  <!-- Fullscreen Lightbox Modal (Hamza Alabou / Odin Style) -->
+  <div class="lightbox-overlay" id="lightbox-overlay">
+    <!-- Close Button -->
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close modal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Navigation Prev/Next Arrows -->
+    <button class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Previous image">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <button class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Next image">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Main White Card Container -->
+    <div class="lightbox-card" id="lightbox-card">
+      <img src="" alt="Fullscreen Image Preview" id="lightbox-img" class="lightbox-image">
+    </div>
+
+    <!-- Pagination Dots -->
+    <div class="lightbox-dots" id="lightbox-dots"></div>
+  </div>
+
   <script>
     // 1. Filmstrip Horizontal Scroll Indicator Sync
     const filmstrip = document.getElementById('filmstrip');
@@ -725,6 +886,93 @@
     }, revealObserverOptions);
 
     fadeSections.forEach(sec => revealObserver.observe(sec));
+
+    // 4. Lightbox Modal Gallery Handler (Hamza Alabou / Odin Style)
+    const galleryImages = Array.from(document.querySelectorAll('.odin-filmstrip-slide img, .article-figure img'));
+    const lightboxOverlay = document.getElementById('lightbox-overlay');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    const lightboxDotsContainer = document.getElementById('lightbox-dots');
+
+    let currentIndex = 0;
+
+    // Initialize gallery images & pagination dots
+    galleryImages.forEach((img, idx) => {
+      img.style.cursor = 'pointer';
+      img.setAttribute('role', 'button');
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('aria-label', `View ${img.alt || 'image'} fullscreen`);
+
+      img.addEventListener('click', () => openLightbox(idx));
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(idx);
+        }
+      });
+
+      const dot = document.createElement('div');
+      dot.className = `lightbox-dot ${idx === 0 ? 'active' : ''}`;
+      dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+      dot.addEventListener('click', () => showImage(idx));
+      lightboxDotsContainer.appendChild(dot);
+    });
+
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightboxContent();
+      lightboxOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightboxOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function showImage(index) {
+      if (index < 0) index = galleryImages.length - 1;
+      if (index >= galleryImages.length) index = 0;
+      currentIndex = index;
+      updateLightboxContent();
+    }
+
+    function updateLightboxContent() {
+      const targetImg = galleryImages[currentIndex];
+      if (targetImg) {
+        lightboxImg.src = targetImg.src;
+        lightboxImg.alt = targetImg.alt || 'Fullscreen Image Preview';
+      }
+      const dots = lightboxDotsContainer.querySelectorAll('.lightbox-dot');
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => showImage(currentIndex - 1));
+    lightboxNext.addEventListener('click', () => showImage(currentIndex + 1));
+
+    // Close on clicking outside white card
+    lightboxOverlay.addEventListener('click', (e) => {
+      if (e.target === lightboxOverlay) {
+        closeLightbox();
+      }
+    });
+
+    // Keyboard navigation (Escape, Left Arrow, Right Arrow)
+    document.addEventListener('keydown', (e) => {
+      if (!lightboxOverlay.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+      if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+    });
   </script>
 </body>
 </html>
