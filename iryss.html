@@ -313,6 +313,22 @@
       height: auto;
       display: block;
       object-fit: cover;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 72vh;
+      object-fit: contain;
+      border-radius: 12px;
+      display: block;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
     }
 
     /* Scrollbar Indicator Line */
