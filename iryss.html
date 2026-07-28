@@ -391,6 +391,7 @@
       transform: scale(0.95);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       box-sizing: border-box;
+      overflow: visible;
     }
 
     .lightbox-overlay.active .lightbox-card {
@@ -404,10 +405,18 @@
       border-radius: 12px;
       display: block;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      cursor: zoom-in;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
+      image-rendering: high-quality;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
+    .lightbox-card.zoomed .lightbox-image {
+      transform: scale(1.35) translateZ(0);
+      cursor: zoom-out;
     }
 
     /* Lightbox Controls */
@@ -988,13 +997,22 @@
       });
     }
 
+    const lightboxCard = document.getElementById('lightbox-card');
+
+    lightboxImg.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lightboxCard.classList.toggle('zoomed');
+    });
+
     function closeLightbox() {
       lightboxOverlay.classList.remove('active');
+      lightboxCard.classList.remove('zoomed');
       document.body.style.overflow = '';
     }
 
     function showImage(index) {
       if (currentSectionImages.length === 0) return;
+      lightboxCard.classList.remove('zoomed');
       if (index < 0) index = currentSectionImages.length - 1;
       if (index >= currentSectionImages.length) index = 0;
       currentIndex = index;
