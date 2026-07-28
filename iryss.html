@@ -304,8 +304,8 @@
       scroll-snap-align: start;
       border-radius: 12px;
       overflow: hidden;
-      border: 1px solid var(--border-color);
-      background-color: #121212;
+      border: none;
+      background: transparent;
     }
 
     .odin-filmstrip-slide img {
@@ -313,18 +313,7 @@
       height: auto;
       display: block;
       object-fit: cover;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-    }
-
-    .lightbox-image {
-      max-width: 100%;
-      max-height: 72vh;
-      object-fit: contain;
       border-radius: 12px;
-      display: block;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
       -webkit-backface-visibility: hidden;
@@ -366,7 +355,7 @@
       filter: blur(0);
     }
 
-    /* Fullscreen Lightbox Modal (Hamza Alabou / Odin Style) */
+    /* Fullscreen Lightbox Modal (Clean Borderless Floating Style) */
     .lightbox-overlay {
       position: fixed;
       inset: 0;
@@ -388,16 +377,16 @@
     }
 
     .lightbox-card {
-      background: #ffffff;
-      padding: 36px;
-      border-radius: 24px;
-      max-width: 88vw;
-      max-height: 82vh;
+      background: transparent;
+      padding: 0;
+      border-radius: 16px;
+      max-width: 92vw;
+      max-height: 88vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.9);
-      transform: scale(0.94);
+      box-shadow: none;
+      transform: scale(0.95);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       box-sizing: border-box;
     }
@@ -408,10 +397,15 @@
 
     .lightbox-image {
       max-width: 100%;
-      max-height: 72vh;
+      max-height: 86vh;
       object-fit: contain;
       border-radius: 12px;
       display: block;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
     }
 
     /* Lightbox Controls */
@@ -611,16 +605,16 @@
           <div class="odin-filmstrip-container">
             <div class="odin-filmstrip" id="filmstrip">
               <div class="odin-filmstrip-slide">
-                <img src="assets/iryss-real-1.png" alt="IRYSS CRM Welcome & Sign In" draggable="false">
+                <img src="assets/iryss-real-1.png?v=64k" alt="IRYSS CRM Welcome & Sign In" draggable="false">
               </div>
               <div class="odin-filmstrip-slide">
-                <img src="assets/iryss-real-2.png" alt="IRYSS CRM Tasks & Workflows" draggable="false">
+                <img src="assets/iryss-real-2.png?v=64k" alt="IRYSS CRM Tasks & Workflows" draggable="false">
               </div>
               <div class="odin-filmstrip-slide">
-                <img src="assets/iryss-real-3.png" alt="IRYSS CRM All Leads Management Table" draggable="false">
+                <img src="assets/iryss-real-3.png?v=64k" alt="IRYSS CRM All Leads Management Table" draggable="false">
               </div>
               <div class="odin-filmstrip-slide">
-                <img src="assets/iryss-real-4.png" alt="IRYSS CRM Create Template Modal" draggable="false">
+                <img src="assets/iryss-real-4.png?v=64k" alt="IRYSS CRM Create Template Modal" draggable="false">
               </div>
             </div>
             <div class="filmstrip-scrollbar">
