@@ -306,6 +306,14 @@
   </div>
 
   <script>
+    // Guarantee page starts at the top (Hero Section) on load unless an anchor hash is present
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+
     // Custom Explore cursor for project cards (Hide instantly when leaving)
     const cursor = document.getElementById('explore-cursor');
     const projectCards = document.querySelectorAll('.project-card');
