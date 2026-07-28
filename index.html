@@ -306,23 +306,38 @@
   </div>
 
   <script>
-    // Custom Explore cursor for project cards
+    // Custom Explore cursor for project cards (Hide instantly when leaving)
     const cursor = document.getElementById('explore-cursor');
     const projectCards = document.querySelectorAll('.project-card');
 
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-
-    projectCards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        cursor.classList.add('visible');
-      });
-      card.addEventListener('mouseleave', () => {
+    if (cursor) {
+      function hideCursor() {
         cursor.classList.remove('visible');
+      }
+
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+
+        // Check if element under pointer is inside a project card
+        const target = document.elementFromPoint(e.clientX, e.clientY);
+        if (target && target.closest('.project-card')) {
+          cursor.classList.add('visible');
+        } else {
+          hideCursor();
+        }
       });
-    });
+
+      // Safety listeners so cursor never gets stuck
+      document.addEventListener('mouseleave', hideCursor);
+      window.addEventListener('blur', hideCursor);
+      window.addEventListener('scroll', hideCursor, { passive: true });
+
+      projectCards.forEach(card => {
+        card.addEventListener('mouseleave', hideCursor);
+        card.addEventListener('click', hideCursor);
+      });
+    }
 
     // Scroll Reveal Observer
     const revealElements = document.querySelectorAll('.reveal');
