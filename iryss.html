@@ -301,6 +301,7 @@
 
     .odin-filmstrip-slide {
       flex: 0 0 92%;
+      aspect-ratio: 16 / 10.2;
       scroll-snap-align: start;
       border-radius: 12px;
       overflow: hidden;
@@ -310,9 +311,10 @@
 
     .odin-filmstrip-slide img {
       width: 100%;
-      height: auto;
+      height: 100%;
       display: block;
       object-fit: cover;
+      object-position: center top;
       border-radius: 12px;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
@@ -396,8 +398,8 @@
     }
 
     .lightbox-image {
-      max-width: 100%;
-      max-height: 86vh;
+      max-width: 90vw;
+      height: 80vh;
       object-fit: contain;
       border-radius: 12px;
       display: block;
