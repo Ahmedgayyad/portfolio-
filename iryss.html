@@ -357,6 +357,77 @@
       filter: blur(0);
     }
 
+    /* Client Feedback Showcase (Uncropped Prominent Display) */
+    .feedback-showcase-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .feedback-primary-card {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: #0c0c0c;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+
+    .feedback-primary-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .feedback-primary-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      border-radius: 16px;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+    }
+
+    .feedback-secondary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .feedback-secondary-card {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: #0c0c0c;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+
+    .feedback-secondary-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .feedback-secondary-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      border-radius: 12px;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+    }
+
+    @media (max-width: 640px) {
+      .feedback-secondary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* Fullscreen Lightbox Modal (Clean Borderless Floating Style) */
     .lightbox-overlay {
       position: fixed;
@@ -846,21 +917,18 @@
             </p>
           </div>
 
-          <!-- Client Feedback & Learnings Showcase Gallery -->
-          <div class="odin-filmstrip-container" style="margin-top: 32px;">
-            <div class="odin-filmstrip" id="learnings-filmstrip">
-              <div class="odin-filmstrip-slide">
-                <img src="assets/iryss-learnings-1.jpg?v=64k" alt="Client Feedback - The CRM is looking great" draggable="false">
-              </div>
-              <div class="odin-filmstrip-slide">
+          <!-- Client Feedback Showcase (Prominent Uncropped Display) -->
+          <div class="feedback-showcase-container">
+            <div class="feedback-primary-card">
+              <img src="assets/iryss-learnings-1.jpg?v=64k" alt="Client Feedback - The CRM is looking great" draggable="false">
+            </div>
+            <div class="feedback-secondary-grid">
+              <div class="feedback-secondary-card">
                 <img src="assets/iryss-learnings-2.jpg?v=64k" alt="Client Feedback Screenshot 2" draggable="false">
               </div>
-              <div class="odin-filmstrip-slide">
+              <div class="feedback-secondary-card">
                 <img src="assets/iryss-learnings-3.jpg?v=64k" alt="Client Feedback Screenshot 3" draggable="false">
               </div>
-            </div>
-            <div class="filmstrip-scrollbar">
-              <div class="filmstrip-scrollbar-bar" id="learnings-filmstrip-bar"></div>
             </div>
           </div>
         </section>
@@ -987,7 +1055,7 @@
     fadeSections.forEach(sec => revealObserver.observe(sec));
 
     // 4. Lightbox Modal Gallery Handler (Section Scoped)
-    const allSectionImages = Array.from(document.querySelectorAll('.odin-filmstrip-slide img, .article-figure img'));
+    const allSectionImages = Array.from(document.querySelectorAll('.odin-filmstrip-slide img, .article-figure img, .feedback-primary-card img, .feedback-secondary-card img'));
     const lightboxOverlay = document.getElementById('lightbox-overlay');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxClose = document.getElementById('lightbox-close');
