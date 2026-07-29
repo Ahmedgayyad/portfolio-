@@ -662,9 +662,44 @@
             The challenge was designing a CRM that keeps large amounts of data organized while allowing users to complete common tasks with as little friction as possible.
           </p>
 
-          <figure class="article-figure">
-            <img src="assets/iryss-problem.jpg" alt="Fragmented sales tracking across tools" draggable="false">
-          </figure>
+          <!-- Problem Filmstrip Gallery Carousel -->
+          <div class="odin-filmstrip-container">
+            <div class="odin-filmstrip" id="problem-filmstrip">
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-problem-1.png?v=64k" alt="Problem Workflow 1" draggable="false">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-problem-2.png?v=64k" alt="Problem Workflow 2" draggable="false">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-problem-3.png?v=64k" alt="Problem Workflow 3" draggable="false">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-problem-4.png?v=64k" alt="Problem Workflow 4" draggable="false">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-problem-5.png?v=64k" alt="Problem Workflow 5" draggable="false">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-problem-6.png?v=64k" alt="Problem Workflow 6" draggable="false">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-problem-7.png?v=64k" alt="Problem Workflow 7" draggable="false">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-problem-8.png?v=64k" alt="Problem Workflow 8" draggable="false">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-problem-9.png?v=64k" alt="Problem Workflow 9" draggable="false">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/iryss-problem-10.png?v=64k" alt="Problem Workflow 10" draggable="false">
+              </div>
+            </div>
+            <div class="filmstrip-scrollbar">
+              <div class="filmstrip-scrollbar-bar" id="problem-filmstrip-bar"></div>
+            </div>
+          </div>
         </section>
 
         <!-- 4. Research -->
@@ -849,21 +884,22 @@
   </div>
 
   <script>
-    // 1. Filmstrip Horizontal Scroll Indicator Sync
-    const filmstrip = document.getElementById('filmstrip');
-    const filmstripBar = document.getElementById('filmstrip-bar');
-
-    if (filmstrip && filmstripBar) {
-      filmstrip.addEventListener('scroll', () => {
-        const scrollLeft = filmstrip.scrollLeft;
-        const scrollWidth = filmstrip.scrollWidth - filmstrip.clientWidth;
-        const progress = scrollWidth > 0 ? scrollLeft / scrollWidth : 0;
-        const barWidth = 35; // %
-        const maxLeft = 100 - barWidth;
-        filmstripBar.style.width = `${barWidth}%`;
-        filmstripBar.style.left = `${progress * maxLeft}%`;
-      });
-    }
+    // 1. Filmstrip Horizontal Scroll Indicator Sync (All Containers)
+    document.querySelectorAll('.odin-filmstrip-container').forEach(container => {
+      const strip = container.querySelector('.odin-filmstrip');
+      const bar = container.querySelector('.filmstrip-scrollbar-bar');
+      if (strip && bar) {
+        strip.addEventListener('scroll', () => {
+          const scrollLeft = strip.scrollLeft;
+          const scrollWidth = strip.scrollWidth - strip.clientWidth;
+          const progress = scrollWidth > 0 ? scrollLeft / scrollWidth : 0;
+          const barWidth = 30; // %
+          const maxLeft = 100 - barWidth;
+          bar.style.width = `${barWidth}%`;
+          bar.style.left = `${progress * maxLeft}%`;
+        });
+      }
+    });
 
     // 2. Active Section Highlighting in Sidebar (Instant & Starts at About)
     const sections = document.querySelectorAll('.article-section');
