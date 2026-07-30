@@ -586,19 +586,25 @@
     }
 
     @media (max-width: 960px) {
+      .page-shell {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 24px;
+        padding-bottom: 60px;
+      }
+
       .article-aside {
         position: relative;
         left: 0;
         top: 0;
         width: 100%;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 20px;
+        margin-bottom: 24px;
+        border-bottom: none;
+        padding-bottom: 0;
       }
 
-      .article-aside nav ul {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 12px 20px;
+      .article-aside nav {
+        display: none;
       }
 
       .article-main {
