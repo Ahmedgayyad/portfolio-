@@ -67,6 +67,11 @@
       z-index: 100;
     }
 
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
     .aside-home {
       display: inline-flex;
       align-items: center;
@@ -77,10 +82,18 @@
       color: var(--text-dim);
       text-decoration: none;
       transition: color 0.2s ease;
+      -webkit-tap-highlight-color: transparent !important;
+      outline: none !important;
     }
 
-    .aside-home:hover {
+    .aside-home:hover,
+    .aside-home:focus,
+    .aside-home:active,
+    .aside-home:focus-visible {
       color: var(--text-main);
+      background: transparent !important;
+      outline: none !important;
+      -webkit-tap-highlight-color: transparent !important;
     }
 
     .article-aside nav ul {
