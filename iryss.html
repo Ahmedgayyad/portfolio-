@@ -614,6 +614,28 @@
       .odin-filmstrip-slide {
         flex: 0 0 100%;
       }
+
+      .lightbox-prev {
+        left: 12px;
+      }
+
+      .lightbox-next {
+        right: 12px;
+      }
+
+      .lightbox-arrow {
+        width: 38px;
+        height: 38px;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        z-index: 1020;
+      }
+
+      .lightbox-close {
+        top: 16px;
+        right: 16px;
+      }
     }
   </style>
 </head>
@@ -1186,6 +1208,43 @@
       if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
       if (e.key === 'ArrowRight') showImage(currentIndex + 1);
     });
+
+    // Touch Swipe Gesture Support for Mobile Lightbox
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    lightboxOverlay.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    lightboxOverlay.addEventListener('touchend', (e) => {
+      if (e.changedTouches.length === 1) {
+        touchEndX = e.changedTouches[0].clientX;
+        touchEndY = e.changedTouches[0].clientY;
+
+        // Skip slide change if image is currently zoomed in 1:1 for panning
+        if (lightboxCard && lightboxCard.classList.contains('zoomed')) return;
+
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+
+        // Trigger horizontal swipe if horizontal distance is dominant (> 35px)
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 35) {
+          if (deltaX < 0) {
+            // Swiped left -> Next image
+            showImage(currentIndex + 1);
+          } else {
+            // Swiped right -> Previous image
+            showImage(currentIndex - 1);
+          }
+        }
+      }
+    }, { passive: true });
   </script>
 </body>
 </html>
