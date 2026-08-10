@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EquiCare — Presentation</title>
+  <meta name="description" content="EquiCare Project Presentation by Ahmed Giad">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #0e0e0e;
+      color: #ffffff;
+      font-family: 'Geist Mono', 'Courier New', monospace;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Back button — fixed top left */
+    .back-btn {
+      position: fixed;
+      top: 28px;
+      left: 32px;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      font-family: 'Geist Mono', 'Courier New', monospace;
+      color: rgba(255, 255, 255, 0.38);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      outline: none !important;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .back-btn:hover,
+    .back-btn:active,
+    .back-btn:focus {
+      color: #ffffff !important;
+      background: transparent !important;
+      outline: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    /* Presentation image — full page width, scroll naturally */
+    .presentation-wrap {
+      width: 100%;
+      padding-top: 0;
+    }
+
+    .presentation-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+    }
+
+    /* Scroll hint */
+    .scroll-hint {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-family: 'Geist Mono', 'Courier New', monospace;
+      color: rgba(255, 255, 255, 0.28);
+      pointer-events: none;
+      animation: hint-fade 3.5s ease 1s forwards;
+      opacity: 1;
+      white-space: nowrap;
+    }
+
+    @keyframes hint-fade {
+      0%   { opacity: 1; }
+      70%  { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    @media (max-width: 640px) {
+      .back-btn {
+        left: 20px;
+        top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Back button -->
+  <a href="equicare.html" class="back-btn">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M5.5 4L1.5 8M1.5 8L5.5 12M1.5 8H10C11.3807 8 12.5 6.88071 12.5 5.5V5.5C12.5 4.11929 11.3807 3 10 3H8.5" stroke="currentColor"></path>
+    </svg>
+    <span>Back</span>
+  </a>
+
+  <!-- Full presentation image -->
+  <div class="presentation-wrap">
+    <img
+      src="assets/equicare-presentation.jpg"
+      alt="EquiCare Full Project Presentation"
+      draggable="false"
+      decoding="async"
+    >
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+    Scroll to explore
+  </div>
+
+</body>
+</html>
