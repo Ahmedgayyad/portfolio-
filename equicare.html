@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EquiCare — Horse Services Mobile App — Ahmed Giad</title>
-  <meta name="description" content="EquiCare Mobile App Case Study by Ahmed Giad — Horse Services, Equestrian Shopping & Booking Experience.">
+  <title>EquiCare — Ahmed Giad</title>
+  <meta name="description" content="EquiCare Horse Services Mobile App Case Study by Ahmed Giad — B2C Mobile App for Equestrian Services & Shopping.">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,33 +109,57 @@
 
     .article-aside nav ul li a {
       font-size: 11px;
-      font-weight: 400;
       font-family: var(--font-mono);
       color: var(--text-dim);
       text-decoration: none;
       transition: color 0.2s ease;
       display: block;
+      font-weight: 400;
     }
 
     .article-aside nav ul li a:hover,
     .article-aside nav ul li a[data-active="true"] {
       color: var(--text-main);
+      font-weight: 500;
     }
 
-    /* Main Article Content Column */
+    /* Main Article Container — Centered in window with spacious margins */
     .article-main {
-      max-width: 630px;
-      margin-left: 290px;
+      max-width: 650px;
+      margin: 0 auto;
+      width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 72px;
+      gap: 48px;
     }
 
-    /* Header Metadata Section */
+    /* Top Right Theme Toggle Icon */
+    .theme-toggle-btn {
+      position: fixed;
+      top: 28px;
+      right: 48px;
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      z-index: 100;
+      padding: 8px;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle-btn:hover {
+      color: var(--text-main);
+    }
+
+    /* Header & Meta Definitions */
     .article-header {
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 20px;
+      margin-bottom: 8px;
     }
 
     .article-header h1 {
@@ -242,43 +266,38 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-top: 8px;
+      margin-top: 12px;
     }
 
     .article-subsection h3 {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
-      font-family: var(--font-mono);
       color: var(--text-main);
       margin: 0;
     }
 
-    /* Standard Image Containers */
+    /* Image Figures */
     .article-figure {
       margin: 16px 0 0 0;
-      width: 100%;
       border-radius: 12px;
       overflow: hidden;
-      background: transparent;
-      border: none;
+      border: 1px solid var(--border-color);
+      background-color: #121212;
     }
 
     .article-figure img {
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 12px;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: high-quality;
+      object-fit: cover;
     }
 
-    /* Filmstrip Gallery Carousel (Single row horizontal scroll with snapping) */
+    /* Filmstrip Carousel (Hamza Alabou Style) */
     .odin-filmstrip-container {
-      width: 100%;
-      margin-top: 16px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 10px;
+      margin: 16px 0 0 0;
     }
 
     .odin-filmstrip {
@@ -286,9 +305,9 @@
       gap: 16px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      padding-bottom: 4px;
       scrollbar-width: none;
       -ms-overflow-style: none;
-      border-radius: 12px;
     }
 
     .odin-filmstrip::-webkit-scrollbar {
@@ -313,7 +332,7 @@
       object-position: center top;
       border-radius: 12px;
       image-rendering: -webkit-optimize-contrast;
-      image-rendering: high-quality;
+      image-rendering: crisp-edges;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
@@ -353,16 +372,84 @@
       filter: blur(0);
     }
 
+    /* Client Feedback Showcase (Uncropped Prominent Display) */
+    .feedback-showcase-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .feedback-primary-card {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: #0c0c0c;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+
+    .feedback-primary-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .feedback-primary-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      border-radius: 16px;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+    }
+
+    .feedback-secondary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .feedback-secondary-card {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background-color: #0c0c0c;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+
+    .feedback-secondary-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .feedback-secondary-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      border-radius: 12px;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+    }
+
+    @media (max-width: 640px) {
+      .feedback-secondary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     /* Fullscreen Lightbox Modal (Clean Borderless Floating Style) */
     .lightbox-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(8, 8, 8, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      inset: 0;
+      background: rgba(10, 10, 10, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 1000;
       display: flex;
       align-items: center;
@@ -499,30 +586,6 @@
       transform: scale(1.4);
     }
 
-    /* Top Right Theme Toggle Button */
-    .theme-toggle-btn {
-      position: fixed;
-      top: 32px;
-      right: 48px;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: transparent;
-      border: 1px solid var(--border-color);
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: border-color 0.2s ease, color 0.2s ease;
-      z-index: 100;
-    }
-
-    .theme-toggle-btn:hover {
-      border-color: rgba(255, 255, 255, 0.25);
-      color: var(--text-main);
-    }
-
     /* Responsive Breakdown */
     @media (max-width: 1180px) {
       .article-aside {
@@ -608,7 +671,7 @@
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
             <path d="M5.5 4L1.5 8M1.5 8L5.5 12M1.5 8H10C11.3807 8 12.5 6.88071 12.5 5.5V5.5C12.5 4.11929 11.3807 3 10 3H8.5" stroke="currentColor"></path>
           </svg>
-          Index
+          <span>Index</span>
         </a>
 
         <nav>
@@ -646,7 +709,7 @@
         <section class="article-section fade-up-section in-view" id="about">
           <h2>About</h2>
           <p>
-            Designed a complete mobile experience for horse owners to discover services, shop equestrian products, and manage bookings. The focus was on creating a clean, user-friendly interface that simplifies navigation and provides a seamless experience across the entire app.
+            EquiCare was designed for horse owners and equestrian professionals to discover services, shop equestrian products, and manage bookings — all in one mobile app.
           </p>
         </section>
 
@@ -654,17 +717,20 @@
         <section class="article-section fade-up-section" id="outcome">
           <h2>Outcome</h2>
           <p>
-            The final product delivers a complete equestrian mobile ecosystem: horse owners can browse certified veterinarians, farriers, trainers, transport services, and shop equestrian gear with a unified checkout flow.
+            The final product delivers a complete equestrian mobile ecosystem: horse owners can browse certified veterinarians, farriers, trainers, and transport services, and shop equestrian gear with a unified checkout flow.
           </p>
           <p>
-            The mobile interface prioritizes quick access with clear visual hierarchy, making complex booking workflows simple and intuitive on smaller screens.
+            The interface prioritizes quick access with clear visual hierarchy, making complex booking workflows simple and intuitive on smaller screens.
+          </p>
+          <p>
+            By using reusable mobile components, consistent interaction patterns, and a scalable design system, the app is ready for real-world use and fast production implementation.
           </p>
 
           <!-- Filmstrip Gallery Carousel -->
           <div class="odin-filmstrip-container">
             <div class="odin-filmstrip" id="filmstrip">
               <div class="odin-filmstrip-slide">
-                <img src="assets/equicare-mockup.jpg" alt="EquiCare Mobile Overview" draggable="false" loading="lazy" decoding="async">
+                <img src="assets/equicare-mockup.jpg" alt="EquiCare App Overview" draggable="false" loading="lazy" decoding="async">
               </div>
               <div class="odin-filmstrip-slide">
                 <img src="assets/equicare-mockup.jpg" alt="EquiCare Horse Services Booking" draggable="false" loading="lazy" decoding="async">
@@ -689,11 +755,14 @@
             Booking specialized services like equine transport or farrier visits often requires back-and-forth phone calls without transparent pricing or schedule confirmation.
           </p>
           <p>
+            As the diversity of equestrian services grows, finding trusted, local providers becomes harder without a centralized directory and booking system.
+          </p>
+          <p>
             The challenge was designing a mobile application that consolidates service discovery, product shopping, and booking management into one cohesive and accessible mobile interface.
           </p>
 
           <figure class="article-figure">
-            <img src="assets/equicare-mockup.jpg" alt="EquiCare User Experience Challenge" draggable="false" loading="lazy" decoding="async">
+            <img src="assets/equicare-mockup.jpg" alt="EquiCare Problem — Fragmented Equestrian Services" draggable="false" loading="lazy" decoding="async">
           </figure>
         </section>
 
@@ -701,36 +770,121 @@
         <section class="article-section fade-up-section" id="research">
           <h2>Research</h2>
           <p>
-            I conducted user interviews with horse owners, stable managers, and equestrian service providers to map out key mobile journeys and pain points.
+            Before designing the interface, I mapped the daily journey of horse owners and stable managers to understand how they currently find, book, and pay for equestrian services.
           </p>
           <p>
-            Key research insights included:
+            Interviews with horse owners, trainers, and equestrian shop owners revealed how fragmented the current experience is across WhatsApp, phone calls, and separate websites.
+          </p>
+          <p>
+            Several patterns became clear during the research:
           </p>
 
           <ul>
-            <li>Users need fast emergency access to equine vet services.</li>
+            <li>Users need fast emergency access to equine vet and farrier services.</li>
             <li>Clear service pricing and rating reviews build trust before booking.</li>
             <li>Mobile navigation must be thumb-friendly for quick one-handed use outdoors at stables.</li>
+            <li>Combining shopping and service booking in one checkout flow reduces friction significantly.</li>
           </ul>
+
+          <p>
+            These findings shaped every design decision — from navigation and filtering to product cards and the booking confirmation flow.
+          </p>
+
+          <!-- Research Filmstrip Gallery Carousel -->
+          <div class="odin-filmstrip-container">
+            <div class="odin-filmstrip" id="research-filmstrip">
+              <div class="odin-filmstrip-slide">
+                <img src="assets/equicare-mockup.jpg" alt="EquiCare Research — User Flows 1" draggable="false" loading="lazy" decoding="async">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/equicare-mockup.jpg" alt="EquiCare Research — Wireframes 2" draggable="false" loading="lazy" decoding="async">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/equicare-mockup.jpg" alt="EquiCare Research — Components 3" draggable="false" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="filmstrip-scrollbar">
+              <div class="filmstrip-scrollbar-bar" id="research-filmstrip-bar"></div>
+            </div>
+          </div>
         </section>
 
         <!-- 5. Product System -->
         <section class="article-section fade-up-section" id="product-system">
           <h2>Product System</h2>
           <p>
-            To keep the app scalable, I designed an equestrian UI design system with reusable mobile components, unified tab bars, bottom sheets, and consistent card layouts.
+            As the product expanded, I kept noticing the same challenge consistently.
+          </p>
+          <p>
+            EquiCare isn't just a single home screen — it's a connected system of service discovery, product browsing, booking management, and order tracking. Every module has a different purpose, but all of them should feel like a coherent product.
+          </p>
+          <p>
+            That consistency became the foundation of the experience.
+          </p>
+          <p>
+            Horse owners shouldn't have to learn new interface logic every time they move from the service listing to a booking confirmation, or from the store to their order history. Once they understand one section, the overall product becomes familiar.
+          </p>
+          <p>
+            I built the system around the same design principles: shared layouts, reusable components, and scalable patterns allowed every screen to work together as a system instead of separate pages.
+          </p>
+          <p>
+            This approach influenced every design decision:
+          </p>
+          <p>
+            Instead of introducing new patterns for each feature, I focused on standardizing:
           </p>
 
-          <figure class="article-figure">
-            <img src="assets/equicare-mockup.jpg" alt="EquiCare Mobile Design System" draggable="false" loading="lazy" decoding="async">
-          </figure>
+          <ul>
+            <li>reusable service cards across every category page</li>
+            <li>consistent filters and search patterns</li>
+            <li>shared booking forms and confirmation flows</li>
+            <li>unified bottom navigation and tab bar</li>
+          </ul>
+
+          <p>
+            As new services were added, the system could grow without losing consistency. Every new feature reused familiar patterns, reducing the learning curve for both users and developers.
+          </p>
+          <p>
+            I didn't design each screen as an isolated interface. I designed a system that keeps complex service discovery structured, predictable, and easy to navigate every day.
+          </p>
+
+          <!-- Product System Showcase -->
+          <div class="feedback-showcase-container">
+            <div class="feedback-primary-card">
+              <img src="assets/equicare-mockup.jpg" alt="EquiCare Design System Overview" draggable="false" loading="lazy" decoding="async">
+            </div>
+            <div class="feedback-secondary-grid">
+              <div class="feedback-secondary-card">
+                <img src="assets/equicare-mockup.jpg" alt="EquiCare Components Detail" draggable="false" loading="lazy" decoding="async">
+              </div>
+              <div class="feedback-secondary-card">
+                <img src="assets/equicare-mockup.jpg" alt="EquiCare Color & Typography" draggable="false" loading="lazy" decoding="async">
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- 6. Role -->
         <section class="article-section fade-up-section" id="role">
           <h2>Role</h2>
           <p>
-            I led the end-to-end product design, covering user research, wireframing, mobile UI design, interactive prototyping, and developer handoff.
+            I was responsible for designing the product from the ground up, turning complex equestrian service workflows into a scalable and accessible mobile experience.
+          </p>
+          <p>
+            Throughout the project, I worked across every stage of the design process:
+          </p>
+
+          <ul>
+            <li>UX research</li>
+            <li>User flows</li>
+            <li>UI design</li>
+            <li>Design system</li>
+            <li>Interactive prototyping</li>
+            <li>Developer handoff</li>
+          </ul>
+
+          <p>
+            This project marked my first time designing a comprehensive B2C mobile app in the equestrian industry — balancing domain expertise with modern mobile design principles.
           </p>
         </section>
 
@@ -739,16 +893,42 @@
           <h2>Learnings</h2>
 
           <div class="article-subsection">
-            <h3>1. Mobile UX is about context.</h3>
+            <h3>1. Mobile UX is about context, not just screens.</h3>
             <p>
-              Designing for mobile means considering outdoor usability, quick gestures, and clear contrast for high visibility in different environments.
+              Early in the project, I realized that users don't experience a mobile app screen by screen. They're outdoors, one-handed, often in a hurry.
+            </p>
+            <p>
+              That shifted my focus from designing isolated UI screens to streamlining smooth, thumb-friendly end-to-end flows.
             </p>
           </div>
 
           <div class="article-subsection">
-            <h3>2. Streamlined checkout increases conversion.</h3>
+            <h3>2. Consistency reduces complexity.</h3>
             <p>
-              Combining service booking with instant product checkout reduced friction and improved user retention.
+              Instead of introducing new layouts and interaction patterns for every service category, I relied on a consistent system of cards, filters, booking forms, and confirmations that users could recognize throughout the app.
+            </p>
+            <p>
+              This consistency made EquiCare easier to learn and easier to scale.
+            </p>
+          </div>
+
+          <div class="article-subsection">
+            <h3>3. Trust is a design problem.</h3>
+            <p>
+              In a marketplace for specialized services, trust is critical. Clear ratings, verified provider badges, and transparent pricing were not just nice-to-haves — they were core to conversion.
+            </p>
+            <p>
+              Those small trust signals had a much bigger impact than adding more features.
+            </p>
+          </div>
+
+          <div class="article-subsection">
+            <h3>4. A design system is a product investment.</h3>
+            <p>
+              A modular mobile design system was the foundation of every screen.
+            </p>
+            <p>
+              Reusable components, shared interaction patterns, and standardized layout tokens reduced design inconsistency, simplified developer handoff, and made future feature expansion much faster.
             </p>
           </div>
         </section>
@@ -757,7 +937,7 @@
     </div>
   </div>
 
-  <!-- Fullscreen Lightbox Modal -->
+  <!-- Fullscreen Lightbox Modal (Hamza Alabou / Odin Style) -->
   <div class="lightbox-overlay" id="lightbox-overlay">
     <!-- Close Button -->
     <button class="lightbox-close" id="lightbox-close" aria-label="Close modal">
@@ -780,7 +960,7 @@
       </svg>
     </button>
 
-    <!-- Main Card Container -->
+    <!-- Main White Card Container -->
     <div class="lightbox-card" id="lightbox-card">
       <img src="" alt="Fullscreen Image Preview" id="lightbox-img" class="lightbox-image">
     </div>
@@ -790,13 +970,7 @@
   </div>
 
   <script>
-    // Force mobile scroll to top on page load
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-    window.scrollTo(0, 0);
-
-    // 1. Filmstrip Horizontal Scroll Indicator Sync
+    // 1. Filmstrip Horizontal Scroll Indicator Sync (All Containers)
     document.querySelectorAll('.odin-filmstrip-container').forEach(container => {
       const strip = container.querySelector('.odin-filmstrip');
       const bar = container.querySelector('.filmstrip-scrollbar-bar');
@@ -881,7 +1055,7 @@
     fadeSections.forEach(sec => revealObserver.observe(sec));
 
     // 4. Lightbox Modal Gallery Handler (Section Scoped)
-    const allSectionImages = Array.from(document.querySelectorAll('.odin-filmstrip-slide img, .article-figure img'));
+    const allSectionImages = Array.from(document.querySelectorAll('.odin-filmstrip-slide img, .article-figure img, .feedback-primary-card img, .feedback-secondary-card img'));
     const lightboxOverlay = document.getElementById('lightbox-overlay');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxClose = document.getElementById('lightbox-close');
@@ -908,9 +1082,11 @@
     });
 
     function openSectionLightbox(clickedImg) {
+      // Find parent section or container of clicked image
       const parentContainer = clickedImg.closest('.odin-filmstrip, .article-figure, .article-section') || document.body;
       currentSectionImages = Array.from(parentContainer.querySelectorAll('img'));
 
+      // If container has only 1 image, check if parent section has more
       if (currentSectionImages.length <= 1) {
         const parentSec = clickedImg.closest('.article-section');
         if (parentSec) {
@@ -994,12 +1170,14 @@
     lightboxPrev.addEventListener('click', () => showImage(currentIndex - 1));
     lightboxNext.addEventListener('click', () => showImage(currentIndex + 1));
 
+    // Close on clicking outside white card
     lightboxOverlay.addEventListener('click', (e) => {
       if (e.target === lightboxOverlay) {
         closeLightbox();
       }
     });
 
+    // Keyboard navigation (Escape, Left Arrow, Right Arrow)
     document.addEventListener('keydown', (e) => {
       if (!lightboxOverlay.classList.contains('active')) return;
       if (e.key === 'Escape') closeLightbox();
@@ -1025,15 +1203,19 @@
         touchEndX = e.changedTouches[0].clientX;
         touchEndY = e.changedTouches[0].clientY;
 
+        // Skip slide change if image is currently zoomed in 1:1 for panning
         if (lightboxCard && lightboxCard.classList.contains('zoomed')) return;
 
         const deltaX = touchEndX - touchStartX;
         const deltaY = touchEndY - touchStartY;
 
+        // Trigger horizontal swipe if horizontal distance is dominant (> 35px)
         if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 35) {
           if (deltaX < 0) {
+            // Swiped left -> Next image
             showImage(currentIndex + 1);
           } else {
+            // Swiped right -> Previous image
             showImage(currentIndex - 1);
           }
         }
