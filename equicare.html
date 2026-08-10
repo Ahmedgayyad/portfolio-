@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EquiCare — Horse Services Mobile App — Ahmed Giad</title>
+  <meta name="description" content="EquiCare Mobile App Case Study by Ahmed Giad — Horse Services, Equestrian Shopping & Booking Experience.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       HAMZAALABOU.COM / ODIN EXACT CASE STUDY LAYOUT & STYLES
+       ========================================================= */
+    :root {
+      --bg-color: #0e0e0e;
+      --text-main: #ffffff;
+      --text-muted: rgba(255, 255, 255, 0.62);
+      --text-dim: rgba(255, 255, 255, 0.38);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    /* Page Shell Container */
+    .page-shell {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 80px 48px 140px;
+      position: relative;
+    }
+
+    /* Article Layout (Sidebar + Main Column) */
+    .article-layout {
+      width: 100%;
+      position: relative;
+    }
+
+    /* Aside Fixed Navigation — Pinned on left edge */
+    .article-aside {
+      position: fixed;
+      left: 88px;
+      top: 80px;
+      width: 140px;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      z-index: 100;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    .aside-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      -webkit-tap-highlight-color: transparent !important;
+      outline: none !important;
+    }
+
+    .aside-home:hover,
+    .aside-home:focus,
+    .aside-home:active,
+    .aside-home:focus-visible {
+      color: #ffffff !important;
+      background: transparent !important;
+      outline: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    .article-aside nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .article-aside nav ul li a {
+      font-size: 11px;
+      font-weight: 400;
+      font-family: var(--font-mono);
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      display: block;
+    }
+
+    .article-aside nav ul li a:hover,
+    .article-aside nav ul li a[data-active="true"] {
+      color: var(--text-main);
+    }
+
+    /* Main Article Content Column */
+    .article-main {
+      max-width: 630px;
+      margin-left: 290px;
+      display: flex;
+      flex-direction: column;
+      gap: 72px;
+    }
+
+    /* Header Metadata Section */
+    .article-header {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .article-header h1 {
+      font-size: 18px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: -0.01em;
+      margin: 0;
+      color: var(--text-main);
+    }
+
+    .article-meta {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      row-gap: 10px;
+      margin: 0;
+      font-size: 13px;
+    }
+
+    .article-meta dt {
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-weight: 400;
+    }
+
+    .article-meta dd {
+      color: var(--text-main);
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .chip-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-main);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s ease;
+    }
+
+    .chip-link:hover {
+      opacity: 0.8;
+    }
+
+    /* Article Sections */
+    .article-section {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      scroll-margin-top: 80px;
+    }
+
+    .article-section h2 {
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: -0.01em;
+      color: var(--text-main);
+      margin: 0 0 4px 0;
+    }
+
+    .article-section p {
+      font-family: 'Graphik Trial', 'Graphik', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 25px;
+      letter-spacing: -0.08px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .article-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .article-section ul li {
+      position: relative;
+      padding-left: 16px;
+      font-family: 'Graphik Trial', 'Graphik', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 25px;
+      letter-spacing: -0.08px;
+      color: var(--text-muted);
+    }
+
+    .article-section ul li::before {
+      content: '·';
+      position: absolute;
+      left: 2px;
+      top: -1px;
+      font-weight: bold;
+      color: var(--text-dim);
+      font-size: 16px;
+    }
+
+    .article-subsection {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .article-subsection h3 {
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    /* Standard Image Containers */
+    .article-figure {
+      margin: 16px 0 0 0;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: transparent;
+      border: none;
+    }
+
+    .article-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+    }
+
+    /* Filmstrip Gallery Carousel (Single row horizontal scroll with snapping) */
+    .odin-filmstrip-container {
+      width: 100%;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .odin-filmstrip {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      border-radius: 12px;
+    }
+
+    .odin-filmstrip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .odin-filmstrip-slide {
+      flex: 0 0 92%;
+      aspect-ratio: 16 / 10.2;
+      scroll-snap-align: start;
+      border-radius: 12px;
+      overflow: hidden;
+      border: none;
+      background: transparent;
+    }
+
+    .odin-filmstrip-slide img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 12px;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    /* Scrollbar Indicator Line */
+    .filmstrip-scrollbar {
+      height: 2px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 1px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .filmstrip-scrollbar-bar {
+      height: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 1px;
+      width: 30%;
+      position: absolute;
+      left: 0;
+      transition: left 0.15s ease-out;
+    }
+
+    /* Smooth Scroll-Triggered Fade Reveal Animation */
+    .fade-up-section {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(4px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
+    }
+
+    .fade-up-section.in-view {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* Fullscreen Lightbox Modal (Clean Borderless Floating Style) */
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(8, 8, 8, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lightbox-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-card {
+      background: transparent;
+      padding: 0;
+      border-radius: 16px;
+      max-width: 92vw;
+      max-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: none;
+      transform: scale(0.95);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+      overflow: visible;
+    }
+
+    .lightbox-overlay.active .lightbox-card {
+      transform: scale(1);
+    }
+
+    .lightbox-image {
+      max-width: 90vw;
+      height: 80vh;
+      object-fit: contain;
+      border-radius: 12px;
+      display: block;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      cursor: zoom-in;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+
+    .lightbox-card.zoomed .lightbox-image {
+      transform: scale(1.35) translateZ(0);
+      cursor: zoom-out;
+    }
+
+    /* Lightbox Controls */
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.8);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      z-index: 1010;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    .lightbox-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.8);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      z-index: 1010;
+    }
+
+    .lightbox-arrow:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .lightbox-prev {
+      left: 32px;
+    }
+
+    .lightbox-next {
+      right: 32px;
+    }
+
+    /* Lightbox Dots */
+    .lightbox-dots {
+      position: absolute;
+      bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1010;
+    }
+
+    .lightbox-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .lightbox-dot.active {
+      background: #ffffff;
+      transform: scale(1.4);
+    }
+
+    /* Top Right Theme Toggle Button */
+    .theme-toggle-btn {
+      position: fixed;
+      top: 32px;
+      right: 48px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+      z-index: 100;
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      color: var(--text-main);
+    }
+
+    /* Responsive Breakdown */
+    @media (max-width: 1180px) {
+      .article-aside {
+        left: 24px;
+      }
+      .page-shell {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .theme-toggle-btn {
+        right: 24px;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .page-shell {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 24px;
+        padding-bottom: 60px;
+      }
+
+      .article-aside {
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin-bottom: 24px;
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .article-aside nav {
+        display: none;
+      }
+
+      .article-main {
+        margin: 0;
+      }
+
+      .odin-filmstrip-slide {
+        flex: 0 0 100%;
+      }
+
+      .lightbox-prev {
+        left: 12px;
+      }
+
+      .lightbox-next {
+        right: 12px;
+      }
+
+      .lightbox-arrow {
+        width: 38px;
+        height: 38px;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        z-index: 1020;
+      }
+
+      .lightbox-close {
+        top: 16px;
+        right: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Right Theme Toggle Button -->
+  <button class="theme-toggle-btn" aria-label="Switch theme">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 000 11 5.5 5.5 0 007-4z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </button>
+
+  <div class="page-shell">
+    <div class="article-layout">
+
+      <!-- Left Sidebar (Hamza Alabou style) -->
+      <aside class="article-aside">
+        <a href="index.html" class="aside-home">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M5.5 4L1.5 8M1.5 8L5.5 12M1.5 8H10C11.3807 8 12.5 6.88071 12.5 5.5V5.5C12.5 4.11929 11.3807 3 10 3H8.5" stroke="currentColor"></path>
+          </svg>
+          Index
+        </a>
+
+        <nav>
+          <ul>
+            <li><a href="#about" data-active="true">About</a></li>
+            <li><a href="#outcome" data-active="false">Outcome</a></li>
+            <li><a href="#problem" data-active="false">Problem</a></li>
+            <li><a href="#research" data-active="false">Research</a></li>
+            <li><a href="#product-system" data-active="false">Product System</a></li>
+            <li><a href="#role" data-active="false">Role</a></li>
+            <li><a href="#learnings" data-active="false">Learnings</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Article Column -->
+      <main class="article-main">
+
+        <!-- Header Meta -->
+        <header class="article-header fade-up-section in-view">
+          <h1>EquiCare</h1>
+          <dl class="article-meta">
+            <dt>Period</dt>
+            <dd>Dec 2025 – Feb 2026</dd>
+
+            <dt>Type</dt>
+            <dd>Horse Services Mobile App</dd>
+
+            <dt>Services</dt>
+            <dd>Mobile UI/UX, Design System</dd>
+          </dl>
+        </header>
+
+        <!-- 1. About -->
+        <section class="article-section fade-up-section in-view" id="about">
+          <h2>About</h2>
+          <p>
+            Designed a complete mobile experience for horse owners to discover services, shop equestrian products, and manage bookings. The focus was on creating a clean, user-friendly interface that simplifies navigation and provides a seamless experience across the entire app.
+          </p>
+        </section>
+
+        <!-- 2. Outcome -->
+        <section class="article-section fade-up-section" id="outcome">
+          <h2>Outcome</h2>
+          <p>
+            The final product delivers a complete equestrian mobile ecosystem: horse owners can browse certified veterinarians, farriers, trainers, transport services, and shop equestrian gear with a unified checkout flow.
+          </p>
+          <p>
+            The mobile interface prioritizes quick access with clear visual hierarchy, making complex booking workflows simple and intuitive on smaller screens.
+          </p>
+
+          <!-- Filmstrip Gallery Carousel -->
+          <div class="odin-filmstrip-container">
+            <div class="odin-filmstrip" id="filmstrip">
+              <div class="odin-filmstrip-slide">
+                <img src="assets/equicare-mockup.jpg" alt="EquiCare Mobile Overview" draggable="false" loading="lazy" decoding="async">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/equicare-mockup.jpg" alt="EquiCare Horse Services Booking" draggable="false" loading="lazy" decoding="async">
+              </div>
+              <div class="odin-filmstrip-slide">
+                <img src="assets/equicare-mockup.jpg" alt="EquiCare Equestrian Store" draggable="false" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <div class="filmstrip-scrollbar">
+              <div class="filmstrip-scrollbar-bar" id="filmstrip-bar"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Problem -->
+        <section class="article-section fade-up-section" id="problem">
+          <h2>Problem</h2>
+          <p>
+            Horse owners struggle with fragmented communication across different providers for equine health, training, transport, and equipment purchasing.
+          </p>
+          <p>
+            Booking specialized services like equine transport or farrier visits often requires back-and-forth phone calls without transparent pricing or schedule confirmation.
+          </p>
+          <p>
+            The challenge was designing a mobile application that consolidates service discovery, product shopping, and booking management into one cohesive and accessible mobile interface.
+          </p>
+
+          <figure class="article-figure">
+            <img src="assets/equicare-mockup.jpg" alt="EquiCare User Experience Challenge" draggable="false" loading="lazy" decoding="async">
+          </figure>
+        </section>
+
+        <!-- 4. Research -->
+        <section class="article-section fade-up-section" id="research">
+          <h2>Research</h2>
+          <p>
+            I conducted user interviews with horse owners, stable managers, and equestrian service providers to map out key mobile journeys and pain points.
+          </p>
+          <p>
+            Key research insights included:
+          </p>
+
+          <ul>
+            <li>Users need fast emergency access to equine vet services.</li>
+            <li>Clear service pricing and rating reviews build trust before booking.</li>
+            <li>Mobile navigation must be thumb-friendly for quick one-handed use outdoors at stables.</li>
+          </ul>
+        </section>
+
+        <!-- 5. Product System -->
+        <section class="article-section fade-up-section" id="product-system">
+          <h2>Product System</h2>
+          <p>
+            To keep the app scalable, I designed an equestrian UI design system with reusable mobile components, unified tab bars, bottom sheets, and consistent card layouts.
+          </p>
+
+          <figure class="article-figure">
+            <img src="assets/equicare-mockup.jpg" alt="EquiCare Mobile Design System" draggable="false" loading="lazy" decoding="async">
+          </figure>
+        </section>
+
+        <!-- 6. Role -->
+        <section class="article-section fade-up-section" id="role">
+          <h2>Role</h2>
+          <p>
+            I led the end-to-end product design, covering user research, wireframing, mobile UI design, interactive prototyping, and developer handoff.
+          </p>
+        </section>
+
+        <!-- 7. Learnings -->
+        <section class="article-section fade-up-section" id="learnings">
+          <h2>Learnings</h2>
+
+          <div class="article-subsection">
+            <h3>1. Mobile UX is about context.</h3>
+            <p>
+              Designing for mobile means considering outdoor usability, quick gestures, and clear contrast for high visibility in different environments.
+            </p>
+          </div>
+
+          <div class="article-subsection">
+            <h3>2. Streamlined checkout increases conversion.</h3>
+            <p>
+              Combining service booking with instant product checkout reduced friction and improved user retention.
+            </p>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Fullscreen Lightbox Modal -->
+  <div class="lightbox-overlay" id="lightbox-overlay">
+    <!-- Close Button -->
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close modal">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Navigation Prev/Next Arrows -->
+    <button class="lightbox-arrow lightbox-prev" id="lightbox-prev" aria-label="Previous image">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+
+    <button class="lightbox-arrow lightbox-next" id="lightbox-next" aria-label="Next image">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+
+    <!-- Main Card Container -->
+    <div class="lightbox-card" id="lightbox-card">
+      <img src="" alt="Fullscreen Image Preview" id="lightbox-img" class="lightbox-image">
+    </div>
+
+    <!-- Pagination Dots -->
+    <div class="lightbox-dots" id="lightbox-dots"></div>
+  </div>
+
+  <script>
+    // Force mobile scroll to top on page load
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
+    // 1. Filmstrip Horizontal Scroll Indicator Sync
+    document.querySelectorAll('.odin-filmstrip-container').forEach(container => {
+      const strip = container.querySelector('.odin-filmstrip');
+      const bar = container.querySelector('.filmstrip-scrollbar-bar');
+      if (strip && bar) {
+        strip.addEventListener('scroll', () => {
+          const scrollLeft = strip.scrollLeft;
+          const scrollWidth = strip.scrollWidth - strip.clientWidth;
+          const progress = scrollWidth > 0 ? scrollLeft / scrollWidth : 0;
+          const barWidth = 30; // %
+          const maxLeft = 100 - barWidth;
+          bar.style.width = `${barWidth}%`;
+          bar.style.left = `${progress * maxLeft}%`;
+        });
+      }
+    });
+
+    // 2. Active Section Highlighting in Sidebar (Instant & Starts at About)
+    const sections = document.querySelectorAll('.article-section');
+    const navLinks = document.querySelectorAll('.article-aside nav ul li a');
+
+    function updateActiveNavLink() {
+      const scrollY = window.scrollY;
+      const isAtTop = scrollY < 180;
+      const isAtBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 60);
+
+      let currentId = 'about';
+
+      if (isAtTop) {
+        currentId = 'about';
+      } else if (isAtBottom && sections.length > 0) {
+        currentId = sections[sections.length - 1].getAttribute('id');
+      } else {
+        const triggerLine = scrollY + (window.innerHeight * 0.35);
+        sections.forEach(section => {
+          const top = section.offsetTop;
+          if (triggerLine >= top) {
+            currentId = section.getAttribute('id');
+          }
+        });
+      }
+
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === `#${currentId}`) {
+          link.setAttribute('data-active', 'true');
+        } else {
+          link.setAttribute('data-active', 'false');
+        }
+      });
+    }
+
+    let isNavTicking = false;
+    window.addEventListener('scroll', () => {
+      if (!isNavTicking) {
+        requestAnimationFrame(() => {
+          updateActiveNavLink();
+          isNavTicking = false;
+        });
+        isNavTicking = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', updateActiveNavLink, { passive: true });
+    document.addEventListener('DOMContentLoaded', updateActiveNavLink);
+    updateActiveNavLink();
+
+    // 3. Scroll Reveal Animation for Sections
+    const fadeSections = document.querySelectorAll('.fade-up-section');
+    const revealObserverOptions = {
+      root: null,
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.05
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, revealObserverOptions);
+
+    fadeSections.forEach(sec => revealObserver.observe(sec));
+
+    // 4. Lightbox Modal Gallery Handler (Section Scoped)
+    const allSectionImages = Array.from(document.querySelectorAll('.odin-filmstrip-slide img, .article-figure img'));
+    const lightboxOverlay = document.getElementById('lightbox-overlay');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    const lightboxDotsContainer = document.getElementById('lightbox-dots');
+
+    let currentSectionImages = [];
+    let currentIndex = 0;
+
+    allSectionImages.forEach((img) => {
+      img.style.cursor = 'pointer';
+      img.setAttribute('role', 'button');
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('aria-label', `View ${img.alt || 'image'} fullscreen`);
+
+      img.addEventListener('click', () => openSectionLightbox(img));
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openSectionLightbox(img);
+        }
+      });
+    });
+
+    function openSectionLightbox(clickedImg) {
+      const parentContainer = clickedImg.closest('.odin-filmstrip, .article-figure, .article-section') || document.body;
+      currentSectionImages = Array.from(parentContainer.querySelectorAll('img'));
+
+      if (currentSectionImages.length <= 1) {
+        const parentSec = clickedImg.closest('.article-section');
+        if (parentSec) {
+          const secImgs = Array.from(parentSec.querySelectorAll('img'));
+          if (secImgs.length > 1) {
+            currentSectionImages = secImgs;
+          }
+        }
+      }
+
+      currentIndex = currentSectionImages.indexOf(clickedImg);
+      if (currentIndex === -1) currentIndex = 0;
+
+      buildDots();
+      updateLightboxContent();
+      lightboxOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function buildDots() {
+      lightboxDotsContainer.innerHTML = '';
+      if (currentSectionImages.length <= 1) {
+        lightboxPrev.style.display = 'none';
+        lightboxNext.style.display = 'none';
+        lightboxDotsContainer.style.display = 'none';
+        return;
+      }
+
+      lightboxPrev.style.display = 'flex';
+      lightboxNext.style.display = 'flex';
+      lightboxDotsContainer.style.display = 'flex';
+
+      currentSectionImages.forEach((_, idx) => {
+        const dot = document.createElement('div');
+        dot.className = `lightbox-dot ${idx === currentIndex ? 'active' : ''}`;
+        dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+        dot.addEventListener('click', () => showImage(idx));
+        lightboxDotsContainer.appendChild(dot);
+      });
+    }
+
+    const lightboxCard = document.getElementById('lightbox-card');
+
+    lightboxImg.addEventListener('click', (e) => {
+      e.stopPropagation();
+      lightboxCard.classList.toggle('zoomed');
+    });
+
+    function closeLightbox() {
+      lightboxOverlay.classList.remove('active');
+      lightboxCard.classList.remove('zoomed');
+      document.body.style.overflow = '';
+    }
+
+    function showImage(index) {
+      if (currentSectionImages.length === 0) return;
+      lightboxCard.classList.remove('zoomed');
+      if (index < 0) index = currentSectionImages.length - 1;
+      if (index >= currentSectionImages.length) index = 0;
+      currentIndex = index;
+      updateLightboxContent();
+    }
+
+    function updateLightboxContent() {
+      const targetImg = currentSectionImages[currentIndex];
+      if (targetImg) {
+        lightboxImg.src = targetImg.src;
+        lightboxImg.alt = targetImg.alt || 'Fullscreen Image Preview';
+      }
+      const dots = lightboxDotsContainer.querySelectorAll('.lightbox-dot');
+      dots.forEach((dot, idx) => {
+        if (idx === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxPrev.addEventListener('click', () => showImage(currentIndex - 1));
+    lightboxNext.addEventListener('click', () => showImage(currentIndex + 1));
+
+    lightboxOverlay.addEventListener('click', (e) => {
+      if (e.target === lightboxOverlay) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightboxOverlay.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+      if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+    });
+
+    // Touch Swipe Gesture Support for Mobile Lightbox
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
+
+    lightboxOverlay.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    lightboxOverlay.addEventListener('touchend', (e) => {
+      if (e.changedTouches.length === 1) {
+        touchEndX = e.changedTouches[0].clientX;
+        touchEndY = e.changedTouches[0].clientY;
+
+        if (lightboxCard && lightboxCard.classList.contains('zoomed')) return;
+
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 35) {
+          if (deltaX < 0) {
+            showImage(currentIndex + 1);
+          } else {
+            showImage(currentIndex - 1);
+          }
+        }
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
