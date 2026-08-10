@@ -586,6 +586,71 @@
       transform: scale(1.4);
     }
 
+    /* Presentation Scroll Viewer */
+    .presentation-viewer {
+      margin-top: 16px;
+      width: 100%;
+      height: 80vh;
+      border-radius: 16px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      border: 1px solid var(--border-color);
+      background: #111;
+      position: relative;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.15) transparent;
+    }
+
+    .presentation-viewer::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .presentation-viewer::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .presentation-viewer::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.12);
+      border-radius: 2px;
+    }
+
+    .presentation-viewer::-webkit-scrollbar-thumb:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .presentation-viewer img {
+      width: 100%;
+      height: auto;
+      display: block;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+      border-radius: 16px;
+    }
+
+    .presentation-scroll-hint {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(255,255,255,0.3);
+      pointer-events: none;
+      animation: hint-fade 3s ease 1.5s forwards;
+      opacity: 1;
+    }
+
+    @keyframes hint-fade {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
     /* Responsive Breakdown */
     @media (max-width: 1180px) {
       .article-aside {
@@ -624,6 +689,10 @@
 
       .article-main {
         margin: 0;
+      }
+
+      .presentation-viewer {
+        height: 70vh;
       }
 
       .odin-filmstrip-slide {
@@ -682,7 +751,7 @@
             <li><a href="#research" data-active="false">Research</a></li>
             <li><a href="#product-system" data-active="false">Product System</a></li>
             <li><a href="#role" data-active="false">Role</a></li>
-            <li><a href="#learnings" data-active="false">Learnings</a></li>
+            <li><a href="#presentation" data-active="false">Presentation</a></li>
           </ul>
         </nav>
       </aside>
@@ -888,48 +957,24 @@
           </p>
         </section>
 
-        <!-- 7. Learnings -->
-        <section class="article-section fade-up-section" id="learnings">
-          <h2>Learnings</h2>
+        <!-- 7. Presentation -->
+        <section class="article-section fade-up-section" id="presentation">
+          <h2>Presentation</h2>
 
-          <div class="article-subsection">
-            <h3>1. Mobile UX is about context, not just screens.</h3>
-            <p>
-              Early in the project, I realized that users don't experience a mobile app screen by screen. They're outdoors, one-handed, often in a hurry.
-            </p>
-            <p>
-              That shifted my focus from designing isolated UI screens to streamlining smooth, thumb-friendly end-to-end flows.
-            </p>
-          </div>
-
-          <div class="article-subsection">
-            <h3>2. Consistency reduces complexity.</h3>
-            <p>
-              Instead of introducing new layouts and interaction patterns for every service category, I relied on a consistent system of cards, filters, booking forms, and confirmations that users could recognize throughout the app.
-            </p>
-            <p>
-              This consistency made EquiCare easier to learn and easier to scale.
-            </p>
-          </div>
-
-          <div class="article-subsection">
-            <h3>3. Trust is a design problem.</h3>
-            <p>
-              In a marketplace for specialized services, trust is critical. Clear ratings, verified provider badges, and transparent pricing were not just nice-to-haves — they were core to conversion.
-            </p>
-            <p>
-              Those small trust signals had a much bigger impact than adding more features.
-            </p>
-          </div>
-
-          <div class="article-subsection">
-            <h3>4. A design system is a product investment.</h3>
-            <p>
-              A modular mobile design system was the foundation of every screen.
-            </p>
-            <p>
-              Reusable components, shared interaction patterns, and standardized layout tokens reduced design inconsistency, simplified developer handoff, and made future feature expansion much faster.
-            </p>
+          <div class="presentation-viewer" id="presentation-viewer">
+            <img
+              src="assets/equicare-presentation.jpg"
+              alt="EquiCare Full Project Presentation"
+              draggable="false"
+              loading="lazy"
+              decoding="async"
+            >
+            <div class="presentation-scroll-hint">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+              </svg>
+              Scroll to explore
+            </div>
           </div>
         </section>
 
