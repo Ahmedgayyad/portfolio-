@@ -133,7 +133,7 @@
 
     .bounce-indicator {
       position: absolute;
-      left: -13px;
+      left: -14px;
       top: 0;
       width: 5px;
       height: 5px;
@@ -143,7 +143,13 @@
       z-index: 10;
       will-change: transform;
       transform: translate3d(0, 0, 0);
-      transition: opacity 0.2s ease;
+    }
+
+    .article-aside nav ul li {
+      position: relative;
+      display: block;
+      margin: 0;
+      padding: 0;
     }
 
     .article-aside nav ul li a {
@@ -154,6 +160,7 @@
       transition: color 0.2s ease;
       display: block;
       font-weight: 400;
+      line-height: 1.4;
     }
 
     .article-aside nav ul li a:hover,
@@ -782,8 +789,8 @@
         </a>
 
         <nav>
-          <span class="bounce-indicator" id="bounce-indicator" aria-hidden="true"></span>
           <ul>
+            <span class="bounce-indicator" id="bounce-indicator" aria-hidden="true"></span>
             <li><a href="#about" data-active="true">About</a></li>
             <li><a href="#outcome" data-active="false">Outcome</a></li>
             <li><a href="#problem" data-active="false">Problem</a></li>
@@ -1080,15 +1087,21 @@
     });
 
     // 2. Bounce Sidebar Spring Indicator & Active Section Highlighting
-    const sections = document.querySelectorAll('.article-section');
-    const navLinks = Array.from(document.querySelectorAll('.article-aside nav ul li a'));
     const bounceIndicator = document.getElementById('bounce-indicator');
+    const navItems = Array.from(document.querySelectorAll('.article-aside nav ul li'));
+    const navLinks = Array.from(document.querySelectorAll('.article-aside nav ul li a'));
+    const sections = Array.from(document.querySelectorAll('.article-section'));
     const DOT_SIZE = 5;
+
     let currentDotX = 0;
     let currentDotY = 0;
-    let hasDotPosition = false;
-    let previousNavIndex = -1;
-    let bounceAnimId = null;
+    let startY = 0;
+    let targetY = 0;
+    let controlX = 0;
+    let controlY = 0;
+    let activeNavIndex = -1;
+    let isInitialized = false;
+    let springAnimId = null;
 
     function quadraticBezier(start, control, end, progress) {
       const remaining = 1 - progress;
@@ -1099,38 +1112,33 @@
       );
     }
 
-    function positionBounceIndicator(targetIndex, shouldAnimate = true) {
-      if (!bounceIndicator || targetIndex < 0 || targetIndex >= navLinks.length) return;
-      const targetLink = navLinks[targetIndex];
-      const navContainer = bounceIndicator.parentElement;
-      const navRect = navContainer.getBoundingClientRect();
-      const linkRect = targetLink.getBoundingClientRect();
+    function jumpTo(index, animate = true) {
+      if (index < 0 || index >= navItems.length || !bounceIndicator) return;
+      const targetItem = navItems[index];
+      const destY = targetItem.offsetTop + (targetItem.offsetHeight - DOT_SIZE) / 2;
 
-      const destinationY = (linkRect.top - navRect.top) + (linkRect.height - DOT_SIZE) / 2;
-
-      if (bounceAnimId) {
-        cancelAnimationFrame(bounceAnimId);
-        bounceAnimId = null;
-      }
-
-      if (!hasDotPosition || !shouldAnimate) {
+      if (!isInitialized || !animate) {
+        if (springAnimId) cancelAnimationFrame(springAnimId);
         currentDotX = 0;
-        currentDotY = destinationY;
-        bounceIndicator.style.transform = `translate3d(0px, ${destinationY.toFixed(2)}px, 0)`;
-        hasDotPosition = true;
-        previousNavIndex = targetIndex;
+        currentDotY = destY;
+        bounceIndicator.style.transform = `translate3d(0px, ${destY.toFixed(2)}px, 0)`;
+        isInitialized = true;
+        activeNavIndex = index;
         return;
       }
 
-      if (previousNavIndex === targetIndex && hasDotPosition) return;
+      if (index === activeNavIndex) return;
 
-      const startY = currentDotY;
-      const distance = destinationY - startY;
+      activeNavIndex = index;
+      startY = currentDotY;
+      targetY = destY;
+
+      const distance = targetY - startY;
       const travel = Math.abs(distance);
       const longJumpProgress = Math.min(1, Math.max(0, (travel - 48) / 120));
-      const controlX = -Math.min(32, Math.max(8, travel * 0.25));
-      const midpointY = (startY + destinationY) / 2;
-      const controlY = destinationY + (midpointY - destinationY) * longJumpProgress;
+      controlX = -Math.min(36, Math.max(10, travel * 0.28));
+      const midpointY = (startY + targetY) / 2;
+      controlY = targetY + (midpointY - targetY) * longJumpProgress;
 
       const mass = 0.3 + 0.15 * longJumpProgress;
       const stiffness = 280 - 60 * longJumpProgress;
@@ -1140,52 +1148,49 @@
       const zeta = damping / (2 * Math.sqrt(stiffness * mass));
       const omegaD = omega0 * Math.sqrt(Math.max(0, 1 - zeta * zeta));
 
+      if (springAnimId) cancelAnimationFrame(springAnimId);
       const startTime = performance.now();
-      const totalDuration = 500;
+      const maxDuration = 550;
 
-      function springFrame(now) {
+      function tick(now) {
         const t = (now - startTime) / 1000;
         let progress = 1;
 
-        if (t < totalDuration / 1000) {
+        if (t < maxDuration / 1000) {
           const decay = Math.exp(-zeta * omega0 * t);
           const osc = Math.cos(omegaD * t) + (zeta * omega0 / (omegaD || 1)) * Math.sin(omegaD * t);
           progress = 1 - decay * osc;
         }
 
-        if (progress >= 0.999 || (now - startTime) >= totalDuration) {
+        if (progress >= 0.998 || (now - startTime) >= maxDuration) {
           currentDotX = 0;
-          currentDotY = destinationY;
-          bounceIndicator.style.transform = `translate3d(0px, ${destinationY.toFixed(2)}px, 0)`;
-          bounceAnimId = null;
+          currentDotY = targetY;
+          bounceIndicator.style.transform = `translate3d(0px, ${targetY.toFixed(2)}px, 0)`;
+          springAnimId = null;
         } else {
           currentDotX = quadraticBezier(0, controlX, 0, progress);
-          currentDotY = quadraticBezier(startY, controlY, destinationY, progress);
+          currentDotY = quadraticBezier(startY, controlY, targetY, progress);
           bounceIndicator.style.transform = `translate3d(${currentDotX.toFixed(2)}px, ${currentDotY.toFixed(2)}px, 0)`;
-          bounceAnimId = requestAnimationFrame(springFrame);
+          springAnimId = requestAnimationFrame(tick);
         }
       }
 
-      bounceAnimId = requestAnimationFrame(springFrame);
-      previousNavIndex = targetIndex;
+      springAnimId = requestAnimationFrame(tick);
     }
 
     function updateActiveNavLink() {
       const scrollY = window.scrollY;
-      const isAtTop = scrollY < 180;
-      const isAtBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 60);
+      const isAtBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 80);
 
       let currentId = 'about';
 
-      if (isAtTop) {
-        currentId = 'about';
-      } else if (isAtBottom && sections.length > 0) {
+      if (isAtBottom && sections.length > 0) {
         currentId = sections[sections.length - 1].getAttribute('id');
       } else {
         const triggerLine = scrollY + (window.innerHeight * 0.35);
         sections.forEach(section => {
-          const top = section.offsetTop;
-          if (triggerLine >= top) {
+          const sectionTop = section.getBoundingClientRect().top + scrollY;
+          if (triggerLine >= sectionTop) {
             currentId = section.getAttribute('id');
           }
         });
@@ -1201,12 +1206,14 @@
         }
       });
 
-      positionBounceIndicator(activeIdx, hasDotPosition);
+      jumpTo(activeIdx, isInitialized);
     }
 
     navLinks.forEach((link, idx) => {
       link.addEventListener('click', () => {
-        positionBounceIndicator(idx, true);
+        navLinks.forEach(l => l.setAttribute('data-active', 'false'));
+        link.setAttribute('data-active', 'true');
+        jumpTo(idx, true);
       });
     });
 
@@ -1221,14 +1228,14 @@
       }
     }, { passive: true });
 
-    window.addEventListener('resize', () => positionBounceIndicator(previousNavIndex, false), { passive: true });
+    window.addEventListener('resize', () => jumpTo(activeNavIndex, false), { passive: true });
     document.addEventListener('DOMContentLoaded', () => {
       updateActiveNavLink();
-      positionBounceIndicator(0, false);
+      jumpTo(0, false);
     });
     setTimeout(() => {
       updateActiveNavLink();
-      positionBounceIndicator(0, false);
+      jumpTo(0, false);
     }, 60);
 
     // 3. Scroll Reveal Animation for Sections
