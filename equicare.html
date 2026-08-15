@@ -21,6 +21,9 @@
       --text-muted: rgba(255, 255, 255, 0.62);
       --text-dim: rgba(255, 255, 255, 0.38);
       --border-color: rgba(255, 255, 255, 0.08);
+      --dot-inactive: rgba(255, 255, 255, 0.22);
+      --dot-hover: rgba(255, 255, 255, 0.5);
+      --dot-active: #ffffff;
       --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'Geist Mono', monospace;
     }
@@ -31,6 +34,9 @@
       --text-muted: #333333;
       --text-dim: rgba(0, 0, 0, 0.45);
       --border-color: rgba(0, 0, 0, 0.10);
+      --dot-inactive: rgba(0, 0, 0, 0.18);
+      --dot-hover: rgba(0, 0, 0, 0.45);
+      --dot-active: #111111;
     }
 
     html {
@@ -350,24 +356,36 @@
       backface-visibility: hidden;
     }
 
-    /* Scrollbar Indicator Line */
-    .filmstrip-scrollbar {
-      height: 2px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 1px;
-      overflow: hidden;
-      position: relative;
+    /* Filmstrip Dots Pagination (Odin Style) */
+    .filmstrip-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
+      padding: 4px 0;
     }
 
-    .filmstrip-scrollbar-bar {
-      height: 100%;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 1px;
-      width: 30%;
-      position: absolute;
-      left: 0;
-      transition: left 0.15s ease-out;
+    .filmstrip-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--dot-inactive);
+      cursor: pointer;
+      padding: 0;
+      border: none;
+      outline: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    .filmstrip-dot:hover {
+      background-color: var(--dot-hover);
+    }
+
+    .filmstrip-dot.active {
+      background-color: var(--dot-active);
+      transform: scale(1.15);
     }
 
     /* Smooth Scroll-Triggered Fade Reveal Animation */
@@ -808,9 +826,7 @@
                 <img src="assets/equicare-real-3.jpg" alt="EquiCare Third Page" draggable="false" loading="lazy" decoding="async">
               </div>
             </div>
-            <div class="filmstrip-scrollbar">
-              <div class="filmstrip-scrollbar-bar" id="filmstrip-bar"></div>
-            </div>
+            <div class="filmstrip-dots" id="filmstrip-dots"></div>
           </div>
         </section>
 
@@ -865,9 +881,7 @@
                 <img src="assets/equicare-research-2.jpg" alt="EquiCare Research — Four Page" draggable="false" loading="lazy" decoding="async">
               </div>
             </div>
-            <div class="filmstrip-scrollbar">
-              <div class="filmstrip-scrollbar-bar" id="research-filmstrip-bar"></div>
-            </div>
+            <div class="filmstrip-dots" id="research-filmstrip-dots"></div>
           </div>
         </section>
 
@@ -994,21 +1008,55 @@
       applyTheme(current === 'light' ? 'dark' : 'light');
     });
 
-    // 1. Filmstrip Horizontal Scroll Indicator Sync (All Containers)
+    // 1. Filmstrip Horizontal Dots Indicator Sync & Click Navigation (All Containers)
     document.querySelectorAll('.odin-filmstrip-container').forEach(container => {
       const strip = container.querySelector('.odin-filmstrip');
-      const bar = container.querySelector('.filmstrip-scrollbar-bar');
-      if (strip && bar) {
-        strip.addEventListener('scroll', () => {
-          const scrollLeft = strip.scrollLeft;
-          const scrollWidth = strip.scrollWidth - strip.clientWidth;
-          const progress = scrollWidth > 0 ? scrollLeft / scrollWidth : 0;
-          const barWidth = 30; // %
-          const maxLeft = 100 - barWidth;
-          bar.style.width = `${barWidth}%`;
-          bar.style.left = `${progress * maxLeft}%`;
+      const dotsContainer = container.querySelector('.filmstrip-dots');
+      if (!strip || !dotsContainer) return;
+
+      const slides = Array.from(strip.querySelectorAll('.odin-filmstrip-slide'));
+      if (slides.length <= 1) {
+        dotsContainer.style.display = 'none';
+        return;
+      }
+
+      dotsContainer.innerHTML = '';
+      const dots = [];
+
+      slides.forEach((slide, index) => {
+        const dot = document.createElement('button');
+        dot.className = 'filmstrip-dot' + (index === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+        dot.addEventListener('click', () => {
+          const slideLeft = slide.offsetLeft - strip.offsetLeft;
+          strip.scrollTo({ left: slideLeft, behavior: 'smooth' });
+        });
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+      });
+
+      function updateActiveDot() {
+        const scrollLeft = strip.scrollLeft;
+        let activeIndex = 0;
+        let minDiff = Infinity;
+        slides.forEach((slide, index) => {
+          const slideLeft = slide.offsetLeft - strip.offsetLeft;
+          const diff = Math.abs(scrollLeft - slideLeft);
+          if (diff < minDiff) {
+            minDiff = diff;
+            activeIndex = index;
+          }
+        });
+        dots.forEach((dot, index) => {
+          if (index === activeIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
         });
       }
+
+      strip.addEventListener('scroll', updateActiveDot, { passive: true });
     });
 
     // 2. Active Section Highlighting in Sidebar (Instant & Starts at About)
