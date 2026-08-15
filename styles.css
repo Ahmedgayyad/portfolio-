@@ -1033,6 +1033,53 @@ body {
   transform: scale(1.06);
 }
 
+.floating-circle-btn svg {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+  pointer-events: none;
+}
+
+@keyframes iconThemePop {
+  0% {
+    transform: scale(0.65) rotate(-30deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.3) rotate(15deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(0.95) rotate(-5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes iconArrowPop {
+  0% {
+    transform: translateY(2px) scale(0.85);
+  }
+  45% {
+    transform: translateY(-4px) scale(1.25);
+  }
+  75% {
+    transform: translateY(1px) scale(0.95);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.floating-circle-btn.pop-theme svg {
+  animation: iconThemePop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.floating-circle-btn.pop-arrow svg {
+  animation: iconArrowPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
 /* Light Theme for Floating Nav */
 [data-theme="light"] .floating-nav-capsule,
 [data-theme="light"] .floating-circle-btn {

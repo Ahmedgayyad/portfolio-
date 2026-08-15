@@ -543,9 +543,18 @@
       });
     });
 
+    function triggerPopAnimation(btn, className) {
+      if (!btn) return;
+      btn.classList.remove(className);
+      void btn.offsetWidth;
+      btn.classList.add(className);
+      setTimeout(() => btn.classList.remove(className), 500);
+    }
+
     // Scroll to Top Button
     if (floatingScrollTop) {
       floatingScrollTop.addEventListener('click', () => {
+        triggerPopAnimation(floatingScrollTop, 'pop-arrow');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     }
@@ -567,6 +576,7 @@
 
     if (floatingThemeToggle) {
       floatingThemeToggle.addEventListener('click', () => {
+        triggerPopAnimation(floatingThemeToggle, 'pop-theme');
         const curr = document.documentElement.getAttribute('data-theme');
         applyTheme(curr === 'light' ? 'dark' : 'light');
       });
