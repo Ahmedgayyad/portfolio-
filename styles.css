@@ -15,6 +15,7 @@
   --bg-primary: #111111;
   --bg-card: #1a1a1a;
   --bg-card-border: #252525;
+  --border-hover: #3d3d3d;
   --text-primary: #ffffff;
   --text-secondary: #a0a0a0;
   --text-muted: #6b6b6b;
@@ -35,6 +36,7 @@
   --bg-primary: #ffffff;
   --bg-card: #f5f5f5;
   --bg-card-border: #e0e0e0;
+  --border-hover: #c2c2c2;
   --text-primary: #111111;
   --text-secondary: #555555;
   --text-muted: #888888;
@@ -563,7 +565,7 @@ body {
 }
 
 .testimonial-card:hover {
-  border-color: var(--text-muted);
+  border-color: var(--border-hover);
 }
 
 .testimonial-header {
