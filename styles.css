@@ -31,11 +31,24 @@
   --section-padding: 80px 0;
 }
 
+[data-theme="light"] {
+  --bg-primary: #f5f4f0;
+  --bg-card: #ebebea;
+  --bg-card-border: #d8d8d6;
+  --text-primary: #111111;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --divider: #d8d8d6;
+  --btn-border: #ccccca;
+  --btn-hover: #e5e4e0;
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 body {
@@ -44,6 +57,7 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 /* ============================
