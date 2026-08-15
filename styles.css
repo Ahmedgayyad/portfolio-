@@ -941,184 +941,271 @@ body {
 .reveal-delay-2 { transition-delay: 0.25s; }
 .reveal-delay-3 { transition-delay: 0.4s; }
 
-/* ============================
-   FLOATING GLASS DOCKED NAVBAR
-   ============================ */
-.floating-nav-container {
+/* ============================================================
+   HAMZA ALABOU STYLE FLOATING GLASS DOCK & ANIMATIONS
+   ============================================================ */
+:root {
+  --dur-color: 200ms;
+  --dur-move: 160ms;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --dock-bg: rgba(22, 22, 22, 0.76);
+  --dock-hover: rgba(255, 255, 255, 0.06);
+  --dock-active: rgba(255, 255, 255, 0.08);
+  --dock-ring: rgba(255, 255, 255, 0.12);
+  --dock-icon: #a0a0a0;
+  --dock-icon-hover: #ffffff;
+}
+
+[data-theme="light"] {
+  --dock-bg: rgba(255, 255, 255, 0.78);
+  --dock-hover: rgba(0, 0, 0, 0.04);
+  --dock-active: rgba(0, 0, 0, 0.07);
+  --dock-ring: rgba(0, 0, 0, 0.08);
+  --dock-icon: #555555;
+  --dock-icon-hover: #111111;
+}
+
+@keyframes dockItemFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dock {
   position: fixed;
-  bottom: 28px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
+  gap: 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
   pointer-events: auto;
 }
 
-.floating-nav-capsule {
-  position: relative;
+.dock-pill,
+.dock-bubble {
   display: flex;
   align-items: center;
-  padding: 4px;
-  border-radius: 999px;
-  background: rgba(22, 22, 22, 0.78);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
-  transition: background-color 0.35s ease, border-color 0.35s ease;
+  background: var(--dock-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.02), 0 0 0 0.5px var(--dock-ring);
+  animation: dockItemFadeUp 0.65s var(--ease) 0.2s backwards;
 }
 
-.floating-nav-indicator {
-  position: absolute;
-  top: 4px;
-  bottom: 4px;
-  left: 0;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.14);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
-  z-index: 1;
+.dock-pill {
+  height: 40px;
+  padding: 4px 6px;
+  border-radius: 9999px;
+  gap: 2px;
 }
 
-.floating-nav-link {
-  position: relative;
-  z-index: 2;
-  display: inline-flex;
+.dock-bubble {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: var(--dock-bg);
+  color: var(--dock-icon);
+  transition: color var(--dur-color) var(--ease), background-color var(--dur-color) var(--ease), transform var(--dur-move) var(--ease);
+}
+
+.dock-bubble:hover {
+  background: var(--dock-hover);
+  color: var(--dock-icon-hover);
+}
+
+.dock-bubble:active {
+  transform: scale(0.94);
+}
+
+.dock-bubble button,
+.dock-bubble-top button {
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 7px 15px;
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+}
+
+.dock-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
   font-size: 13px;
-  font-weight: 400;
-  font-family: var(--font-family);
-  color: var(--text-secondary);
+  font-weight: 500;
+  line-height: 1.5;
   text-decoration: none;
-  border-radius: 999px;
-  transition: color 0.2s ease;
+  color: var(--text-secondary);
   white-space: nowrap;
-  -webkit-tap-highlight-color: transparent;
+  transition: color var(--dur-color) var(--ease), background-color var(--dur-color) var(--ease), transform var(--dur-move) var(--ease);
 }
 
-.floating-nav-link:hover {
+.dock-item:hover {
   color: var(--text-primary);
+  background: var(--dock-hover);
 }
 
-.floating-nav-link.active {
+.dock-item:active {
+  transform: scale(0.96);
+}
+
+.dock-item.active,
+.dock-item[aria-current="page"] {
   color: var(--text-primary);
+  background: var(--dock-active);
   font-weight: 500;
 }
 
-.floating-circle-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(22, 22, 22, 0.78);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
-  color: var(--text-secondary);
-  cursor: pointer;
-  padding: 0;
-  transition: color 0.2s ease, transform 0.2s ease, background-color 0.35s ease, border-color 0.35s ease;
-  -webkit-tap-highlight-color: transparent;
+.dock-item-icon {
+  display: none;
+  width: 16px;
+  height: 16px;
 }
 
-.floating-circle-btn:hover {
-  color: var(--text-primary);
-  transform: scale(1.06);
+.dock-item-label {
+  display: inline;
 }
 
-.floating-circle-btn svg {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  will-change: transform;
+/* Theme Toggle Icons & Animations (from Hamza Alabou) */
+.theme-toggle-icons {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+.theme-icon {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform-origin: center;
+  transition: opacity var(--dur-color) var(--ease);
   pointer-events: none;
 }
 
-@keyframes iconThemePop {
+[data-theme="light"] .theme-icon--sun {
+  opacity: 1;
+}
+
+[data-theme="dark"] .theme-icon--moon {
+  opacity: 1;
+}
+
+@keyframes themeIconMoon {
   0% {
-    transform: scale(0.65) rotate(-30deg);
-    opacity: 0.6;
+    transform: rotate(-45deg) scale(0.5);
+    opacity: 0;
   }
-  50% {
-    transform: scale(1.3) rotate(15deg);
+  70% {
+    transform: rotate(8deg) scale(1.1);
     opacity: 1;
   }
-  75% {
-    transform: scale(0.95) rotate(-5deg);
-  }
   100% {
-    transform: scale(1) rotate(0deg);
+    transform: rotate(0deg) scale(1);
     opacity: 1;
   }
 }
 
-@keyframes iconArrowPop {
+@keyframes dockIconPop {
   0% {
-    transform: translateY(2px) scale(0.85);
+    transform: scale(0.6);
+    opacity: 0;
   }
-  45% {
-    transform: translateY(-4px) scale(1.25);
-  }
-  75% {
-    transform: translateY(1px) scale(0.95);
+  70% {
+    transform: scale(1.06);
+    opacity: 1;
   }
   100% {
-    transform: translateY(0) scale(1);
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
-.floating-circle-btn.pop-theme svg {
-  animation: iconThemePop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+@keyframes dockIconBloom {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
-.floating-circle-btn.pop-arrow svg {
-  animation: iconArrowPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+[data-theme="dark"] .theme-icon--moon.trigger-anim {
+  animation: themeIconMoon 0.55s var(--ease);
 }
 
-/* Light Theme for Floating Nav */
-[data-theme="light"] .floating-nav-capsule,
-[data-theme="light"] .floating-circle-btn {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  color: var(--text-secondary);
+[data-theme="light"] .theme-icon--sun.trigger-anim {
+  animation: dockIconPop 0.4s var(--ease);
 }
 
-[data-theme="light"] .floating-nav-indicator {
-  background: rgba(0, 0, 0, 0.08);
+[data-theme="light"] .theme-icon--sun.trigger-anim path {
+  transform-origin: 12px 12px;
+  animation: dockIconBloom 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) 60ms backwards;
 }
 
-[data-theme="light"] .floating-nav-link:hover,
-[data-theme="light"] .floating-nav-link.active,
-[data-theme="light"] .floating-circle-btn:hover {
-  color: #111111;
+.dock-bubble-top.trigger-anim svg {
+  animation: dockIconPop 0.4s var(--ease);
 }
 
-@media (max-width: 640px) {
-  .floating-nav-container {
+.dock-bubble-top.trigger-anim svg path {
+  transform-origin: 12px 12px;
+  animation: dockIconBloom 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) 60ms backwards;
+}
+
+/* Mobile Version (Hamza Alabou Dock Icon Mode) */
+@media (max-width: 540px) {
+  .dock {
     bottom: 16px;
-    gap: 6px;
-    width: calc(100% - 32px);
-    max-width: 420px;
+    gap: 8px;
+    max-width: calc(100vw - 24px);
   }
-  .floating-nav-capsule {
-    flex: 1;
-    justify-content: space-around;
+  .dock-pill {
+    padding: 3px 4px;
+    height: 38px;
   }
-  .floating-nav-link {
-    padding: 6px 10px;
-    font-size: 12px;
-    flex: 1;
+  .dock-bubble {
+    width: 38px;
+    height: 38px;
   }
-  .floating-circle-btn {
-    width: 34px;
-    height: 34px;
-    flex-shrink: 0;
+  .dock-item {
+    padding: 8px 10px;
+    border-radius: 9999px;
+    justify-content: center;
+  }
+  .dock-item-icon {
+    display: inline-flex;
+  }
+  .dock-item-label {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .dock-bubble-top {
+    display: none;
   }
 }
 

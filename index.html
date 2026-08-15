@@ -430,43 +430,58 @@
     window.copyEmail = copyEmail;
   </script>
 
-  <!-- Floating Glass Docked Navigation Bar -->
-  <nav class="floating-nav-container" aria-label="Main navigation">
-    <div class="floating-nav-capsule">
-      <div class="floating-nav-indicator" id="floating-nav-indicator"></div>
-      <a href="#hero" class="floating-nav-link active">About</a>
-      <a href="#projects" class="floating-nav-link">Work</a>
-      <a href="#experience" class="floating-nav-link">Experience</a>
-      <a href="#testimonials" class="floating-nav-link">Testimonials</a>
-      <a href="#contact" class="floating-nav-link">Contact</a>
-    </div>
+  <!-- Hamza Alabou Style Floating Glass Dock -->
+  <div class="dock" aria-label="Site Navigation">
+    <nav class="dock-pill" aria-label="Site">
+      <a class="dock-item active" aria-label="About" href="#hero">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-item-icon" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span class="dock-item-label">About</span>
+      </a>
+      <a class="dock-item" aria-label="Work" href="#projects">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-item-icon" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg>
+        <span class="dock-item-label">Work</span>
+      </a>
+      <a class="dock-item" aria-label="Experience" href="#experience">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-item-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path></svg>
+        <span class="dock-item-label">Experience</span>
+      </a>
+      <a class="dock-item" aria-label="Testimonials" href="#testimonials">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-item-icon" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span class="dock-item-label">Testimonials</span>
+      </a>
+      <a class="dock-item" aria-label="Contact" href="#contact">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-item-icon" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        <span class="dock-item-label">Contact</span>
+      </a>
+    </nav>
 
     <!-- Scroll to Top Button -->
-    <button class="floating-circle-btn" id="floating-scroll-top" aria-label="Scroll to top">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12" y1="19" x2="12" y2="5"></line>
-        <polyline points="5 12 12 5 19 12"></polyline>
-      </svg>
-    </button>
+    <div class="dock-bubble dock-bubble-top" id="dock-scroll-top">
+      <button aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg>
+      </button>
+    </div>
 
     <!-- Theme Toggle Button -->
-    <button class="floating-circle-btn" id="floating-theme-toggle" aria-label="Toggle light/dark theme">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 000 11 5.5 5.5 0 007-4z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-    </button>
-  </nav>
+    <div class="dock-bubble" id="dock-theme-toggle">
+      <button class="theme-toggle-btn" aria-label="Theme toggle">
+        <span class="theme-toggle-icons">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun theme-icon theme-icon--sun" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon theme-icon theme-icon--moon" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
+        </span>
+      </button>
+    </div>
+  </div>
 
   <script>
     // ==========================================
-    // FLOATING GLASS DOCKED NAVBAR & THEME LOGIC
+    // HAMZA ALABOU DOCK & THEME LOGIC
     // ==========================================
-    const floatingNavContainer = document.querySelector('.floating-nav-container');
-    const floatingCapsule = document.querySelector('.floating-nav-capsule');
-    const floatingIndicator = document.getElementById('floating-nav-indicator');
-    const floatingLinks = Array.from(document.querySelectorAll('.floating-nav-link'));
-    const floatingScrollTop = document.getElementById('floating-scroll-top');
-    const floatingThemeToggle = document.getElementById('floating-theme-toggle');
+    const dockItems = Array.from(document.querySelectorAll('.dock-item'));
+    const dockScrollTop = document.getElementById('dock-scroll-top');
+    const dockThemeToggle = document.getElementById('dock-theme-toggle');
+    const moonIcon = document.querySelector('.theme-icon--moon');
+    const sunIcon = document.querySelector('.theme-icon--sun');
 
     const homeSections = [
       document.getElementById('hero'),
@@ -476,27 +491,9 @@
       document.getElementById('contact')
     ].filter(Boolean);
 
-    function updateFloatingIndicator(activeLink, animate = true) {
-      if (!activeLink || !floatingIndicator || !floatingCapsule) return;
-      const capsuleRect = floatingCapsule.getBoundingClientRect();
-      const linkRect = activeLink.getBoundingClientRect();
-
-      const leftOffset = linkRect.left - capsuleRect.left;
-      const width = linkRect.width;
-
-      if (!animate) {
-        floatingIndicator.style.transition = 'none';
-      } else {
-        floatingIndicator.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
-      }
-
-      floatingIndicator.style.width = `${width}px`;
-      floatingIndicator.style.transform = `translateX(${leftOffset}px)`;
-    }
-
     let activeNavSectionId = 'hero';
 
-    function updateFloatingNavOnScroll() {
+    function updateDockOnScroll() {
       const scrollY = window.scrollY;
       const isAtBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 80);
 
@@ -516,89 +513,82 @@
 
       if (currentId !== activeNavSectionId) {
         activeNavSectionId = currentId;
-        floatingLinks.forEach(link => {
-          if (link.getAttribute('href') === `#${currentId}`) {
-            link.classList.add('active');
-            updateFloatingIndicator(link, true);
+        dockItems.forEach(item => {
+          if (item.getAttribute('href') === `#${currentId}`) {
+            item.classList.add('active');
+            item.setAttribute('aria-current', 'page');
           } else {
-            link.classList.remove('active');
+            item.classList.remove('active');
+            item.removeAttribute('aria-current');
           }
         });
       }
     }
 
-    // Click on floating links -> smooth scroll
-    floatingLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
+    // Click on dock items -> smooth scroll
+    dockItems.forEach(item => {
+      item.addEventListener('click', (e) => {
         e.preventDefault();
-        const targetId = link.getAttribute('href');
+        const targetId = item.getAttribute('href');
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
-          floatingLinks.forEach(l => l.classList.remove('active'));
-          link.classList.add('active');
+          dockItems.forEach(l => {
+            l.classList.remove('active');
+            l.removeAttribute('aria-current');
+          });
+          item.classList.add('active');
+          item.setAttribute('aria-current', 'page');
           activeNavSectionId = targetId.replace('#', '');
-          updateFloatingIndicator(link, true);
           targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
 
-    function triggerPopAnimation(btn, className) {
-      if (!btn) return;
-      btn.classList.remove(className);
-      void btn.offsetWidth;
-      btn.classList.add(className);
-      setTimeout(() => btn.classList.remove(className), 500);
-    }
-
     // Scroll to Top Button
-    if (floatingScrollTop) {
-      floatingScrollTop.addEventListener('click', () => {
-        triggerPopAnimation(floatingScrollTop, 'pop-arrow');
+    if (dockScrollTop) {
+      dockScrollTop.addEventListener('click', () => {
+        dockScrollTop.classList.remove('trigger-anim');
+        void dockScrollTop.offsetWidth;
+        dockScrollTop.classList.add('trigger-anim');
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => dockScrollTop.classList.remove('trigger-anim'), 600);
       });
     }
 
-    // Floating Theme Toggle Button
-    const moonSVG = `<svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 000 11 5.5 5.5 0 007-4z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
-    const sunSVG  = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
-
-    function applyTheme(theme) {
+    // Theme Toggle Functionality with Hamza Bloom & Pop Animation
+    function applyTheme(theme, animate = false) {
       document.documentElement.setAttribute('data-theme', theme);
-      if (floatingThemeToggle) {
-        floatingThemeToggle.innerHTML = theme === 'light' ? moonSVG : sunSVG;
-      }
       localStorage.setItem('theme', theme);
+
+      if (animate) {
+        if (theme === 'dark' && moonIcon) {
+          moonIcon.classList.remove('trigger-anim');
+          void moonIcon.offsetWidth;
+          moonIcon.classList.add('trigger-anim');
+          setTimeout(() => moonIcon.classList.remove('trigger-anim'), 650);
+        } else if (theme === 'light' && sunIcon) {
+          sunIcon.classList.remove('trigger-anim');
+          void sunIcon.offsetWidth;
+          sunIcon.classList.add('trigger-anim');
+          setTimeout(() => sunIcon.classList.remove('trigger-anim'), 650);
+        }
+      }
     }
 
-    const storedTheme = localStorage.getItem('theme') || 'dark';
-    applyTheme(storedTheme);
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(savedTheme, false);
 
-    if (floatingThemeToggle) {
-      floatingThemeToggle.addEventListener('click', () => {
-        triggerPopAnimation(floatingThemeToggle, 'pop-theme');
+    if (dockThemeToggle) {
+      dockThemeToggle.addEventListener('click', () => {
         const curr = document.documentElement.getAttribute('data-theme');
-        applyTheme(curr === 'light' ? 'dark' : 'light');
+        const next = curr === 'light' ? 'dark' : 'light';
+        applyTheme(next, true);
       });
     }
 
-    window.addEventListener('scroll', updateFloatingNavOnScroll, { passive: true });
-    window.addEventListener('resize', () => {
-      const activeLink = document.querySelector('.floating-nav-link.active');
-      if (activeLink) updateFloatingIndicator(activeLink, false);
-    }, { passive: true });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const firstLink = floatingLinks[0];
-      if (firstLink) updateFloatingIndicator(firstLink, false);
-      updateFloatingNavOnScroll();
-    });
-
-    setTimeout(() => {
-      const firstLink = floatingLinks[0];
-      if (firstLink) updateFloatingIndicator(firstLink, false);
-      updateFloatingNavOnScroll();
-    }, 80);
+    window.addEventListener('scroll', updateDockOnScroll, { passive: true });
+    document.addEventListener('DOMContentLoaded', updateDockOnScroll);
+    setTimeout(updateDockOnScroll, 80);
   </script>
 </body>
 </html>
