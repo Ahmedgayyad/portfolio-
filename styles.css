@@ -238,9 +238,9 @@ body {
   padding: 8px 14px;
   font-size: 13px;
   font-weight: 500;
-  color: #ffffff;
-  background: #2D2D2D;
-  border: 1px solid #2D2D2D;
+  color: #111111;
+  background: #ffffff;
+  border: 1px solid #ffffff;
   border-radius: 8px;
   text-decoration: none;
   transition: all 0.2s ease;
@@ -248,6 +248,17 @@ body {
 }
 
 .btn-resume:hover {
+  background-color: #e8e8e8;
+  border-color: #e8e8e8;
+}
+
+[data-theme="light"] .btn-resume {
+  color: #ffffff;
+  background: #2D2D2D;
+  border-color: #2D2D2D;
+}
+
+[data-theme="light"] .btn-resume:hover {
   background-color: #3a3a3a;
   border-color: #3a3a3a;
 }
