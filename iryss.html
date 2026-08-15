@@ -411,12 +411,40 @@
       transform: scale(1.15);
     }
 
+    /* Smooth Staggered Page Entrance Animation (Hamza Alabou Style) */
+    @keyframes entranceFadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .article-header {
+      animation: entranceFadeUp 0.65s cubic-bezier(0.23, 1, 0.32, 1) 40ms backwards;
+    }
+
+    .article-aside {
+      animation: entranceFadeUp 0.65s cubic-bezier(0.23, 1, 0.32, 1) 80ms backwards;
+    }
+
+    .article-main > .article-section:first-of-type {
+      animation: entranceFadeUp 0.65s cubic-bezier(0.23, 1, 0.32, 1) 0.12s backwards;
+    }
+
+    .article-main > .article-section:nth-of-type(2) {
+      animation: entranceFadeUp 0.65s cubic-bezier(0.23, 1, 0.32, 1) 0.16s backwards;
+    }
+
     /* Smooth Scroll-Triggered Fade Reveal Animation */
     .fade-up-section {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(24px);
       filter: blur(4px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform, filter;
     }
 
