@@ -982,11 +982,11 @@
     function applyTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       themeBtn.innerHTML = theme === 'light' ? moonIcon : sunIcon;
-      localStorage.setItem('equicare-theme', theme);
+      localStorage.setItem('theme', theme);
     }
 
     // Load saved preference
-    const savedTheme = localStorage.getItem('equicare-theme') || 'dark';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     applyTheme(savedTheme);
 
     themeBtn.addEventListener('click', () => {

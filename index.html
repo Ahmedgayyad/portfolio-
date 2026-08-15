@@ -440,10 +440,10 @@
       document.documentElement.setAttribute('data-theme', theme);
       themeToggleBtn.innerHTML = theme === 'light' ? moonSVG : sunSVG;
       themeToggleBtn.style.color = theme === 'light' ? 'rgba(0,0,0,0.38)' : 'rgba(255,255,255,0.38)';
-      localStorage.setItem('portfolio-theme', theme);
+      localStorage.setItem('theme', theme);
     }
 
-    const storedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+    const storedTheme = localStorage.getItem('theme') || 'dark';
     applyTheme(storedTheme);
 
     themeToggleBtn.addEventListener('click', () => {
