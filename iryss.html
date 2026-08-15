@@ -25,6 +25,14 @@
       --font-mono: 'Geist Mono', monospace;
     }
 
+    [data-theme="light"] {
+      --bg-color: #f5f4f0;
+      --text-main: #111111;
+      --text-muted: rgba(0, 0, 0, 0.62);
+      --text-dim: rgba(0, 0, 0, 0.38);
+      --border-color: rgba(0, 0, 0, 0.10);
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -37,6 +45,7 @@
       font-family: var(--font-family);
       -webkit-font-smoothing: antialiased;
       scroll-behavior: smooth;
+      transition: background-color 0.35s ease, color 0.35s ease;
     }
 
     /* Page Shell Container */
@@ -1009,6 +1018,25 @@
   </div>
 
   <script>
+    // 0. Theme Toggle (Dark ⇔ Light)
+    const themeBtn = document.querySelector('.theme-toggle-btn');
+    const moonIcon = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 000 11 5.5 5.5 0 007-4z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
+    const sunIcon  = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      themeBtn.innerHTML = theme === 'light' ? moonIcon : sunIcon;
+      localStorage.setItem('iryss-theme', theme);
+    }
+
+    const savedTheme = localStorage.getItem('iryss-theme') || 'dark';
+    applyTheme(savedTheme);
+
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      applyTheme(current === 'light' ? 'dark' : 'light');
+    });
+
     // 1. Filmstrip Horizontal Scroll Indicator Sync (All Containers)
     document.querySelectorAll('.odin-filmstrip-container').forEach(container => {
       const strip = container.querySelector('.odin-filmstrip');
