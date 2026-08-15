@@ -12,11 +12,6 @@
 </head>
 <body>
 
-  <!-- Theme Toggle Button -->
-  <button class="theme-toggle-btn" id="theme-toggle" aria-label="Switch theme" style="position:fixed;top:28px;right:48px;background:transparent;border:none;color:rgba(255,255,255,0.38);cursor:pointer;z-index:200;padding:8px;display:flex;align-items:center;justify-content:center;transition:color 0.2s ease;">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 000 11 5.5 5.5 0 007-4z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-  </button>
-
   <main class="portfolio">
     <!-- ======= HERO SECTION ======= -->
     <section class="hero reveal" id="hero">
@@ -453,6 +448,164 @@
 
     // Make copyEmail globally accessible
     window.copyEmail = copyEmail;
+
+    // ==========================================
+    // FLOATING GLASS DOCKED NAVBAR & THEME LOGIC
+    // ==========================================
+    const floatingNavContainer = document.querySelector('.floating-nav-container');
+    const floatingCapsule = document.querySelector('.floating-nav-capsule');
+    const floatingIndicator = document.getElementById('floating-nav-indicator');
+    const floatingLinks = Array.from(document.querySelectorAll('.floating-nav-link'));
+    const floatingScrollTop = document.getElementById('floating-scroll-top');
+    const floatingThemeToggle = document.getElementById('floating-theme-toggle');
+
+    const homeSections = [
+      document.getElementById('hero'),
+      document.getElementById('projects'),
+      document.getElementById('experience'),
+      document.getElementById('testimonials'),
+      document.getElementById('contact')
+    ].filter(Boolean);
+
+    function updateFloatingIndicator(activeLink, animate = true) {
+      if (!activeLink || !floatingIndicator || !floatingCapsule) return;
+      const capsuleRect = floatingCapsule.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+
+      const leftOffset = linkRect.left - capsuleRect.left;
+      const width = linkRect.width;
+
+      if (!animate) {
+        floatingIndicator.style.transition = 'none';
+      } else {
+        floatingIndicator.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+      }
+
+      floatingIndicator.style.width = `${width}px`;
+      floatingIndicator.style.transform = `translateX(${leftOffset}px)`;
+    }
+
+    let activeNavSectionId = 'hero';
+
+    function updateFloatingNavOnScroll() {
+      const scrollY = window.scrollY;
+      const isAtBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 80);
+
+      let currentId = 'hero';
+
+      if (isAtBottom && homeSections.length > 0) {
+        currentId = homeSections[homeSections.length - 1].getAttribute('id');
+      } else {
+        const trigger = scrollY + (window.innerHeight * 0.35);
+        homeSections.forEach(sec => {
+          const secTop = sec.getBoundingClientRect().top + scrollY;
+          if (trigger >= secTop) {
+            currentId = sec.getAttribute('id');
+          }
+        });
+      }
+
+      if (currentId !== activeNavSectionId) {
+        activeNavSectionId = currentId;
+        floatingLinks.forEach(link => {
+          if (link.getAttribute('href') === `#${currentId}`) {
+            link.classList.add('active');
+            updateFloatingIndicator(link, true);
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    }
+
+    // Click on floating links -> smooth scroll
+    floatingLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          floatingLinks.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          activeNavSectionId = targetId.replace('#', '');
+          updateFloatingIndicator(link, true);
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Scroll to Top Button
+    if (floatingScrollTop) {
+      floatingScrollTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Floating Theme Toggle Button
+    const moonSVG = `<svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 000 11 5.5 5.5 0 007-4z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></svg>`;
+    const sunSVG  = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (floatingThemeToggle) {
+        floatingThemeToggle.innerHTML = theme === 'light' ? moonSVG : sunSVG;
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    const storedTheme = localStorage.getItem('theme') || 'dark';
+    applyTheme(storedTheme);
+
+    if (floatingThemeToggle) {
+      floatingThemeToggle.addEventListener('click', () => {
+        const curr = document.documentElement.getAttribute('data-theme');
+        applyTheme(curr === 'light' ? 'dark' : 'light');
+      });
+    }
+
+    window.addEventListener('scroll', updateFloatingNavOnScroll, { passive: true });
+    window.addEventListener('resize', () => {
+      const activeLink = document.querySelector('.floating-nav-link.active');
+      if (activeLink) updateFloatingIndicator(activeLink, false);
+    }, { passive: true });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const firstLink = floatingLinks[0];
+      if (firstLink) updateFloatingIndicator(firstLink, false);
+      updateFloatingNavOnScroll();
+    });
+
+    setTimeout(() => {
+      const firstLink = floatingLinks[0];
+      if (firstLink) updateFloatingIndicator(firstLink, false);
+    }, 100);
   </script>
+
+  <!-- Floating Glass Docked Navigation Bar -->
+  <nav class="floating-nav-container" aria-label="Main navigation">
+    <div class="floating-nav-capsule">
+      <div class="floating-nav-indicator" id="floating-nav-indicator"></div>
+      <a href="#hero" class="floating-nav-link active">About</a>
+      <a href="#projects" class="floating-nav-link">Work</a>
+      <a href="#experience" class="floating-nav-link">Experience</a>
+      <a href="#testimonials" class="floating-nav-link">Testimonials</a>
+      <a href="#contact" class="floating-nav-link">Contact</a>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="floating-circle-btn" id="floating-scroll-top" aria-label="Scroll to top">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </button>
+
+    <!-- Theme Toggle Button -->
+    <button class="floating-circle-btn" id="floating-theme-toggle" aria-label="Toggle light/dark theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 000 11 5.5 5.5 0 007-4z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </nav>
 </body>
 </html>
