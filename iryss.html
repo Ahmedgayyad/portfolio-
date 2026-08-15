@@ -175,26 +175,7 @@
       gap: 48px;
     }
 
-    /* Top Right Theme Toggle Icon */
-    .theme-toggle-btn {
-      position: fixed;
-      top: 28px;
-      right: 48px;
-      background: transparent;
-      border: none;
-      color: var(--text-dim);
-      cursor: pointer;
-      z-index: 100;
-      padding: 8px;
-      transition: color 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
 
-    .theme-toggle-btn:hover {
-      color: var(--text-main);
-    }
 
     /* Header & Meta Definitions */
     .article-header {
@@ -766,16 +747,35 @@
       transform: scale(0.96);
     }
 
+    .theme-toggle-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      color: inherit;
+      transition: color 200ms ease;
+    }
+
     .theme-toggle-icons {
       position: relative;
       width: 16px;
       height: 16px;
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .theme-icon {
       position: absolute;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 16px;
+      height: 16px;
       opacity: 0;
       transform-origin: center;
       transition: opacity 200ms ease;
@@ -861,9 +861,6 @@
       .page-shell {
         padding-left: 24px;
         padding-right: 24px;
-      }
-      .theme-toggle-btn {
-        right: 24px;
       }
     }
 
