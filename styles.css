@@ -684,7 +684,7 @@ body {
 
 .btn-dark {
   background-color: #222;
-  color: var(--text-primary);
+  color: #ffffff;
   border: 1px solid #333;
 }
 
