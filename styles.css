@@ -923,6 +923,25 @@ body {
 
 
 /* ============================
+   SCROLL REVEAL ANIMATIONS
+   ============================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.25s; }
+.reveal-delay-3 { transition-delay: 0.4s; }
+
+/* ============================
    FLOATING GLASS DOCKED NAVBAR
    ============================ */
 .floating-nav-container {
@@ -943,11 +962,11 @@ body {
   align-items: center;
   padding: 4px;
   border-radius: 999px;
-  background: rgba(22, 22, 22, 0.72);
+  background: rgba(22, 22, 22, 0.78);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
   transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
@@ -957,8 +976,8 @@ body {
   bottom: 4px;
   left: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.14);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
   z-index: 1;
 }
@@ -997,11 +1016,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(22, 22, 22, 0.72);
+  background: rgba(22, 22, 22, 0.78);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
   color: var(--text-secondary);
   cursor: pointer;
   padding: 0;
@@ -1017,14 +1036,14 @@ body {
 /* Light Theme for Floating Nav */
 [data-theme="light"] .floating-nav-capsule,
 [data-theme="light"] .floating-circle-btn {
-  background: rgba(255, 255, 255, 0.82);
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   color: var(--text-secondary);
 }
 
 [data-theme="light"] .floating-nav-indicator {
-  background: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 [data-theme="light"] .floating-nav-link:hover,

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=dock-v6">
 </head>
 <body>
 
@@ -448,7 +448,36 @@
 
     // Make copyEmail globally accessible
     window.copyEmail = copyEmail;
+  </script>
 
+  <!-- Floating Glass Docked Navigation Bar -->
+  <nav class="floating-nav-container" aria-label="Main navigation">
+    <div class="floating-nav-capsule">
+      <div class="floating-nav-indicator" id="floating-nav-indicator"></div>
+      <a href="#hero" class="floating-nav-link active">About</a>
+      <a href="#projects" class="floating-nav-link">Work</a>
+      <a href="#experience" class="floating-nav-link">Experience</a>
+      <a href="#testimonials" class="floating-nav-link">Testimonials</a>
+      <a href="#contact" class="floating-nav-link">Contact</a>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="floating-circle-btn" id="floating-scroll-top" aria-label="Scroll to top">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </button>
+
+    <!-- Theme Toggle Button -->
+    <button class="floating-circle-btn" id="floating-theme-toggle" aria-label="Toggle light/dark theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 000 11 5.5 5.5 0 007-4z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </button>
+  </nav>
+
+  <script>
     // ==========================================
     // FLOATING GLASS DOCKED NAVBAR & THEME LOGIC
     // ==========================================
@@ -578,34 +607,8 @@
     setTimeout(() => {
       const firstLink = floatingLinks[0];
       if (firstLink) updateFloatingIndicator(firstLink, false);
-    }, 100);
+      updateFloatingNavOnScroll();
+    }, 80);
   </script>
-
-  <!-- Floating Glass Docked Navigation Bar -->
-  <nav class="floating-nav-container" aria-label="Main navigation">
-    <div class="floating-nav-capsule">
-      <div class="floating-nav-indicator" id="floating-nav-indicator"></div>
-      <a href="#hero" class="floating-nav-link active">About</a>
-      <a href="#projects" class="floating-nav-link">Work</a>
-      <a href="#experience" class="floating-nav-link">Experience</a>
-      <a href="#testimonials" class="floating-nav-link">Testimonials</a>
-      <a href="#contact" class="floating-nav-link">Contact</a>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <button class="floating-circle-btn" id="floating-scroll-top" aria-label="Scroll to top">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12" y1="19" x2="12" y2="5"></line>
-        <polyline points="5 12 12 5 19 12"></polyline>
-      </svg>
-    </button>
-
-    <!-- Theme Toggle Button -->
-    <button class="floating-circle-btn" id="floating-theme-toggle" aria-label="Toggle light/dark theme">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-        <path d="M13.5 9.5A5.5 5.5 0 016.5 2.5a5.5 5.5 0 000 11 5.5 5.5 0 007-4z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path>
-      </svg>
-    </button>
-  </nav>
 </body>
 </html>
