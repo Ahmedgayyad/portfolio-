@@ -260,15 +260,14 @@ body {
   height: 36px;
   color: var(--text-secondary);
   background: transparent;
-  border: 1px solid var(--btn-border);
-  border-radius: 8px;
+  border: none;
+  border-radius: 0;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .btn-icon:hover {
-  background-color: var(--btn-hover);
-  border-color: #444;
+  background-color: transparent;
   color: var(--text-primary);
 }
 
