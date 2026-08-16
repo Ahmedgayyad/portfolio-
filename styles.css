@@ -530,6 +530,98 @@ body {
 }
 
 /* ============================
+   CRAFT SECTION (Figma Design)
+   ============================ */
+.craft {
+  padding: 40px 0 80px;
+}
+
+.craft-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.craft-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: transparent;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.craft-card:hover {
+  transform: translateY(-4px);
+}
+
+.craft-media-box {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--bg-card-border);
+  background-color: #0d0d0d;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.25s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="light"] .craft-media-box {
+  background-color: #f7f7f7;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.craft-card:hover .craft-media-box {
+  border-color: var(--border-hover);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.craft-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.craft-card:hover .craft-img {
+  transform: scale(1.03);
+}
+
+.craft-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.craft-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.craft-date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+@media (max-width: 640px) {
+  .craft-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* ============================
    TESTIMONIALS SECTION
    ============================ */
 .testimonials {
