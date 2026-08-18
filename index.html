@@ -580,6 +580,63 @@
     window.addEventListener('scroll', updateDockOnScroll, { passive: true });
     document.addEventListener('DOMContentLoaded', updateDockOnScroll);
     setTimeout(updateDockOnScroll, 80);
+
+    // ==========================================
+    // CRAFT LIGHTBOX MODAL LOGIC (Inspora Style)
+    // ==========================================
+    const craftCards = document.querySelectorAll('.craft-card');
+    const craftLightbox = document.getElementById('craft-lightbox');
+    const craftLightboxImg = document.getElementById('craft-lightbox-img');
+    const craftLightboxClose = document.getElementById('craft-lightbox-close');
+    const craftLightboxOverlay = document.getElementById('craft-lightbox-overlay');
+
+    if (craftCards.length > 0 && craftLightbox) {
+      craftCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const img = card.querySelector('.craft-img');
+          if (img) {
+            craftLightboxImg.src = img.src;
+            craftLightboxImg.alt = img.alt || 'Craft Preview';
+            craftLightbox.classList.add('active');
+            craftLightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+          }
+        });
+      });
+
+      const closeCraftLightbox = () => {
+        craftLightbox.classList.remove('active');
+        craftLightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+          if (!craftLightbox.classList.contains('active')) {
+            craftLightboxImg.src = '';
+          }
+        }, 300);
+      };
+
+      craftLightboxClose.addEventListener('click', closeCraftLightbox);
+      craftLightboxOverlay.addEventListener('click', closeCraftLightbox);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && craftLightbox.classList.contains('active')) {
+          closeCraftLightbox();
+        }
+      });
+    }
   </script>
+
+  <!-- Craft Lightbox Modal -->
+  <div class="craft-lightbox" id="craft-lightbox" aria-hidden="true" role="dialog">
+    <div class="craft-lightbox-overlay" id="craft-lightbox-overlay"></div>
+    <div class="craft-lightbox-container">
+      <button class="craft-lightbox-close" id="craft-lightbox-close" aria-label="Close preview">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="craft-lightbox-card">
+        <img src="" alt="Craft Preview" id="craft-lightbox-img" class="craft-lightbox-img">
+      </div>
+    </div>
+  </div>
 </body>
 </html>

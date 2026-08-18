@@ -1236,3 +1236,150 @@ body {
   }
 }
 
+/* ============================================================
+   CRAFT LIGHTBOX MODAL (Inspora Style)
+   ============================================================ */
+.craft-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.craft-lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.craft-lightbox-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: background-color 0.3s ease;
+}
+
+[data-theme="light"] .craft-lightbox-overlay {
+  background: rgba(240, 240, 240, 0.88);
+}
+
+.craft-lightbox-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2010;
+  max-width: 90%;
+  max-height: 85vh;
+  transform: scale(0.95);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.craft-lightbox.active .craft-lightbox-container {
+  transform: scale(1);
+}
+
+.craft-lightbox-card {
+  background: #0f0f0f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  max-height: 85vh;
+  box-sizing: border-box;
+}
+
+[data-theme="light"] .craft-lightbox-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.15);
+}
+
+.craft-lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
+}
+
+/* Close Button - Floating on the Left (Inspora Style) */
+.craft-lightbox-close {
+  position: absolute;
+  left: -70px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  padding: 0;
+  outline: none;
+}
+
+[data-theme="light"] .craft-lightbox-close {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.craft-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.06);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="light"] .craft-lightbox-close:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: translateY(-50%) scale(1.06);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.craft-lightbox-close svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.2;
+}
+
+/* Responsive adjustments for close button */
+@media (max-width: 960px) {
+  .craft-lightbox-close {
+    position: fixed;
+    left: auto;
+    right: 20px;
+    top: 20px;
+    transform: none;
+    background: rgba(10, 10, 10, 0.6) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    z-index: 2020;
+  }
+  .craft-lightbox-close:hover {
+    transform: scale(1.06);
+  }
+}
+
