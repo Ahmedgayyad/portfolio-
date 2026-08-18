@@ -584,46 +584,48 @@
     // ==========================================
     // CRAFT LIGHTBOX MODAL LOGIC (Inspora Style)
     // ==========================================
-    const craftCards = document.querySelectorAll('.craft-card');
-    const craftLightbox = document.getElementById('craft-lightbox');
-    const craftLightboxImg = document.getElementById('craft-lightbox-img');
-    const craftLightboxClose = document.getElementById('craft-lightbox-close');
-    const craftLightboxOverlay = document.getElementById('craft-lightbox-overlay');
+    document.addEventListener('DOMContentLoaded', () => {
+      const craftCards = document.querySelectorAll('.craft-card');
+      const craftLightbox = document.getElementById('craft-lightbox');
+      const craftLightboxImg = document.getElementById('craft-lightbox-img');
+      const craftLightboxClose = document.getElementById('craft-lightbox-close');
+      const craftLightboxOverlay = document.getElementById('craft-lightbox-overlay');
 
-    if (craftCards.length > 0 && craftLightbox) {
-      craftCards.forEach(card => {
-        card.addEventListener('click', () => {
-          const img = card.querySelector('.craft-img');
-          if (img) {
-            craftLightboxImg.src = img.src;
-            craftLightboxImg.alt = img.alt || 'Craft Preview';
-            craftLightbox.classList.add('active');
-            craftLightbox.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
+      if (craftCards.length > 0 && craftLightbox) {
+        craftCards.forEach(card => {
+          card.addEventListener('click', () => {
+            const img = card.querySelector('.craft-img');
+            if (img) {
+              craftLightboxImg.src = img.src;
+              craftLightboxImg.alt = img.alt || 'Craft Preview';
+              craftLightbox.classList.add('active');
+              craftLightbox.setAttribute('aria-hidden', 'false');
+              document.body.style.overflow = 'hidden';
+            }
+          });
+        });
+
+        const closeCraftLightbox = () => {
+          craftLightbox.classList.remove('active');
+          craftLightbox.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          setTimeout(() => {
+            if (!craftLightbox.classList.contains('active')) {
+              craftLightboxImg.src = '';
+            }
+          }, 300);
+        };
+
+        craftLightboxClose.addEventListener('click', closeCraftLightbox);
+        craftLightboxOverlay.addEventListener('click', closeCraftLightbox);
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && craftLightbox.classList.contains('active')) {
+            closeCraftLightbox();
           }
         });
-      });
-
-      const closeCraftLightbox = () => {
-        craftLightbox.classList.remove('active');
-        craftLightbox.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        setTimeout(() => {
-          if (!craftLightbox.classList.contains('active')) {
-            craftLightboxImg.src = '';
-          }
-        }, 300);
-      };
-
-      craftLightboxClose.addEventListener('click', closeCraftLightbox);
-      craftLightboxOverlay.addEventListener('click', closeCraftLightbox);
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && craftLightbox.classList.contains('active')) {
-          closeCraftLightbox();
-        }
-      });
-    }
+      }
+    });
   </script>
 
   <!-- Craft Lightbox Modal -->
