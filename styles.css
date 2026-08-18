@@ -1314,72 +1314,67 @@ body {
   image-rendering: high-quality;
 }
 
-/* Close Button - Floating on the Left (Inspora Style) */
-.craft-lightbox-close {
-  position: absolute;
-  left: -70px;
-  top: 50%;
-  transform: translateY(-50%);
+/* Custom Cursor Close Button (Inspora Style) */
+.craft-lightbox-cursor {
+  position: fixed;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-  padding: 0;
-  outline: none;
+  pointer-events: none;
+  z-index: 2020;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  left: 0;
+  top: 0;
 }
 
-[data-theme="light"] .craft-lightbox-close {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  color: rgba(0, 0, 0, 0.6);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+[data-theme="light"] .craft-lightbox-cursor {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-.craft-lightbox-close:hover {
-  background: rgba(255, 255, 255, 0.16);
-  color: #ffffff;
-  transform: translateY(-50%) scale(1.06);
-  border-color: rgba(255, 255, 255, 0.25);
+/* Show custom cursor when active */
+.craft-lightbox.active .craft-lightbox-cursor {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
 }
 
-[data-theme="light"] .craft-lightbox-close:hover {
-  background: #ffffff;
-  color: #000000;
-  transform: translateY(-50%) scale(1.06);
-  border-color: rgba(0, 0, 0, 0.15);
+.craft-lightbox-cursor svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2.5;
 }
 
-.craft-lightbox-close svg {
-  width: 18px;
-  height: 18px;
-  stroke-width: 2.2;
+/* Hide default cursor inside lightbox */
+.craft-lightbox {
+  cursor: none !important;
+}
+.craft-lightbox * {
+  cursor: none !important;
 }
 
-/* Responsive adjustments for close button */
-@media (max-width: 960px) {
-  .craft-lightbox-close {
-    position: fixed;
-    left: auto;
-    right: 20px;
-    top: 20px;
-    transform: none;
-    background: rgba(10, 10, 10, 0.6) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    color: #ffffff !important;
-    z-index: 2020;
+/* Responsive: coarse pointers (touchscreen) do not have a moving cursor, so hide custom cursor and show default tap behavior */
+@media (pointer: coarse) {
+  .craft-lightbox-cursor {
+    display: none !important;
   }
-  .craft-lightbox-close:hover {
-    transform: scale(1.06);
+  .craft-lightbox {
+    cursor: auto !important;
+  }
+  .craft-lightbox * {
+    cursor: auto !important;
   }
 }
 
