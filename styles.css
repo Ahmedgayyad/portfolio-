@@ -536,16 +536,34 @@ body {
   padding: 40px 0 80px;
 }
 
-.craft-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+.craft-marquee-container {
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 20px 0;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.craft-marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+
+.craft-marquee-track:hover {
+  animation-play-state: paused;
 }
 
 .craft-card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-shrink: 0;
+  width: 480px;
+  aspect-ratio: 4 / 3;
   background-color: transparent;
   border-radius: 16px;
   text-decoration: none;
@@ -555,13 +573,13 @@ body {
 }
 
 .craft-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.02);
 }
 
 .craft-media-box {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 14px;
+  height: 100%;
+  border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--bg-card-border);
   background-color: #111111;
@@ -598,31 +616,26 @@ body {
   transform: scale(1.04);
 }
 
-.craft-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2px;
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333333%);
+  }
 }
 
-.craft-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
-}
-
-.craft-date {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 400;
-}
-
-@media (max-width: 640px) {
-  .craft-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .craft-card {
+    width: 340px;
+  }
+  .craft-marquee-container {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+  .craft-marquee-track {
     gap: 16px;
+    animation-duration: 22s;
   }
 }
 
