@@ -554,6 +554,7 @@ body {
   gap: 24px;
   width: max-content;
   animation: marquee 28s linear infinite;
+  will-change: transform;
 }
 
 .craft-marquee-track:hover {
