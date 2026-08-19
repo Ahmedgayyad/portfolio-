@@ -553,12 +553,13 @@ body {
   display: flex;
   gap: 24px;
   width: max-content;
-  animation: marquee 28s linear infinite;
-  will-change: transform;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.craft-marquee-track:hover {
-  animation-play-state: paused;
+.craft-marquee-track::-webkit-scrollbar {
+  display: none;
 }
 
 .craft-card {
@@ -621,14 +622,7 @@ body {
   transform: scale(1.04);
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.333333%);
-  }
-}
+
 
 @media (max-width: 768px) {
   .craft-card {
@@ -640,7 +634,6 @@ body {
   }
   .craft-marquee-track {
     gap: 16px;
-    animation-duration: 22s;
   }
 }
 
