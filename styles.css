@@ -537,7 +537,9 @@ body {
 }
 
 .craft-marquee-container {
-  overflow: hidden;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   position: relative;
   width: 100vw;
   left: 50%;
@@ -549,17 +551,14 @@ body {
   -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
 }
 
+.craft-marquee-container::-webkit-scrollbar {
+  display: none;
+}
+
 .craft-marquee-track {
   display: flex;
   gap: 24px;
   width: max-content;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.craft-marquee-track::-webkit-scrollbar {
-  display: none;
 }
 
 .craft-card {
