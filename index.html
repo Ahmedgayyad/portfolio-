@@ -632,104 +632,9 @@
           }
         });
 
-        // ==========================================
-        // CRAFT INFINITE SCROLL & MARQUEE LOGIC
-        // ==========================================
-        const track = document.querySelector('.craft-marquee-track');
-        if (track) {
-          let isAutoScrolling = true;
-          let scrollSpeed = 0.8; // auto scroll speed
-          let resumeTimeout = null;
-          let isUserInteracting = false;
-          let isDown = false;
-          let startX;
-          let scrollLeftVal;
-
-          function scrollStep() {
-            if (isAutoScrolling && !isUserInteracting) {
-              const setWidth = track.scrollWidth / 3;
-              track.scrollLeft += scrollSpeed;
-
-              // Seamless loop forward
-              if (track.scrollLeft >= setWidth) {
-                track.scrollLeft -= setWidth;
-              }
-            }
-            requestAnimationFrame(scrollStep);
-          }
-
-          // Handle seamless loop backward/forward during manual scroll
-          track.addEventListener('scroll', () => {
-            const setWidth = track.scrollWidth / 3;
-            if (track.scrollLeft <= 0) {
-              track.scrollLeft += setWidth;
-            } else if (track.scrollLeft >= setWidth * 2) {
-              track.scrollLeft -= setWidth;
-            }
-          }, { passive: true });
-
-          function pauseAutoScroll() {
-            isUserInteracting = true;
-            clearTimeout(resumeTimeout);
-          }
-
-          function resumeAutoScroll() {
-            clearTimeout(resumeTimeout);
-            resumeTimeout = setTimeout(() => {
-              isUserInteracting = false;
-            }, 1800); // Resume auto scroll after 1.8s of inactivity
-          }
-
-          // Mouse Hover pause
-          track.addEventListener('mouseenter', () => { isAutoScrolling = false; });
-          track.addEventListener('mouseleave', () => { 
-            isAutoScrolling = true; 
-            if (isDown) {
-              isDown = false;
-              resumeAutoScroll();
-            }
-          });
-
-          // Touch interactions (Mobile swipe)
-          track.addEventListener('touchstart', pauseAutoScroll, { passive: true });
-          track.addEventListener('touchend', () => {
-            if (isUserInteracting) resumeAutoScroll();
-          }, { passive: true });
-
-          // Mouse drag-to-scroll (Desktop swipe)
-          track.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - track.offsetLeft;
-            scrollLeftVal = track.scrollLeft;
-            pauseAutoScroll();
-          });
-
-          document.addEventListener('mouseup', () => {
-            if (isDown) {
-              isDown = false;
-              resumeAutoScroll();
-            }
-          });
-
-          track.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - track.offsetLeft;
-            const walk = (x - startX) * 1.5; // scroll speed multiplier
-            track.scrollLeft = scrollLeftVal - walk;
-          });
-
-          // Wheel / Scroll interactions
-          track.addEventListener('wheel', () => {
-            pauseAutoScroll();
-            resumeAutoScroll();
-          }, { passive: true });
-
-          // Start the loop
-          requestAnimationFrame(scrollStep);
-        }
-        // Preload high-res PNG images in the background after the page has fully loaded
+        // Preload high-res PNG images and initialize marquee after page loads
         window.addEventListener('load', () => {
+          // 1. Preload high-res PNG images
           const highResImages = [
             'assets/craft-hand-shack.png',
             'assets/craft-ai-input.png',
@@ -740,6 +645,106 @@
             const img = new Image();
             img.src = src;
           });
+
+          // 2. Initialize marquee scroll logic
+          const track = document.querySelector('.craft-marquee-track');
+          if (track) {
+            let isAutoScrolling = true;
+            let scrollSpeed = 0.8; // auto scroll speed
+            let resumeTimeout = null;
+            let isUserInteracting = false;
+            let isDown = false;
+            let startX;
+            let scrollLeftVal;
+
+            function scrollStep() {
+              if (isAutoScrolling && !isUserInteracting) {
+                const setWidth = track.scrollWidth / 3;
+                if (setWidth > 50) {
+                  track.scrollLeft += scrollSpeed;
+                  // Seamless loop forward
+                  if (track.scrollLeft >= setWidth) {
+                    track.scrollLeft -= setWidth;
+                  }
+                }
+              }
+              requestAnimationFrame(scrollStep);
+            }
+
+            // Handle seamless loop backward/forward during manual scroll
+            track.addEventListener('scroll', () => {
+              const setWidth = track.scrollWidth / 3;
+              if (setWidth > 50) {
+                if (track.scrollLeft <= 0) {
+                  track.scrollLeft += setWidth;
+                } else if (track.scrollLeft >= setWidth * 2) {
+                  track.scrollLeft -= setWidth;
+                }
+              }
+            }, { passive: true });
+
+            function pauseAutoScroll() {
+              isUserInteracting = true;
+              clearTimeout(resumeTimeout);
+            }
+
+            function resumeAutoScroll() {
+              clearTimeout(resumeTimeout);
+              resumeTimeout = setTimeout(() => {
+                isUserInteracting = false;
+              }, 1800); // Resume auto scroll after 1.8s of inactivity
+            }
+
+            // Mouse Hover pause (Only if device has a precise pointer, preventing hover stickiness on touch screens)
+            if (window.matchMedia('(pointer: fine)').matches) {
+              track.addEventListener('mouseenter', () => { isAutoScrolling = false; });
+              track.addEventListener('mouseleave', () => { 
+                isAutoScrolling = true; 
+                if (isDown) {
+                  isDown = false;
+                  resumeAutoScroll();
+                }
+              });
+            }
+
+            // Touch interactions (Mobile swipe)
+            track.addEventListener('touchstart', pauseAutoScroll, { passive: true });
+            track.addEventListener('touchend', () => {
+              if (isUserInteracting) resumeAutoScroll();
+            }, { passive: true });
+
+            // Mouse drag-to-scroll (Desktop swipe)
+            track.addEventListener('mousedown', (e) => {
+              isDown = true;
+              startX = e.pageX - track.offsetLeft;
+              scrollLeftVal = track.scrollLeft;
+              pauseAutoScroll();
+            });
+
+            document.addEventListener('mouseup', () => {
+              if (isDown) {
+                isDown = false;
+                resumeAutoScroll();
+              }
+            });
+
+            track.addEventListener('mousemove', (e) => {
+              if (!isDown) return;
+              e.preventDefault();
+              const x = e.pageX - track.offsetLeft;
+              const walk = (x - startX) * 1.5; // scroll speed multiplier
+              track.scrollLeft = scrollLeftVal - walk;
+            });
+
+            // Wheel / Scroll interactions
+            track.addEventListener('wheel', () => {
+              pauseAutoScroll();
+              resumeAutoScroll();
+            }, { passive: true });
+
+            // Start the loop
+            requestAnimationFrame(scrollStep);
+          }
         });
       }
     });
