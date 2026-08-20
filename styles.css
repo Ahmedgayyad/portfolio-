@@ -285,7 +285,11 @@ body {
 }
 
 #btn-email:hover {
-  color: #ea4335;
+  color: #ffffff;
+}
+
+[data-theme="light"] #btn-email:hover {
+  color: #000000;
 }
 
 #btn-linkedin:hover {
