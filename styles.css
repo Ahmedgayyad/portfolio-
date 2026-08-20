@@ -516,6 +516,33 @@ body {
   max-width: 846px;
 }
 
+.project-card:active {
+  transform: scale(0.985);
+  transition: transform 0.1s ease;
+}
+
+.project-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  opacity: 0.75;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), gap 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-cta {
+  opacity: 1;
+  gap: 10px;
+}
+
+.project-cta svg {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Explore Cursor */
 .explore-cursor {
   position: fixed;
