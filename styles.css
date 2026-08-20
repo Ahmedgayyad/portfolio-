@@ -276,12 +276,32 @@ body {
   border: none;
   border-radius: 0;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-icon:hover {
   background-color: transparent;
-  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+#btn-email:hover {
+  color: #ea4335;
+}
+
+#btn-linkedin:hover {
+  color: #0a66c2;
+}
+
+#btn-x:hover {
+  color: #000000;
+}
+
+[data-theme="dark"] #btn-x:hover {
+  color: #ffffff;
+}
+
+#btn-telegram:hover {
+  color: #24a1de;
 }
 
 /* ============================
