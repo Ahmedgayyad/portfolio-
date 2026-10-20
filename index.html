@@ -1,344 +1,210 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page-intro="true">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ahmed Giad — Senior UI/UX Designer specializing in Product & Enterprise UX. Building simple, thoughtful digital experiences.">
-  <title>Ahmed Giad — Senior UI/UX Designer</title>
+  <meta name="description" content="Ahmed Giad, a product designer in Cairo who designs and builds with AI. Creator of Design Toolkit, a Chrome extension used by 500+ people.">
+  <title>Ahmed Giad · Product Designer</title>
+  <script>
+    // Pick the theme before anything paints: the visitor's last choice, light otherwise
+    (() => {
+      let theme = 'light';
+      try { if (localStorage.getItem('ag-theme') === 'dark') theme = 'dark'; } catch (_) {}
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=dock-v6">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=single-v17">
   <link rel="icon" type="image/jpeg" href="assets/avatar.jpg">
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="dt-logo" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7.5" fill="#0a0a0a"/>
+      <rect x="0.25" y="0.25" width="31.5" height="31.5" rx="7.25" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="0.5"/>
+      <g transform="translate(6 6) scale(0.625)">
+        <path d="M4 17V8.5A4.5 4.5 0 0 1 8.5 4H17" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+        <path d="M12.6 12.6L28 18.5L19.3 19.3L18.5 28Z" fill="#ffffff" stroke="#ffffff" stroke-width="2.2" stroke-linejoin="round"/>
+      </g>
+    </symbol>
+  </svg>
 
-  <main class="portfolio">
-    <!-- ======= HERO SECTION ======= -->
-    <section class="hero reveal" id="hero">
-      <div class="container">
-        <!-- Avatar Stack (4 background cards + 1 foreground main avatar) -->
-        <div class="avatar-stack-container" id="avatar-stack">
-          <!-- 4 Background cards -->
-          <img src="assets/avatar-stack-1.jpg?v=blue" alt="Ahmed Photo 1" class="avatar-card card-1">
-          <img src="assets/avatar-stack-2.jpg?v=blue" alt="Ahmed Photo 2" class="avatar-card card-2">
-          <img src="assets/avatar-stack-3.jpg?v=blue" alt="Ahmed Photo 3" class="avatar-card card-3">
-          <img src="assets/avatar-stack-4.jpg?v=blue" alt="Ahmed Photo 4" class="avatar-card card-4">
-
-          <!-- Foreground avatar card -->
-          <div class="avatar-main-card">
-            <img src="assets/avatar.jpg?v=blue" alt="Ahmed Giad" class="avatar-img" id="avatar">
-          </div>
-        </div>
-
-        <!-- Name & Title -->
-        <div class="identity">
-          <div class="name-row">
-            <h1 class="name">Ahmed Giad</h1>
-            <svg class="verified-badge" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C12.59 2 13.15 2.25 13.56 2.68L14.77 3.96C15.11 4.32 15.59 4.52 16.09 4.52H17.82C18.92 4.52 19.82 5.42 19.82 6.52V8.25C19.82 8.75 20.02 9.23 20.38 9.57L21.66 10.78C22.09 11.19 22.34 11.75 22.34 12.34C22.34 12.93 22.09 13.49 21.66 13.9L20.38 15.11C20.02 15.45 19.82 15.93 19.82 16.43V18.16C19.82 19.26 18.92 20.16 17.82 20.16H16.09C15.59 20.16 15.11 20.36 14.77 20.72L13.56 22C13.15 22.43 12.59 22.68 12 22.68C11.41 22.68 10.85 22.43 10.44 22L9.23 20.72C8.89 20.36 8.41 20.16 7.91 20.16H6.18C5.08 20.16 4.18 19.26 4.18 18.16V16.43C4.18 15.93 3.98 15.45 3.62 15.11L2.34 13.9C1.91 13.49 1.66 12.93 1.66 12.34C1.66 11.75 1.91 11.19 2.34 10.78L3.62 9.57C3.98 9.23 4.18 8.75 4.18 8.25V6.52C4.18 5.42 5.08 4.52 6.18 4.52H7.91C8.41 4.52 8.89 4.32 9.23 3.96L10.44 2.68C10.85 2.25 11.41 2 12 2Z" fill="#1D9BF0"/>
-              <path d="M8.5 12.5L10.7 14.7L15.8 9.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <p class="title">Product Designer</p>
-        </div>
-
-        <!-- Bio -->
-        <p class="bio">I design simple, thoughtful digital experiences with a strong focus on clarity, usability, and long-term value. I enjoy designing mobile apps and crafting responsive web experiences.</p>
-
-        <!-- Location -->
-        <div class="location-row">
-          <p class="location-text">Currently based in Cairo, Egypt</p>
-          <img src="assets/egypt-flag.webp" alt="Egypt flag" class="flag-icon">
-        </div>
-
-        <!-- Action buttons -->
-        <div class="actions">
-          <a href="assets/Ahmed_Khaled_Giad_CV.pdf" target="_blank" class="btn-resume" id="btn-resume">View Resume</a>
-          <a href="mailto:himido551@gmail.com" class="btn-icon" id="btn-email" aria-label="Email">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <path d="M22 7l-10 7L2 7"/>
-            </svg>
-          </a>
-          <a href="https://www.linkedin.com/in/ahmedgiad" target="_blank" class="btn-icon" id="btn-linkedin" aria-label="LinkedIn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-              <rect x="2" y="9" width="4" height="12"/>
-              <circle cx="4" cy="4" r="2"/>
-            </svg>
-          </a>
-          <a href="https://x.com/ahmeduiux206" target="_blank" class="btn-icon" id="btn-x" aria-label="X (Twitter)">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-          </a>
-          <a href="https://wa.me/201032505817" target="_blank" class="btn-icon" id="btn-whatsapp" aria-label="WhatsApp">
-            <svg width="20" height="20" viewBox="0 0 360 362" fill="none">
-              <path fill="currentColor" fill-rule="evenodd" d="M307.546 52.566C273.709 18.684 228.706.017 180.756 0 81.951 0 1.538 80.404 1.504 179.235c-.017 31.594 8.242 62.432 23.928 89.609L0 361.736l95.024-24.925c26.179 14.285 55.659 21.805 85.655 21.814h.077c98.788 0 179.21-80.413 179.244-179.244.017-47.898-18.608-92.926-52.454-126.807v-.008Zm-126.79 275.788h-.06c-26.73-.008-52.952-7.194-75.831-20.765l-5.44-3.231-56.391 14.791 15.05-54.981-3.542-5.638c-14.912-23.721-22.793-51.139-22.776-79.286.035-82.14 66.867-148.973 149.051-148.973 39.793.017 77.198 15.53 105.328 43.695 28.131 28.157 43.61 65.596 43.593 105.398-.035 82.149-66.867 148.982-148.982 148.982v.008Zm81.719-111.577c-4.478-2.243-26.497-13.073-30.606-14.568-4.108-1.496-7.09-2.243-10.073 2.243-2.982 4.487-11.568 14.577-14.181 17.559-2.613 2.991-5.226 3.361-9.704 1.117-4.477-2.243-18.908-6.97-36.02-22.226-13.313-11.878-22.304-26.54-24.916-31.027-2.613-4.486-.275-6.91 1.959-9.136 2.011-2.011 4.478-5.234 6.721-7.847 2.244-2.613 2.983-4.486 4.478-7.469 1.496-2.991.748-5.603-.369-7.847-1.118-2.243-10.073-24.289-13.812-33.253-3.636-8.732-7.331-7.546-10.073-7.692-2.613-.13-5.595-.155-8.586-.155-2.991 0-7.839 1.118-11.947 5.604-4.108 4.486-15.677 15.324-15.677 37.361s16.047 43.344 18.29 46.335c2.243 2.991 31.585 48.225 76.51 67.632 10.684 4.615 19.029 7.374 25.535 9.437 10.727 3.412 20.49 2.931 28.208 1.779 8.604-1.289 26.498-10.838 30.228-21.298 3.73-10.46 3.73-19.433 2.613-21.298-1.117-1.865-4.108-2.991-8.586-5.234l.008-.017Z" clip-rule="evenodd"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= PROJECTS SECTION ======= -->
-    <section class="projects reveal" id="projects">
-      <div class="container">
-        <h2 class="section-label">PROJECTS</h2>
-        <p class="section-subtitle projects-subtitle">A glimpse into projects where I transformed ideas into intuitive digital experiences.</p>
-
-        <div class="projects-list">
-          <!-- Project 1 — IRYSS CRM -->
-          <a href="iryss.html" class="project-card" id="project-iryss">
-            <div class="project-image-wrapper">
-              <img src="assets/iryss-mockup.jpg?v=macbook" alt="IRYSS CRM Dashboard MacBook Pro Mockup" class="project-image" loading="lazy" decoding="async">
-            </div>
-            <h3 class="project-title">IRYSS CRM — Enterprise CRM Dashboard</h3>
-            <p class="project-desc">Designed a complete CRM experience for managing leads, contacts, companies, tasks, and analytics. The focus was on creating a simple, scalable interface that helps teams work more efficiently and make faster decisions.</p>
-            <div class="project-cta">
-              <span>View Case Study</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </div>
-          </a>
-
-          <!-- Project 2 — EquiCare -->
-          <a href="equicare.html" class="project-card" id="project-equicare">
-            <div class="project-image-wrapper">
-              <img src="assets/equicare-mockup.jpg" alt="EquiCare Horse Services App" class="project-image" loading="lazy" decoding="async">
-            </div>
-            <h3 class="project-title">EquiCare — Horse Services Mobile App</h3>
-            <p class="project-desc">Designed a complete mobile experience for horse owners to discover services, shop equestrian products, and manage bookings. The focus was on creating a clean, user-friendly interface that simplifies navigation and provides a seamless experience across the entire app.</p>
-            <div class="project-cta">
-              <span>View Case Study</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= EXPERIENCE SECTION ======= -->
-    <section class="experience reveal" id="experience">
-      <div class="container">
-        <h2 class="section-label">EXPERIENCE</h2>
-        <p class="section-description">Throughout my career, I've worked on various projects, from building scalable systems to designing user-friendly interfaces. Here's a brief overview.</p>
-
-        <div class="experience-table">
-          <!-- Table Header -->
-          <div class="experience-header">
-            <span class="col-period">PERIOD</span>
-            <span class="col-summary">SUMMARY</span>
-          </div>
-          <div class="divider"></div>
-
-          <!-- Experience 1 -->
-          <div class="experience-row reveal reveal-delay-1" id="exp-iryss">
-            <div class="exp-period">
-              <span>Sep 2025 - Aug 2026</span>
-            </div>
-            <div class="exp-details">
-              <div class="exp-role-row">
-                <span class="exp-role">Product Designer</span>
-                <span class="exp-at">at</span>
-                <a href="https://www.iryss.com/" target="_blank" rel="noopener noreferrer" class="exp-company">
-                  <img src="assets/iryss-logo.png" alt="IRYSS" class="company-logo">
-                  <span class="company-name">IRYSS</span>
-                </a>
-              </div>
-              <p class="exp-desc">Designed a scalable CRM platform serving 50,000+ customers and built a company-wide design system. Created a unified B2B/B2C platform that brought multiple tenants into one seamless experience.</p>
-            </div>
-          </div>
-          <div class="divider"></div>
-
-          <!-- Experience 2 -->
-          <div class="experience-row reveal reveal-delay-2" id="exp-phix">
-            <div class="exp-period">
-              <span>May 2025 - Sep 2025</span>
-            </div>
-            <div class="exp-details">
-              <div class="exp-role-row">
-                <span class="exp-role">UX/UI Designer</span>
-                <span class="exp-at">at</span>
-                <a href="https://getphix.com/" target="_blank" rel="noopener noreferrer" class="exp-company">
-                  <img src="assets/phix-logo.png" alt="Phix" class="company-logo">
-                  <span class="company-name">Phix</span>
-                </a>
-              </div>
-              <p class="exp-desc">Led the design of the PHIX mobile, improving usability and navigation. Collaborated closely with developers to deliver high-fidelity prototypes and ensure seamless implementation.</p>
-            </div>
-          </div>
-          <div class="divider"></div>
-
-          <!-- Experience 3 -->
-          <div class="experience-row reveal reveal-delay-3" id="exp-digitalh">
-            <div class="exp-period">
-              <span>Jan 2025 - Apr 2025</span>
-            </div>
-            <div class="exp-details">
-              <div class="exp-role-row">
-                <span class="exp-role">UX/UI Designer</span>
-                <span class="exp-at">at</span>
-                <a href="https://www.digitalh.dev/en" target="_blank" rel="noopener noreferrer" class="exp-company">
-                  <img src="assets/digitalh-logo.jpg" alt="digitalH" class="company-logo">
-                  <span class="company-name">digitalH</span>
-                </a>
-              </div>
-              <p class="exp-desc">First job Designed custom ERP platform, improving business workflows through scalable, user-centered interfaces.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= CRAFT SECTION ======= -->
-    <section class="craft reveal" id="craft">
-      <div class="container">
-        <h2 class="section-label">CRAFT</h2>
-        <p class="section-subtitle">Small design explorations and UI experiments.</p>
-      </div>
-
-      <div class="craft-marquee-container">
-        <div class="craft-marquee-track">
-          <!-- Set 1 -->
-          <div class="craft-card" data-highres="assets/craft-hand-shack.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-hand-shack.jpg" alt="Clean Illustration design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-ai-input.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-ai-input.jpg" alt="Ai Input design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-mobile-onboarding.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-mobile-onboarding.jpg" alt="Fashion Onboarding design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-profile-card.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-profile-card.jpg" alt="Profile Card design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-signup.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-signup.jpg" alt="Sign Up Voucher UI Design" class="craft-img" draggable="false">
-            </div>
-          </div>
-
-          <!-- Set 2 -->
-          <div class="craft-card" data-highres="assets/craft-hand-shack.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-hand-shack.jpg" alt="Clean Illustration design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-ai-input.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-ai-input.jpg" alt="Ai Input design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-mobile-onboarding.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-mobile-onboarding.jpg" alt="Fashion Onboarding design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-profile-card.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-profile-card.jpg" alt="Profile Card design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-signup.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-signup.jpg" alt="Sign Up Voucher UI Design" class="craft-img" draggable="false">
-            </div>
-          </div>
-
-          <!-- Set 3 -->
-          <div class="craft-card" data-highres="assets/craft-hand-shack.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-hand-shack.jpg" alt="Clean Illustration design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-ai-input.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-ai-input.jpg" alt="Ai Input design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-mobile-onboarding.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-mobile-onboarding.jpg" alt="Fashion Onboarding design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-profile-card.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-profile-card.jpg" alt="Profile Card design" class="craft-img" draggable="false">
-            </div>
-          </div>
-          <div class="craft-card" data-highres="assets/craft-signup.png">
-            <div class="craft-media-box">
-              <img src="assets/craft-signup.jpg" alt="Sign Up Voucher UI Design" class="craft-img" draggable="false">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ======= CONTACT / FOOTER SECTION ======= -->
-    <section class="contact reveal" id="contact">
-      <div class="container">
-        <p class="contact-cta">Got an idea, project, or just want to connect? Send me an email or book a quick call. I'd love to hear from you</p>
-
-        <div class="contact-buttons">
-          <a href="https://cal.com/giad-wpnfs6/book-a-quick-call" target="_blank" rel="noopener noreferrer" class="btn-contact btn-dark" id="btn-book-call">Book a call</a>
-          <a href="mailto:himido551@gmail.com" class="btn-contact btn-outline" id="btn-send-email">Send email</a>
-        </div>
-
-        <footer class="footer-info">
-          <p class="footer-updated">Updated Jul 16, 2026</p>
-          <p class="footer-location">Cairo, Egypt · GMT/UTC+2</p>
-          <div class="footer-links">
-            <a href="https://x.com/ahmeduiux206" target="_blank">X</a>
-            <span class="footer-dot">·</span>
-            <a href="https://www.linkedin.com/in/ahmedgiad" target="_blank">LinkedIn</a>
-            <span class="footer-dot">·</span>
-            <a href="https://wa.me/201032505817" target="_blank">WhatsApp</a>
-            <span class="footer-dot">·</span>
-            <a href="assets/Ahmed_Khaled_Giad_CV.pdf" target="_blank">Resume</a>
-            <span class="footer-dot">·</span>
-            <span class="footer-email-wrapper" id="copy-email-wrapper" onclick="copyEmail(event)">
-              <button class="footer-email-btn" id="copy-email">himido551@gmail.com</button>
-              <svg class="copy-icon" id="copy-icon-default" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-              </svg>
-              <svg class="copy-icon-success" id="copy-icon-success" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              <span class="copy-tooltip" id="copy-tooltip">Copied to clipboard!</span>
+  <main class="page" id="top">
+    <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode" id="theme-toggle">
+      <span class="theme-toggle__knob">
+        <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <mask id="theme-moon">
+            <rect width="24" height="24" fill="#fff"/>
+            <circle class="theme-icon__cut" cx="17" cy="7" r="6" fill="#000"/>
+          </mask>
+          <circle class="theme-icon__core" cx="12" cy="12" r="5" fill="currentColor" mask="url(#theme-moon)"/>
+          <g class="theme-icon__rays" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M12 1.5v2M12 20.5v2M1.5 12h2M20.5 12h2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M4.6 19.4L6 18M18 6l1.4-1.4"/>
+          </g>
+        </svg>
+      </span>
+    </button>
+    <div class="page-top">
+      <!-- ======= INTRO ======= -->
+      <section class="intro" id="hero">
+        <div class="intro-head">
+          <button class="profile-avatar" type="button" data-intro="true" aria-label="Ahmed Giad">
+            <span class="profile-avatar-hover-label" aria-hidden="true">img</span>
+            <span class="profile-avatar-size-pill" aria-hidden="true"><span>76</span><span>×</span><span>76</span></span>
+            <span class="profile-avatar-frame" aria-hidden="true">
+              <span class="profile-avatar-frame__drawing">
+                <span class="profile-avatar-frame__line profile-avatar-frame__line--top"></span>
+                <span class="profile-avatar-frame__line profile-avatar-frame__line--right"></span>
+                <span class="profile-avatar-frame__line profile-avatar-frame__line--bottom"></span>
+                <span class="profile-avatar-frame__line profile-avatar-frame__line--left"></span>
+                <span class="profile-avatar-frame__corner profile-avatar-frame__corner--top-left"></span>
+                <span class="profile-avatar-frame__corner profile-avatar-frame__corner--top-right"></span>
+                <span class="profile-avatar-frame__corner profile-avatar-frame__corner--bottom-left"></span>
+                <span class="profile-avatar-frame__corner profile-avatar-frame__corner--bottom-right"></span>
+              </span>
             </span>
+            <span class="profile-avatar__inner">
+              <span class="profile-avatar__photo">
+                <img src="assets/avatar.jpg?v=blue" alt="Ahmed Giad" id="avatar">
+              </span>
+            </span>
+          </button>
+
+          <div class="intro-body">
+            <div class="intro-item intro-item--name">
+              <h1 class="name">Ahmed Giad</h1>
+              <p class="muted">Product Designer</p>
+            </div>
+
+            <div class="intro-text">
+              <p class="intro-item intro-item--bio">I’m Ahmed, a product designer who cares about clarity, craft and building things that work.</p>
+              <p class="intro-item intro-item--previous">I design digital products and explore AI-native workflows to turn ideas into real experiences. I’m also building <a class="inline-link tool-link" href="https://www.designtoolkit.online/" target="_blank" rel="noopener noreferrer"><svg class="tool-logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#dt-logo"/></svg><span class="tool-link__label">Design Toolkit</span><span class="tool-preview" aria-hidden="true"><span class="dt-stage"><span class="dt-page"><span class="dt-nav"><i></i><b></b><b></b><b></b></span><span class="dt-h dt-h1"></span><span class="dt-h dt-h2"></span><span class="dt-p dt-p1"></span><span class="dt-p dt-p2"></span><span class="dt-btn"></span><span class="dt-img"><i></i></span></span><span class="dt-ins"></span><span class="dt-badge dt-badge--1">h1 · 148 × 36</span><span class="dt-badge dt-badge--2">a.btn · 92 × 32</span><span class="dt-badge dt-badge--3">img · 140 × 140</span><span class="dt-measure"><span>56</span></span><span class="dt-badge dt-badge--4">section · 1080 × 420</span><span class="dt-badge dt-badge--5">transform · 0.15s ease</span><span class="dt-code"><i></i><i></i><i></i><i></i></span><span class="dt-devices"><i></i><i></i><i></i></span><span class="dt-swatches"><i></i><i></i><i></i></span><svg class="dt-cursor" viewBox="0 0 12 13"><path d="M1 1v9.6l2.7-2.4 1.9 3.9 1.7-.8-1.8-3.8h3.7z"/></svg></span><span class="tool-preview__body"><span class="tool-preview__head"><svg class="tool-logo" viewBox="0 0 32 32"><use href="#dt-logo"/></svg><span class="tool-preview__title">Design Toolkit</span><span class="tool-preview__tag">500+ users</span></span><span class="tool-preview__desc">Inspect, measure and copy any design on the web, then hand it to your AI.</span><span class="tool-preview__live"><span class="dt-live-dot"></span><span class="dt-live-text"><span>Inspecting elements</span><span>Measuring the gap</span><span>Pulling colors into Figma</span><span>Copying a section as code</span><span>Copying animations for AI</span><span>Previewing every screen size</span></span></span></span></span></a>, a browser extension that helps designers and developers inspect websites and recreate UI with more accuracy.</p>
+
+              <div class="intro-item intro-item--links links">
+                <a class="hit-area" href="https://www.linkedin.com/in/ahmedgiad" target="_blank" rel="noopener noreferrer" id="btn-linkedin">LinkedIn</a>
+                <span class="dot" aria-hidden="true"></span>
+                <a class="hit-area" href="https://wa.me/201032505817" target="_blank" rel="noopener noreferrer" id="btn-whatsapp">WhatsApp</a>
+                <span class="dot" aria-hidden="true"></span>
+                <a class="hit-area" href="assets/Ahmed_Khaled_Giad_CV.pdf" target="_blank" id="btn-resume">Resume</a>
+                <span class="dot" aria-hidden="true"></span>
+                <button class="hit-area copy-email" type="button" id="copy-email" aria-label="Copy email address himido551@gmail.com">
+                  <span>himido551@gmail.com</span>
+                  <span class="copy-icons" aria-hidden="true">
+                    <svg class="copy-icon copy-icon--copy" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    <svg class="copy-icon copy-icon--check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  </span>
+                </button>
+                <span class="sr-only" aria-live="polite" id="copy-status"></span>
+              </div>
+            </div>
           </div>
-        </footer>
+        </div>
+
+        <nav class="intro-item intro-item--nav switch" role="tablist" aria-label="Work type">
+          <button class="switch-tab active" type="button" role="tab" aria-selected="true" aria-controls="feed-projects" id="tab-projects" data-feed="projects">Projects</button>
+          <button class="switch-tab" type="button" role="tab" aria-selected="false" aria-controls="feed-playground" id="tab-playground" data-feed="playground">Playground</button>
+        </nav>
+      </section>
+
+      <!-- ======= PROJECTS ======= -->
+      <section class="feed active" id="feed-projects" role="tabpanel" aria-labelledby="tab-projects">
+        <article id="project-iryss">
+          <a class="project" href="iryss.html">
+            <div class="project-cover">
+              <video class="project-cover-image" src="assets/videos/iryss-tour.mp4" poster="assets/videos/iryss-tour-poster.jpg" muted loop playsinline preload="metadata" aria-label="IRYSS CRM product tour: leads, lead profile, meeting booking, inbox, calendar, approvals and settings"></video>
+            </div>
+            <div class="project-info">
+              <h2 class="project-title">IRYSS Enterprise CRM</h2>
+              <p class="project-desc">Designed a complete CRM experience for managing leads, contacts, companies, tasks, and analytics. The focus was on creating a simple, scalable interface that helps teams work more efficiently and make faster decisions.</p>
+              <div class="meta">
+                <span>IRYSS</span><span class="dot" aria-hidden="true"></span><span>Product Designer</span><span class="dot" aria-hidden="true"></span><span>2025–2026</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <article id="project-design-toolkit">
+          <a class="project" href="https://www.designtoolkit.online/" target="_blank" rel="noopener noreferrer">
+            <div class="project-cover">
+              <video class="project-cover-image" src="assets/videos/design-toolkit-tour.mp4" poster="assets/videos/design-toolkit-tour-poster.jpg" muted loop playsinline preload="metadata" aria-label="Design Toolkit product tour: inspect, measure, colors from an image, copy a section as code, copy an animation for AI, page audit and responsive view"></video>
+            </div>
+            <div class="project-info">
+              <h2 class="project-title project-title--logo"><svg class="tool-logo" viewBox="0 0 32 32" aria-hidden="true"><use href="#dt-logo"/></svg>Design Toolkit</h2>
+              <p class="project-desc">An idea I turned into a real product. I designed it, built it with AI, launched the website, figured out the pricing, and shipped it to the Chrome Web Store. Now it has 500+ users and 5 releases, and I’m still building on it.</p>
+              <div class="meta">
+                <span>Own product</span><span class="dot" aria-hidden="true"></span><span>Design &amp; code</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+
+      </section>
+
+      <!-- ======= PLAYGROUND ======= -->
+      <section class="feed" id="feed-playground" role="tabpanel" aria-labelledby="tab-playground" hidden>
+        <figure class="play">
+          <div class="play-media craft-card" data-highres="assets/play/log-in-page@4x.webp">
+            <img src="assets/play/log-in-page.webp" width="1440" height="1024" alt="Log in page with email, password and social sign in" loading="lazy" decoding="async" draggable="false">
+          </div>
+          <figcaption>Log in page</figcaption>
+        </figure>
+        <figure class="play">
+          <div class="play-media craft-card" data-highres="assets/play/teams-landing@4x.webp">
+            <img src="assets/play/teams-landing.webp" width="1496" height="868" alt="Landing section for team workflow automation" loading="lazy" decoding="async" draggable="false">
+          </div>
+          <figcaption>Teams landing section</figcaption>
+        </figure>
+        <figure class="play">
+          <div class="play-media craft-card" data-motion>
+            <div class="play-phones">
+              <video src="assets/play/call-screen-live.mp4" poster="assets/play/call-screen-live.webp" width="393" height="852" muted loop playsinline preload="none" aria-label="Voice agent call screen: the orb flows and the call timer rolls"></video>
+              <video src="assets/play/call-screen-hold.mp4" poster="assets/play/call-screen-hold.webp" width="393" height="852" muted loop playsinline preload="none" aria-label="Call screen with mute and hold turned on, the orb slows down"></video>
+              <video src="assets/play/call-screen-end.mp4" poster="assets/play/call-screen-end.webp" width="393" height="852" muted loop playsinline preload="none" aria-label="Call screen ending the call, the timer stops and the orb settles"></video>
+            </div>
+          </div>
+          <figcaption>Call screen</figcaption>
+        </figure>
+        <figure class="play">
+          <div class="play-media craft-card" data-highres="assets/play/fashion-onboarding@4x.webp">
+            <img src="assets/play/fashion-onboarding.webp" width="1334" height="874" alt="Three onboarding screens for a luxury resale app" loading="lazy" decoding="async" draggable="false">
+          </div>
+          <figcaption>Fashion onboarding</figcaption>
+        </figure>
+      </section>
+    </div>
+
+    <!-- ======= FOOTER ======= -->
+    <footer class="page-footer" id="contact">
+      <div class="page-footer-row">
+        <div class="page-footer-place">
+          <span>Currently in Cairo</span>
+          <span class="dot" aria-hidden="true"></span>
+          <time class="tabular" id="local-time"></time>
+        </div>
+        <span>Last updated Oct 2026</span>
       </div>
-    </section>
+    </footer>
   </main>
-  <!-- Custom Explore Cursor -->
-  <div class="explore-cursor" id="explore-cursor">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M7 17L17 7"/>
-      <path d="M7 7h10v10"/>
-    </svg>
-    <span>Explore</span>
+
+  <!-- Craft Lightbox Modal -->
+  <div class="craft-lightbox" id="craft-lightbox" aria-hidden="true" role="dialog">
+    <div class="craft-lightbox-overlay"></div>
+    <div class="craft-lightbox-cursor" id="craft-lightbox-cursor">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </div>
+    <div class="craft-lightbox-container">
+      <div class="craft-lightbox-card">
+        <img src="" alt="Craft Preview" id="craft-lightbox-img" class="craft-lightbox-img">
+        <div class="craft-lightbox-motion" id="craft-lightbox-motion"></div>
+      </div>
+    </div>
   </div>
 
   <script>
-    // Guarantee page starts at the top (Hero Section) on load unless an anchor hash is present
+    // Always start at the top unless a hash is present
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
@@ -346,467 +212,182 @@
       window.scrollTo(0, 0);
     }
 
-    // Custom Explore cursor for project cards (Hide instantly when leaving)
-    const cursor = document.getElementById('explore-cursor');
-    const projectCards = document.querySelectorAll('.project-card');
+    // Intro animations run once, then hover states take over
+    const avatarBtn = document.querySelector('.profile-avatar');
+    setTimeout(() => { avatarBtn.dataset.intro = 'false'; }, 1200);
+    setTimeout(() => { document.documentElement.dataset.pageIntro = 'false'; }, 1400);
 
-    if (cursor) {
-      function hideCursor() {
-        cursor.classList.remove('visible');
-      }
-
-      document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-
-        // Check if element under pointer is inside a project card
-        const target = document.elementFromPoint(e.clientX, e.clientY);
-        if (target && target.closest('.project-card')) {
-          cursor.classList.add('visible');
-        } else {
-          hideCursor();
-        }
-      });
-
-      // Safety listeners so cursor never gets stuck
-      document.addEventListener('mouseleave', hideCursor);
-      window.addEventListener('blur', hideCursor);
-      window.addEventListener('scroll', hideCursor, { passive: true });
-
-      projectCards.forEach(card => {
-        card.addEventListener('mouseleave', hideCursor);
-        card.addEventListener('click', hideCursor);
-      });
+    // Scroll reveal for project cards and playground items.
+    // Starts after the intro so the first card follows the stagger.
+    const revealItems = document.querySelectorAll('.feed article, .feed .play');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window && !reducedMotion) {
+      revealItems.forEach(el => el.classList.add('reveal'));
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // Also reveal cards the page already jumped past
+          if (entry.isIntersecting || entry.boundingClientRect.bottom < 0) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      setTimeout(() => revealItems.forEach(el => revealObserver.observe(el)), 750);
     }
 
-    // Scroll Reveal Observer
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
+    // Cover videos wait for the visitor: they start once the page has been scrolled a little and
+    // the video is mostly on screen, and pause again when it leaves. Each file starts on the frame
+    // its poster shows, so the still turns into motion without a jump.
+    const coverVideos = document.querySelectorAll('.project-cover video');
+    const inView = new Set();
+    let scrolled = window.scrollY > 40;
+    const sync = (video) => {
+      if (scrolled && inView.has(video)) video.play().catch(() => {});
+      else video.pause();
+    };
+    if ('IntersectionObserver' in window) {
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(({ target, intersectionRatio }) => {
+          if (intersectionRatio >= 0.59) inView.add(target);
+          else inView.delete(target);
+          sync(target);
+        });
+      }, { threshold: [0, 0.6] });
+      coverVideos.forEach(video => videoObserver.observe(video));
+      if (!scrolled) {
+        const onScroll = () => {
+          if (window.scrollY < 40) return;
+          scrolled = true;
+          window.removeEventListener('scroll', onScroll);
+          coverVideos.forEach(sync);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+      }
+    } else {
+      coverVideos.forEach(video => video.play().catch(() => {}));
+    }
+
+    // Keep the Design Toolkit preview inside the window when the link wraps near the right edge
+    const toolLink = document.querySelector('.tool-link');
+    toolLink.addEventListener('mouseenter', () => {
+      toolLink.style.removeProperty('--preview-left');
+      const over = toolLink.querySelector('.tool-preview').getBoundingClientRect().right - (window.innerWidth - 16);
+      if (over > 0) toolLink.style.setProperty('--preview-left', `${-10 - over}px`);
     });
 
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    // Framer Scroll-Driven Scale Animation for Projects Section
-    const projectCardsList = document.querySelectorAll('.project-card');
-    let ticking = false;
-
-    function updateProjectScroll() {
-      const windowHeight = window.innerHeight;
-
-      projectCardsList.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        const imgWrapper = card.querySelector('.project-image-wrapper');
-        
-        if (imgWrapper && rect.top < windowHeight && rect.bottom > 0) {
-          // Progress from 0 (entering viewport) to 1 (mid viewport)
-          const distanceFromBottom = windowHeight - rect.top;
-          const progress = Math.min(Math.max(distanceFromBottom / (windowHeight * 0.7), 0), 1);
-          
-          // Easing curve
-          const easeProgress = 1 - Math.pow(1 - progress, 2.5);
-          
-          const scale = 0.88 + (easeProgress * 0.12); // 0.88 -> 1.0
-          const opacity = 0.4 + (easeProgress * 0.6); // 0.4 -> 1.0
-          const translateY = (1 - easeProgress) * 35; // 35px -> 0px
-
-          imgWrapper.style.transform = `scale(${scale.toFixed(4)}) translateY(${translateY.toFixed(1)}px)`;
-          imgWrapper.style.opacity = opacity.toFixed(3);
-        }
+    // Projects / Playground switch
+    const switchTabs = document.querySelectorAll('.switch-tab');
+    const feeds = document.querySelectorAll('.feed');
+    switchTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        switchTabs.forEach(t => {
+          t.classList.toggle('active', t === tab);
+          t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+        });
+        feeds.forEach(feed => {
+          const isActive = feed.id === `feed-${tab.dataset.feed}`;
+          feed.classList.toggle('active', isActive);
+          feed.hidden = !isActive;
+        });
       });
+    });
 
-      ticking = false;
-    }
-
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(updateProjectScroll);
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    document.addEventListener('DOMContentLoaded', updateProjectScroll);
-    updateProjectScroll();
-
-
-
-    // Copy email to clipboard with visual feedback
+    // Copy email with check-mark feedback
+    const copyBtn = document.getElementById('copy-email');
+    const copyStatus = document.getElementById('copy-status');
     let copyTimeout;
-    function copyEmail(e) {
-      if (e) e.preventDefault();
+    copyBtn.addEventListener('click', () => {
       navigator.clipboard.writeText('himido551@gmail.com').then(() => {
-        const wrapper = document.getElementById('copy-email-wrapper');
-        const tooltip = document.getElementById('copy-tooltip');
-        
-        wrapper.classList.add('copied');
-        tooltip.classList.add('show');
-        
+        copyBtn.classList.add('copied');
+        copyStatus.textContent = 'Email copied';
         clearTimeout(copyTimeout);
         copyTimeout = setTimeout(() => {
-          wrapper.classList.remove('copied');
-          tooltip.classList.remove('show');
-        }, 2200);
-      });
-    }
-    // Make copyEmail globally accessible
-    window.copyEmail = copyEmail;
-  </script>
-
-  <!-- Hamza Alabou Style Floating Glass Dock -->
-  <div class="dock" aria-label="Site Navigation">
-    <nav class="dock-pill" aria-label="Site">
-      <a class="dock-item active" aria-label="About" href="#hero">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-item-icon" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        <span class="dock-item-label">About</span>
-      </a>
-      <a class="dock-item" aria-label="Work" href="#projects">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-item-icon" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg>
-        <span class="dock-item-label">Work</span>
-      </a>
-      <a class="dock-item" aria-label="Experience" href="#experience">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-item-icon" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path></svg>
-        <span class="dock-item-label">Experience</span>
-      </a>
-      <a class="dock-item" aria-label="Craft" href="#craft">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-item-icon" aria-hidden="true"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
-        <span class="dock-item-label">Craft</span>
-      </a>
-      <a class="dock-item" aria-label="Contact" href="#contact">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dock-item-icon" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
-        <span class="dock-item-label">Contact</span>
-      </a>
-    </nav>
-
-    <!-- Scroll to Top Button -->
-    <div class="dock-bubble dock-bubble-top" id="dock-scroll-top">
-      <button aria-label="Back to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg>
-      </button>
-    </div>
-
-    <!-- Theme Toggle Button -->
-    <div class="dock-bubble" id="dock-theme-toggle">
-      <button class="theme-toggle-btn" aria-label="Theme toggle">
-        <span class="theme-toggle-icons">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun theme-icon theme-icon--sun" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon theme-icon theme-icon--moon" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg>
-        </span>
-      </button>
-    </div>
-  </div>
-
-  <script>
-    // ==========================================
-    // HAMZA ALABOU DOCK & THEME LOGIC
-    // ==========================================
-    const dockItems = Array.from(document.querySelectorAll('.dock-item'));
-    const dockScrollTop = document.getElementById('dock-scroll-top');
-    const dockThemeToggle = document.getElementById('dock-theme-toggle');
-    const moonIcon = document.querySelector('.theme-icon--moon');
-    const sunIcon = document.querySelector('.theme-icon--sun');
-
-    const homeSections = [
-      document.getElementById('hero'),
-      document.getElementById('projects'),
-      document.getElementById('experience'),
-      document.getElementById('craft'),
-      document.getElementById('contact')
-    ].filter(Boolean);
-
-    let activeNavSectionId = 'hero';
-
-    function updateDockOnScroll() {
-      const scrollY = window.scrollY;
-      const isAtBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 80);
-
-      let currentId = 'hero';
-
-      if (isAtBottom && homeSections.length > 0) {
-        currentId = homeSections[homeSections.length - 1].getAttribute('id');
-      } else {
-        const trigger = scrollY + (window.innerHeight * 0.35);
-        homeSections.forEach(sec => {
-          const secTop = sec.getBoundingClientRect().top + scrollY;
-          if (trigger >= secTop) {
-            currentId = sec.getAttribute('id');
-          }
-        });
-      }
-
-      if (currentId !== activeNavSectionId) {
-        activeNavSectionId = currentId;
-        dockItems.forEach(item => {
-          if (item.getAttribute('href') === `#${currentId}`) {
-            item.classList.add('active');
-            item.setAttribute('aria-current', 'page');
-          } else {
-            item.classList.remove('active');
-            item.removeAttribute('aria-current');
-          }
-        });
-      }
-    }
-
-    // Click on dock items -> smooth scroll
-    dockItems.forEach(item => {
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = item.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          dockItems.forEach(l => {
-            l.classList.remove('active');
-            l.removeAttribute('aria-current');
-          });
-          item.classList.add('active');
-          item.setAttribute('aria-current', 'page');
-          activeNavSectionId = targetId.replace('#', '');
-          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+          copyBtn.classList.remove('copied');
+          copyStatus.textContent = '';
+        }, 1800);
       });
     });
 
-    // Scroll to Top Button
-    if (dockScrollTop) {
-      dockScrollTop.addEventListener('click', () => {
-        dockScrollTop.classList.remove('trigger-anim');
-        void dockScrollTop.offsetWidth;
-        dockScrollTop.classList.add('trigger-anim');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setTimeout(() => dockScrollTop.classList.remove('trigger-anim'), 600);
-      });
+    // Live Cairo time in the footer
+    const localTime = document.getElementById('local-time');
+    const timeFormat = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Africa/Cairo' });
+    function updateTime() {
+      localTime.textContent = timeFormat.format(new Date()).toLowerCase();
+    }
+    updateTime();
+    setInterval(updateTime, 30000);
+
+    // Craft lightbox
+    const craftCards = document.querySelectorAll('.craft-card');
+    const craftLightbox = document.getElementById('craft-lightbox');
+    const craftLightboxImg = document.getElementById('craft-lightbox-img');
+    const craftLightboxCursor = document.getElementById('craft-lightbox-cursor');
+
+    document.addEventListener('mousemove', (e) => {
+      if (craftLightbox.classList.contains('active')) {
+        craftLightboxCursor.style.left = e.clientX + 'px';
+        craftLightboxCursor.style.top = e.clientY + 'px';
+      }
+    });
+
+    // Motion pieces (the call screen) play only while on screen, all phones in step
+    const motionRows = document.querySelectorAll('.play-phones');
+    const playRow = (row) => {
+      const videos = [...row.querySelectorAll('video')];
+      videos.forEach(v => { v.preload = 'auto'; v.currentTime = videos[0].currentTime; });
+      videos.forEach(v => v.play().catch(() => {}));
+    };
+    if ('IntersectionObserver' in window && !reducedMotion) {
+      const motionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) playRow(target);
+          else target.querySelectorAll('video').forEach(v => v.pause());
+        });
+      }, { threshold: 0.35 });
+      motionRows.forEach(row => motionObserver.observe(row));
     }
 
-    // Theme Toggle Functionality with Hamza Bloom & Pop Animation
-    function applyTheme(theme, animate = false) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-
-      if (animate) {
-        if (theme === 'dark' && moonIcon) {
-          moonIcon.classList.remove('trigger-anim');
-          void moonIcon.offsetWidth;
-          moonIcon.classList.add('trigger-anim');
-          setTimeout(() => moonIcon.classList.remove('trigger-anim'), 650);
-        } else if (theme === 'light' && sunIcon) {
-          sunIcon.classList.remove('trigger-anim');
-          void sunIcon.offsetWidth;
-          sunIcon.classList.add('trigger-anim');
-          setTimeout(() => sunIcon.classList.remove('trigger-anim'), 650);
+    const craftLightboxMotion = document.getElementById('craft-lightbox-motion');
+    craftCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const row = card.querySelector('.play-phones');
+        craftLightbox.classList.toggle('is-motion', !!row);
+        if (row) {
+          const copy = row.cloneNode(true);
+          craftLightboxMotion.replaceChildren(copy);
+          if (!reducedMotion) playRow(copy);
+        } else {
+          craftLightboxImg.src = card.dataset.highres;
+          craftLightboxImg.alt = card.querySelector('img')?.alt || 'Craft Preview';
         }
-      }
-    }
-
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    applyTheme(savedTheme, false);
-
-    if (dockThemeToggle) {
-      dockThemeToggle.addEventListener('click', () => {
-        const curr = document.documentElement.getAttribute('data-theme');
-        const next = curr === 'light' ? 'dark' : 'light';
-        applyTheme(next, true);
+        craftLightbox.classList.add('active');
+        craftLightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
       });
-    }
+    });
 
-    window.addEventListener('scroll', updateDockOnScroll, { passive: true });
-    document.addEventListener('DOMContentLoaded', updateDockOnScroll);
-    setTimeout(updateDockOnScroll, 80);
-
-    // ==========================================
-    // CRAFT LIGHTBOX MODAL LOGIC (Inspora Style)
-    // ==========================================
-    document.addEventListener('DOMContentLoaded', () => {
-      const craftCards = document.querySelectorAll('.craft-card');
-      const craftLightbox = document.getElementById('craft-lightbox');
-      const craftLightboxImg = document.getElementById('craft-lightbox-img');
-      const craftLightboxCursor = document.getElementById('craft-lightbox-cursor');
-
-      if (craftCards.length > 0 && craftLightbox) {
-        // Custom cursor movement
-        document.addEventListener('mousemove', (e) => {
-          if (craftLightbox.classList.contains('active') && craftLightboxCursor) {
-            craftLightboxCursor.style.left = e.clientX + 'px';
-            craftLightboxCursor.style.top = e.clientY + 'px';
-          }
-        });
-
-        craftCards.forEach(card => {
-          card.addEventListener('click', () => {
-            const highResSrc = card.getAttribute('data-highres');
-            if (highResSrc) {
-              craftLightboxImg.src = highResSrc;
-              craftLightboxImg.alt = card.querySelector('.craft-img')?.alt || 'Craft Preview';
-              craftLightbox.classList.add('active');
-              craftLightbox.setAttribute('aria-hidden', 'false');
-              document.body.style.overflow = 'hidden';
-            }
-          });
-        });
-
-        const closeCraftLightbox = () => {
-          craftLightbox.classList.remove('active');
-          craftLightbox.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-          setTimeout(() => {
-            if (!craftLightbox.classList.contains('active')) {
-              craftLightboxImg.src = '';
-            }
-          }, 300);
-        };
-
-        // Click anywhere inside the lightbox to close it
-        craftLightbox.addEventListener('click', closeCraftLightbox);
-
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && craftLightbox.classList.contains('active')) {
-            closeCraftLightbox();
-          }
-        });
-
-        // Preload high-res PNG images and initialize marquee after page loads
-        window.addEventListener('load', () => {
-          // 1. Preload high-res PNG images
-          const highResImages = [
-            'assets/craft-hand-shack.png',
-            'assets/craft-ai-input.png',
-            'assets/craft-mobile-onboarding.png',
-            'assets/craft-profile-card.png',
-            'assets/craft-signup.png'
-          ];
-          highResImages.forEach(src => {
-            const img = new Image();
-            img.src = src;
-          });
-
-          // 2. Initialize marquee scroll logic
-          const track = document.querySelector('.craft-marquee-container');
-          if (track) {
-            let isAutoScrolling = true;
-            let scrollSpeed = 0.8; // auto scroll speed
-            let resumeTimeout = null;
-            let isUserInteracting = false;
-            let isDown = false;
-            let startX;
-            let scrollLeftVal;
-
-            function scrollStep() {
-              if (isAutoScrolling && !isUserInteracting) {
-                const setWidth = track.scrollWidth / 3;
-                if (setWidth > 50) {
-                  track.scrollLeft += scrollSpeed;
-                  // Seamless loop forward
-                  if (track.scrollLeft >= setWidth) {
-                    track.scrollLeft -= setWidth;
-                  }
-                }
-              }
-              requestAnimationFrame(scrollStep);
-            }
-
-            // Handle seamless loop backward/forward during manual scroll
-            track.addEventListener('scroll', () => {
-              const setWidth = track.scrollWidth / 3;
-              if (setWidth > 50) {
-                if (track.scrollLeft <= 0) {
-                  track.scrollLeft += setWidth;
-                } else if (track.scrollLeft >= setWidth * 2) {
-                  track.scrollLeft -= setWidth;
-                }
-              }
-            }, { passive: true });
-
-            function pauseAutoScroll() {
-              isUserInteracting = true;
-              clearTimeout(resumeTimeout);
-            }
-
-            function resumeAutoScroll() {
-              clearTimeout(resumeTimeout);
-              resumeTimeout = setTimeout(() => {
-                isUserInteracting = false;
-              }, 1800); // Resume auto scroll after 1.8s of inactivity
-            }
-
-            // Mouse Hover pause (Only if device has a precise pointer, preventing hover stickiness on touch screens)
-            if (window.matchMedia('(pointer: fine)').matches) {
-              track.addEventListener('mouseenter', () => { isAutoScrolling = false; });
-              track.addEventListener('mouseleave', () => { 
-                isAutoScrolling = true; 
-                if (isDown) {
-                  isDown = false;
-                  resumeAutoScroll();
-                }
-              });
-            }
-
-            // Touch interactions (Mobile swipe)
-            track.addEventListener('touchstart', pauseAutoScroll, { passive: true });
-            track.addEventListener('touchend', () => {
-              if (isUserInteracting) resumeAutoScroll();
-            }, { passive: true });
-
-            // Mouse drag-to-scroll (Desktop swipe)
-            track.addEventListener('mousedown', (e) => {
-              isDown = true;
-              startX = e.pageX - track.offsetLeft;
-              scrollLeftVal = track.scrollLeft;
-              pauseAutoScroll();
-            });
-
-            document.addEventListener('mouseup', () => {
-              if (isDown) {
-                isDown = false;
-                resumeAutoScroll();
-              }
-            });
-
-            track.addEventListener('mousemove', (e) => {
-              if (!isDown) return;
-              e.preventDefault();
-              const x = e.pageX - track.offsetLeft;
-              const walk = (x - startX) * 1.5; // scroll speed multiplier
-              track.scrollLeft = scrollLeftVal - walk;
-            });
-
-            // Wheel / Scroll interactions
-            track.addEventListener('wheel', () => {
-              pauseAutoScroll();
-              resumeAutoScroll();
-            }, { passive: true });
-
-            // Start the loop
-            requestAnimationFrame(scrollStep);
-          }
-        });
-      }
+    const closeCraftLightbox = () => {
+      craftLightbox.classList.remove('active');
+      craftLightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(() => {
+        if (craftLightbox.classList.contains('active')) return;
+        craftLightboxImg.src = '';
+        craftLightboxMotion.replaceChildren();
+      }, 300);
+    };
+    craftLightbox.addEventListener('click', closeCraftLightbox);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && craftLightbox.classList.contains('active')) closeCraftLightbox();
     });
   </script>
 
-  <!-- Craft Lightbox Modal -->
-  <div class="craft-lightbox" id="craft-lightbox" aria-hidden="true" role="dialog">
-    <div class="craft-lightbox-overlay" id="craft-lightbox-overlay"></div>
-    <div class="craft-lightbox-cursor" id="craft-lightbox-cursor">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </div>
-    <div class="craft-lightbox-container">
-      <div class="craft-lightbox-card">
-        <img src="" alt="Craft Preview" id="craft-lightbox-img" class="craft-lightbox-img">
-      </div>
-    </div>
-  </div>
   <!-- Vercel Web Analytics -->
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
+  <script src="theme.js?v=2" defer></script>
+  <script src="ui-sound.js?v=3" defer></script>
 </body>
 </html>
